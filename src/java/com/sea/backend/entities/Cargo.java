@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 Depurador.
+ * Copyright 2017 EdisonArturo.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -41,15 +41,15 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Depurador
+ * @author EdisonArturo
  */
 @Entity
 @Table(name = "tbl_cargo")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "Cargo.findAll", query = "SELECT c FROM Cargo c")
-	, @NamedQuery(name = "Cargo.findByIdCargo", query = "SELECT c FROM Cargo c WHERE c.idCargo = :idCargo")
-	, @NamedQuery(name = "Cargo.findByCargo", query = "SELECT c FROM Cargo c WHERE c.cargo = :cargo")})
+	@NamedQuery(name = "Cargo.findAll", query = "SELECT c FROM Cargo c"),
+	@NamedQuery(name = "Cargo.findByIdCargo", query = "SELECT c FROM Cargo c WHERE c.idCargo = :idCargo"),
+	@NamedQuery(name = "Cargo.findByCargo", query = "SELECT c FROM Cargo c WHERE c.cargo = :cargo")})
 public class Cargo implements Serializable {
 
 	private static final long serialVersionUID = 1L;
