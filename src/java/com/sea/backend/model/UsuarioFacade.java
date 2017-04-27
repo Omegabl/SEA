@@ -78,11 +78,13 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
 	@Override
 	public List<Usuario> listaUsuario() {
 		List<Usuario> lista;
-		String jpql = "select u.nombre, u.numeroDocumento, u.idInterno, t.numeroTelefono, c.email, u.nombreUsuario, pe.nombre, u.idUsuario from Usuario  u\n"
+		String jpql = "select u.nombre, u.numeroDocumento, u.idInterno, t.numeroTelefono, e.email, u.nombreUsuario, c.cargo, u.idUsuario from Usuario  u\n"
 				+ "join u.telefonoList t\n"
-				+ "join u.emailList c\n"
-				+ "join u.usuarioPerfilList uspe\n"
-				+ "join uspe.tblPerfilIdPerfil pe\n";
+				+ "join u.emailList e\n"
+				+ "join u.tblCargoIdCargo c\n"
+				+ "join c.cargoPerfilList cape\n"
+				+ "join cape.tblPerfilIdPerfil pe\n"
+				+ "GROUP BY u.nombre";
 		Query query = em.createQuery(jpql);
 		lista = query.getResultList();
 

@@ -53,4 +53,6 @@ public interface ClienteFacadeLocal {
 	Object datosCliente(int idCliente) throws Exception;
 	
 	List<Cliente> listaClienteCotizacion(Usuario id);
+	
+	List<Cliente> listaClientes();
 }

@@ -23,13 +23,10 @@
  */
 package com.sea.backend.model;
 
-import com.sea.backend.entities.Cotizacion;
 import com.sea.backend.entities.OrdenProduccion;
-import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 
 /**
  *
@@ -49,7 +46,5 @@ public class OrdenProduccionFacade extends AbstractFacade<OrdenProduccion> imple
 	public OrdenProduccionFacade() {
 		super(OrdenProduccion.class);
 	}
-
-
 
 }

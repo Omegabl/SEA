@@ -5,6 +5,8 @@
  */
 package com.sea.frontend.controller;
 
+import com.sea.backend.entities.Cargo;
+import com.sea.backend.entities.CargoPerfil;
 import com.sea.backend.entities.Ciudad;
 import com.sea.backend.entities.Departamento;
 import com.sea.backend.entities.Direccion;
@@ -16,7 +18,8 @@ import com.sea.backend.entities.TipoDocumento;
 import com.sea.backend.entities.TipoEmail;
 import com.sea.backend.entities.TipoTelefono;
 import com.sea.backend.entities.Usuario;
-import com.sea.backend.entities.UsuarioPerfil;
+import com.sea.backend.model.CargoFacadeLocal;
+import com.sea.backend.model.CargoPerfilFacadeLocal;
 import com.sea.backend.model.CiudadFacadeLocal;
 import com.sea.backend.model.DepartamentoFacadeLocal;
 import com.sea.backend.model.DireccionFacadeLocal;
@@ -28,13 +31,13 @@ import com.sea.backend.model.TipoDocumentoFacadeLocal;
 import com.sea.backend.model.TipoEmailFacadeLocal;
 import com.sea.backend.model.TipoTelefonoFacadeLocal;
 import com.sea.backend.model.UsuarioFacadeLocal;
-import com.sea.backend.model.UsuarioPerfilFacadeLocal;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import static jdk.nashorn.internal.runtime.ListAdapter.create;
 
 /**
  *
@@ -72,10 +75,15 @@ public class UsuarioController implements Serializable {
 	@EJB
 	private EmailFacadeLocal correoEJB;
 	private Email correo;
+	
+	@EJB
+	private CargoFacadeLocal CargoEJB;
+	private Cargo cargo;
+	private List<Cargo> listaCargos;
 
 	@EJB
-	private UsuarioPerfilFacadeLocal usuarioPerfilEJB;
-	private UsuarioPerfil perfil;
+	private CargoPerfilFacadeLocal cargoPerfilEJB;
+	private CargoPerfil cargoPerfil;
 
 	@EJB
 	private PerfilFacadeLocal perfilEJB;
@@ -97,8 +105,7 @@ public class UsuarioController implements Serializable {
 	@EJB
 	private TipoDocumentoFacadeLocal tipoDocumentoEJB;
 	private TipoDocumento tipoDocumento;
-	
-	private List cargo;
+
 
 	public Departamento getDepartamento() {
 		return departamento;
@@ -122,14 +129,6 @@ public class UsuarioController implements Serializable {
 
 	public void setCorreo(Email correo) {
 		this.correo = correo;
-	}
-
-	public UsuarioPerfil getPerfil() {
-		return perfil;
-	}
-
-	public void setPerfil(UsuarioPerfil perfil) {
-		this.perfil = perfil;
 	}
 
 	public String getLimpieza() {
@@ -186,7 +185,6 @@ public class UsuarioController implements Serializable {
 		usuario = new Usuario();
 		telefono = new Telefono();
 		correo = new Email();
-		perfil = new UsuarioPerfil();
 		perfilt = new Perfil();
 		lista = usuarioEJB.listaUsuario();
 		direccion = new Direccion();
@@ -197,6 +195,9 @@ public class UsuarioController implements Serializable {
 		departamento = new Departamento();
 		ciudad = new Ciudad();
 		ciudades = ciudadEJB.findAll();
+		cargo = new Cargo();
+		listaCargos = CargoEJB.findAll();
+		cargoPerfil = new CargoPerfil();
 	}
 
 	public List<Ciudad> getCiudades() {
@@ -258,6 +259,7 @@ public class UsuarioController implements Serializable {
 	public void registrar() {
 		try {
 			usuario.setTblTipoDocumentoIdTipoDocumento(tipoDocumentoEJB.find(tipoDocumento.getIdTipoDocumento()));
+			usuario.setTblCargoIdCargo(cargo);
 			usuarioEJB.create(usuario);
 			telefono.setTblTipoTelefonoIdTipoTelefono(tipoTelefonoEJB.find(tipoTelefono.getIdTipoTelefono()));
 			telefono.setTblUsuarioIdUsuario(usuarioEJB.find(usuario.getIdUsuario()));
@@ -265,9 +267,6 @@ public class UsuarioController implements Serializable {
 			correo.setTblTipoEmailIdTipoEmail(tipoEmailEJB.find(tipoEmail.getIdTipoEmail()));
 			correo.setTblUsuarioIdUsuario(usuarioEJB.find(usuario.getIdUsuario()));
 			correoEJB.create(correo);
-			perfil.setTblPerfilIdPerfil(perfilEJB.find(perfilt.getIdPerfil()));
-			perfil.setTblUsuarioIdUsuario(usuarioEJB.find(usuario.getIdUsuario()));
-			usuarioPerfilEJB.create(perfil);
 			direccion.setTblTipoDireccionIdTipoDireccion(tipoDireccionEJB.find(tipoDireccion.getIdTipoDireccion()));
 			direccion.setTblUsuarioIdUsuario(usuarioEJB.find(usuario.getIdUsuario()));
 			direccion.setTblCiudadIdCiudad(ciudadEJB.listaCiudad(ciudad.getNombre()));
@@ -323,13 +322,34 @@ public class UsuarioController implements Serializable {
 
 	}
 
-	public List getCargo() {
+	public Cargo getCargo() {
 		return cargo;
 	}
 
-	public void setCargo(List cargo) {
+	public void setCargo(Cargo cargo) {
 		this.cargo = cargo;
 	}
+
+	public List<Cargo> getListaCargos() {
+		return listaCargos;
+	}
+
+	public void setListaCargos(List<Cargo> listaCargos) {
+		this.listaCargos = listaCargos;
+	}
+
+	public CargoPerfil getCargoPerfil() {
+		return cargoPerfil;
+	}
+
+	public void setCargoPerfil(CargoPerfil cargoPerfil) {
+		this.cargoPerfil = cargoPerfil;
+	}
+
+	
+
+
+	
 	
 	
 

@@ -113,5 +113,19 @@ public class ClienteFacade extends AbstractFacade<Cliente> implements ClienteFac
 
 		return lista;
 	}
+	@Override
+	public List<Cliente> listaClientes() {
+		List<Cliente> lista;
+		String jpql = "SELECT cl.numeroDocumento, cl.nombreORazonSocial, d.direccion, t.numeroTelefono, e.email, cl.nombreContacto, u.nombre FROM Cliente cl\n"
+				+ "JOIN cl.direccionList d\n"
+				+ "JOIN cl.telefonoList t\n"
+				+ "JOIN cl.emailList e\n"
+				+ "JOIN cl.tblUsuarioIdUsuario u\n";
+		Query query = em.createQuery(jpql);
+		lista = query.getResultList();
+
+
+		return lista;
+	}
 
 }

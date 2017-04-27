@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 Depurador.
+ * Copyright 2017 EdisonArturo.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,7 +30,7 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author Depurador
+ * @author EdisonArturo
  */
 @Stateless
 public class DisenoProductoFacade extends AbstractFacade<DisenoProducto> implements DisenoProductoFacadeLocal {

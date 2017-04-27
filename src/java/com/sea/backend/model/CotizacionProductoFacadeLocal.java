@@ -24,7 +24,6 @@
 package com.sea.backend.model;
 
 import com.sea.backend.entities.CotizacionProducto;
-import com.sea.frontend.controller.CotizacionProductoAuxiliar;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -48,9 +47,5 @@ public interface CotizacionProductoFacadeLocal {
 	List<CotizacionProducto> findRange(int[] range);
 
 	int count();
-	//Object datosCotizacionProducto(String numeroCotizacion) throws Exception;
-	List<CotizacionProductoAuxiliar> datosCotizacionProducto(String numeroCotizacion) throws Exception;
-	
-	
 
 }
