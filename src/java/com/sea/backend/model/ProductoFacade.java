@@ -78,4 +78,19 @@ public class ProductoFacade extends AbstractFacade<Producto> implements Producto
 		return listaProductoPrecio;
 
 	}
+	
+	@Override
+	public List<Producto> listaProductos(){
+		List<Producto> listaProductoPrecio;
+		String consulta = "SELECT p.referencia, p.descripcion, m.nombre, f.nombre, p.fechaActualizacion, cos.costo, p.precio FROM Producto p "
+				+ "JOIN p.materialList m\n"
+				+ "JOIN p.tblFabricanteIdFabricante f\n"
+				+ "JOIN p.registroCostoList cos\n";
+		
+		Query query = em.createQuery(consulta);
+
+		listaProductoPrecio = query.getResultList();
+		return listaProductoPrecio;
+
+	}
 }

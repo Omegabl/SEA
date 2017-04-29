@@ -61,6 +61,7 @@ public class LoginController implements Serializable {
 					dialogTittle = "Error al iniciar sesión";
 					dialogContent = "Usted no se encuentra activo en el sistema.<br />Por favor, comuníquese con el administrador del sistema.";
 					RequestContext.getCurrentInstance().execute("mostrarDialogos(`"+dialogTittle+"`, `"+dialogContent+"`);");
+					RequestContext.getCurrentInstance().execute("mostrarSnackbar();");
 					}
 			} else {
 				dialogTittle = "Error al iniciar sesión";

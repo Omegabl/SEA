@@ -22,6 +22,9 @@
  * THE SOFTWARE.
  */
 
+/*
+ * Dialogos
+ */
 function mostrarDialogos(titulo, mensaje) {
 	if (!document.querySelector('#dialogExceptions')) {
 		crearDialogExceptions();
@@ -71,8 +74,53 @@ function crearDialogExceptions() {
 	dialogActions.appendChild(dialogButton);
 	dialogButton.innerHTML="Aceptar";
 }
+/*
+ * Snackbar
+ */
+function mostrarSnackbar(){
+	if (!document.querySelector('#snackbarMessage')) {
+		crearSnackbar();
+	}
+	var snackbarMessage = document.querySelector('.mdl-js-snackbar');
+	var handler = function(){
+		console.log(data);
+	};
+	var data = {
+      message: 'Button color changed.',
+      timeout: 2000,
+      actionHandler: handler,
+      actionText: 'Undo'
+    };
+	console.log(data);
+	snackbarMessage.MaterialSnackbar.showSnackbar(data);
+}
+function crearSnackbar(){
+	var snackbarTag = document.createElement('div');
+	var snackbarText = document.createElement('div');
+	var snackbarButton = document.createElement('div');
+	
+	agregarAtributos(snackbarTag, atributos = {
+		"aria-live": "assertive",
+		"aria-atomic": "true",
+		"aria-relevant": "text",
+		"id": "snackbarMessage",
+		"class": "mdl-snackbar mdl-js-snackbar"
+	});
+	agregarAtributos(snackbarText, atributos = {
+		"class": "mdl-snackbar__text"
+	});
+	agregarAtributos(snackbarButton, atributos = {
+		"aria-relevant": "text",
+		"class": "mdl-snackbar__action"
+	});
+	
+	document.body.appendChild(snackbarTag);
+	snackbarTag.appendChild(snackbarText);
+	snackbarTag.appendChild(snackbarButton);
+}
 function agregarAtributos(elemento, atributos) {
 	for (var atributo in atributos) {
 		elemento.setAttribute(atributo, atributos[atributo]);
 	}
 }
+

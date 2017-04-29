@@ -31,7 +31,6 @@ Convenciones
 #convenciones .mdl-tabs{
 	background-color: #fff;
 	min-height: calc(100vh - var(--altoHeader) - 30px);
-	padding-left: 15px;
 	padding-bottom: 15px;
 }
 #convenciones table{

@@ -5,15 +5,9 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	  xmlns:p="http://primefaces.org/ui">
 	<h:head>
-		<meta charset="UTF-8" />
 		<title>Actualizar cotización | SEA</title>
-		<link rel="shortcut icon" href="#{request.contextPath}/img/favicon.ico"/>
-		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
-		<h:outputStylesheet library="css" name="mdl-selectfield.min.css"/>
-			<h:outputStylesheet library="css" name="cotizaciones.css" />
-			<h:outputScript library="js" name="mdl-selectfield.min.js"></h:outputScript>
-			<h:outputScript library="js" name="toggleforms.js"></h:outputScript>
-			<h:outputScript library="js" name="retroalimentacion.js"></h:outputScript>
+		<ui:composition template="/templates/resources.xhtml" />
+        <h:outputStylesheet library="css" name="cotizaciones.css" />
 	</h:head>
 	<h:body>
 		<ui:composition template="/templates/header.xhtml" />

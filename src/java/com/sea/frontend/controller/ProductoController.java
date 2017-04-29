@@ -35,6 +35,7 @@ public class ProductoController implements Serializable {
 	@EJB
 	private FabricanteFacadeLocal fabricanteEJB;
 	private List<Producto> producto;
+	private List<Producto> listaProducto;
 	private List<Material> listaMateriales;
 	private List<Fabricante> listaFabricante;
 	private List<Producto> listaProductoPrecio;
@@ -169,6 +170,7 @@ public class ProductoController implements Serializable {
 	public void init() {
 
 		producto = productoEJB.findAll();
+		listaProducto =  productoEJB.listaProductos();
 		//departamento = departamentoEJB.findAll();
 		//email = emailEJB.findAll();
 		//telefono = telefonoEJB.findAll();
@@ -187,7 +189,13 @@ public class ProductoController implements Serializable {
 		}
 
 	}
-	
-	
+
+	public List<Producto> getListaProducto() {
+		return listaProducto;
+	}
+
+	public void setListaProducto(List<Producto> listaProducto) {
+		this.listaProducto = listaProducto;
+	}
 
 }

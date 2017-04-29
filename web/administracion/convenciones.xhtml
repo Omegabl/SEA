@@ -3,16 +3,9 @@
 	  xmlns:p="http://primefaces.org/ui"
 	  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
-        <meta charset="UTF-8" />
         <title>Conveniones | SEA</title>
-        <link rel="shortcut icon" href="#{request.contextPath}/img/favicon.ico"/>
-        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
-		<f:facet name="last">
-			<h:outputStylesheet library="css" name="mdl-selectfield.min.css" />
-			<h:outputStylesheet library="css" name="administracion.css" />
-			<!--h:outputScript library="js" name="mdl-selectfield.min.js"></h:outputScript-->
-			<script src="https://rawgit.com/MEYVN-digital/mdl-selectfield/master/mdl-selectfield.min.js"></script>
-		</f:facet>
+		<ui:composition template="/templates/resources.xhtml" />
+        <h:outputStylesheet library="css" name="administracion.css" />
     </h:head>
 	<h:body>
 		<ui:composition template="/templates/header.xhtml" />
