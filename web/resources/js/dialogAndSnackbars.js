@@ -32,6 +32,7 @@ function mostrarDialogos(titulo, mensaje) {
 	var dialog = document.querySelector('#dialogExceptions');
 	if (!dialog.showModal) {
 		dialogPolyfill.registerDialog(dialog);
+		console.log("Dialogos no soportados por el navegador");
 	}
 	dialog.querySelector('.mdl-dialog__title').innerHTML = titulo;
 	dialog.querySelector('.mdl-dialog__content p').innerHTML = mensaje;
@@ -77,20 +78,8 @@ function crearDialogExceptions() {
 /*
  * Snackbar
  */
-function mostrarSnackbar(){
-	if (!document.querySelector('#snackbarMessage')) {
-		crearSnackbar();
-	}
-	var snackbarMessage = document.querySelector('.mdl-js-snackbar');
-	var handler = function(){
-		console.log(data);
-	};
-	var data = {
-      message: 'Button color changed.',
-      timeout: 2000,
-      actionHandler: handler,
-      actionText: 'Undo'
-    };
+function mostrarSnackbar(data){
+	var snackbarMessage = document.querySelector('#snackbarMessage');
 	console.log(data);
 	snackbarMessage.MaterialSnackbar.showSnackbar(data);
 }
@@ -100,11 +89,8 @@ function crearSnackbar(){
 	var snackbarButton = document.createElement('div');
 	
 	agregarAtributos(snackbarTag, atributos = {
-		"aria-live": "assertive",
-		"aria-atomic": "true",
-		"aria-relevant": "text",
 		"id": "snackbarMessage",
-		"class": "mdl-snackbar mdl-js-snackbar"
+		"class": "mdl-js-snackbar mdl-snackbar"
 	});
 	agregarAtributos(snackbarText, atributos = {
 		"class": "mdl-snackbar__text"
@@ -123,4 +109,3 @@ function agregarAtributos(elemento, atributos) {
 		elemento.setAttribute(atributo, atributos[atributo]);
 	}
 }
-
