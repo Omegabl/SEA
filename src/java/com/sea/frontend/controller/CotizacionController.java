@@ -270,8 +270,7 @@ public class CotizacionController implements Serializable {
 			cotizacion.setRelacionMuestra(cotizacion.getRelacionMuestra());
 			cotizacion.setEstado("En seguimiento");
 			//Se carga los objetos de las clases correspondientes a las llaves foraneas
-			cliente = clienteEJB.find(idCliente);
-			cotizacion.setTblClienteIdCliente(cliente);
+			cotizacion.setTblClienteIdCliente(clienteEJB.find(idCliente));
 			cotizacion.setTblModalidadDePagoIdModalidadDePago(modalidadPEJB.find(idModalidadDePago));
 			cotizacion.setTblPropuestaNoIncluyeIdPropuestaNoIncluye(propuestaEJB.find(idPropuestaNoIncluye));
 			cotizacion.setTblTiempoEntregaIdTiempoEntrega(tiempoEJB.find(idTiempoEntrega));
@@ -329,8 +328,8 @@ public class CotizacionController implements Serializable {
 					MimeMessage message = new MimeMessage(session);
 					message.setFrom(new InternetAddress(user, "Fulldotaciones"));
 					InternetAddress[] destinatarios = {
-						new InternetAddress("edarvio.98@gmail.com"),
-						new InternetAddress("andresfqm@misena.edu.co")
+						new InternetAddress(cotizacionEJB.correoCliente(idCliente)),
+						new InternetAddress(cotizacionEJB.correoUsuario(idUsuario()))
 					};
 
 					message.setRecipients(Message.RecipientType.TO, destinatarios);

@@ -24,6 +24,7 @@
 package com.sea.backend.model;
 
 import com.sea.backend.entities.Cotizacion;
+import com.sea.backend.entities.Email;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -32,11 +33,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.ejb.Stateless;
-import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.servlet.http.HttpServletResponse;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRExporter;
 import net.sf.jasperreports.engine.JRExporterParameter;
@@ -44,7 +43,6 @@ import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.engine.export.ooxml.JRXlsxExporter;
 import net.sf.jasperreports.engine.util.JRLoader;
 
@@ -85,6 +83,38 @@ public class CotizacionFacade extends AbstractFacade<Cotizacion> implements Coti
 
 		listaSeguimientoCotizacions = query.getResultList();
 		return listaSeguimientoCotizacions;
+	}
+	
+	@Override
+	public String correoCliente(int cliente) {
+		Object email=null;
+		String correo;
+		String consulta = "SELECT e.email\n"
+				+ "FROM tbl_email AS e\n"
+				+ "INNER JOIN tbl_cliente as c \n"
+				+ "ON e.TBL_CLIENTE_ID_CLIENTE = c.ID_CLIENTE \n"
+				+ "WHERE id_usuario = ?1";
+		Query query = em.createNativeQuery(consulta);
+		query.setParameter(1, cliente);
+		email = query.getSingleResult();
+		correo = email.toString();
+		return correo;
+	}
+	
+	@Override
+	public String correoUsuario(int usuario) {
+		Object email=null;
+		String correo;
+		String consulta = "SELECT e.email\n"
+				+ "FROM tbl_email AS e\n"
+				+ "INNER JOIN tbl_usuario as u \n"
+				+ "ON e.TBL_USUARIO_ID_USUARIO = u.ID_USUARIO \n"
+				+ "WHERE id_usuario = ?1";
+		Query query = em.createNativeQuery(consulta);
+		query.setParameter(1, usuario);
+		email = query.getSingleResult();
+		correo = email.toString();
+		return correo;
 	}
 	
 	@Override
