@@ -3,40 +3,42 @@
 	  xmlns="http://www.w3.org/1999/xhtml"
 	  xmlns:h="http://java.sun.com/jsf/html"
 	  xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-	  xmlns:f="http://xmlns.jcp.org/jsf/core">
+	  xmlns:f="http://xmlns.jcp.org/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
     <h:head>
         <meta charset="UTF-8" />
         <title>Ingreso | SEA</title>
         <link rel="shortcut icon" href="/auth/img/favicon.ico" />
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
-        <link rel="shortcut icon" href="/auth/img/favicon.ico" />
-        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
         <h:outputStylesheet library="css" name="material.min.css" />
+		<h:outputStylesheet library="css" name="dialog-polyfill.css" />
         <h:outputStylesheet library="css" name="login.css" />
         <h:outputScript library="js" name="material.min.js"></h:outputScript>
         <h:outputScript library="js" name="checkBrowser.js"></h:outputScript>
+        <h:outputScript library="js" name="dialog-polyfill.js"></h:outputScript>
+		<h:outputScript library="js" name="dialogAndSnackbars.js"></h:outputScript>
         <f:event type="preRenderView" listener="#{loginController.verificarSesionLogin()}" />
     </h:head>
 	<h:body>
         <main class="mdl-shadow--4dp">
             <h1 class="mdl-typography--display-1">Bienvenido a SEA</h1>
             <h:form>
-                    <div class="mdl-textfield mdl-textfield--floating-label mdl-textfield mdl-js-textfield mdl-textfield--floating-label" >
-                        <h:inputText class="mdl-textfield__input" id="userName" value="#{loginController.usuario.nombreUsuario}" pt:required="required" pt:maxlength="45" />
-                        <h:outputLabel class="mdl-textfield__label" for="userName">Nombre de usuario</h:outputLabel>
-                    </div>
-                    <div class="mdl-textfield mdl-textfield--floating-label mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <h:inputSecret class="mdl-textfield__input" id="password" value="#{loginController.usuario.contrasena}" pt:required="required" pt:maxlength="32" />
-                        <h:outputLabel class="mdl-textfield__label" for="password">Contraseña</h:outputLabel>
-                    </div>
-                    <div>
-                        <h:outputLabel class="mdl-switch mdl-js-switch" for="recordarSesion" >
-                            <h:selectBooleanCheckbox id="recordarSesion" class="mdl-switch__input" />
-                            <h:panelGroup class="mdl-switch__label">Recordarme</h:panelGroup>
-                        </h:outputLabel>
-						<h:outputLink  value="/SEA/auth/forgot.xhtml">¿Olvidó su contraseña?</h:outputLink>
-                    </div>
-                    <h:commandButton type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" action="#{loginController.iniciarSesion()}" value="Ingresar"/>
+				<div class="mdl-textfield mdl-textfield--floating-label mdl-textfield mdl-js-textfield mdl-textfield--floating-label" >
+					<h:inputText class="mdl-textfield__input" id="userName" value="#{loginController.usuario.nombreUsuario}" pt:required="required" pt:maxlength="45" />
+					<h:outputLabel class="mdl-textfield__label" for="userName">Nombre de usuario</h:outputLabel>
+				</div>
+				<div class="mdl-textfield mdl-textfield--floating-label mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<h:inputSecret class="mdl-textfield__input" id="password" value="#{loginController.usuario.contrasena}" pt:required="required" pt:maxlength="32" />
+					<h:outputLabel class="mdl-textfield__label" for="password">Contraseña</h:outputLabel>
+				</div>
+				<div>
+					<h:outputLabel class="mdl-switch mdl-js-switch" for="recordarSesion" >
+						<h:selectBooleanCheckbox id="recordarSesion" class="mdl-switch__input" />
+						<h:panelGroup class="mdl-switch__label">Recordarme</h:panelGroup>
+					</h:outputLabel>
+					<h:outputLink  value="/SEA/auth/forgot.xhtml">¿Olvidó su contraseña?</h:outputLink>
+				</div>
+				<p:commandButton styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" action="#{loginController.iniciarSesion()}" value="Ingresar"/>
             </h:form>
         </main>
     </h:body>
