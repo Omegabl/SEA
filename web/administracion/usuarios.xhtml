@@ -134,7 +134,7 @@
                             </p:selectOneMenu>
                         </h:panelGroup>
 						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-							<p:selectOneMenu value="#{usuarioController.ciudad.nombre}" id="ciudad" >
+							<p:selectOneMenu value="#{usuarioController.ciudad.nombre}" id="ciudad" filter="true" filterMatchMode="contains">
 								<f:selectItems value="#{usuarioController.ciudades}" var="ciu" itemLabel="#{ciu}" itemValue="#{ciu}"/>
 							</p:selectOneMenu>
 							<h:outputLabel class="mdl-textfield__label" for="ciudad">Ciudad</h:outputLabel>
