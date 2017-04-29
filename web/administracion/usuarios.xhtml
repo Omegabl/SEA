@@ -123,7 +123,7 @@
                             </p:selectOneMenu>
                         </h:panelGroup>
 						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-							<p:selectOneMenu value="#{usuarioController.ciudad.nombre}" id="ciudad" >
+							<p:selectOneMenu value="#{usuarioController.ciudad.nombre}" id="ciudad" filter="true" filterMatchMode="contains">
 								<f:selectItems value="#{usuarioController.ciudades}" var="ciu" itemLabel="#{ciu}" itemValue="#{ciu}"/>
 							</p:selectOneMenu>
 							<h:outputLabel class="mdl-textfield__label" for="ciudad">Ciudad</h:outputLabel>
@@ -143,19 +143,10 @@
                             <h:outputLabel class="mdl-textfield__label" for="IDInterno">ID Interno</h:outputLabel>
                         </h:panelGroup>
                         <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label ">
-							<p:selectCheckboxMenu id="tipoPerfil" value="#{usuarioController.perfiles}" p:layout="grid" p:columns="1" styleClass="mdl-switch__input" label="Seleccione:">
-								<f:selectItems value="#{perfilController.listaPerfiles}" var="lisperfil" itemLabel="#{lisperfil.nombre}" itemValue="#{lisperfil.idPerfil}" />
-							</p:selectCheckboxMenu>
-							<h:outputLabel class="mdl-textfield__label" for="tipoPerfil">Perfil</h:outputLabel>
-							</h:panelGroup>
-						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-							<p:selectOneMenu id="tipoCargo" value="#{usuarioController.usuario.cargo}" >
-								<f:selectItem itemLabel="Administrador" itemValue="Administrador" />
-								<f:selectItem itemLabel="Asesor" itemValue="Asesor" />
-								<f:selectItem itemLabel="Administrativo" itemValue="Administrativo" />
-								<f:selectItem itemLabel="Jefe de producción" itemValue="Jefe de producción" />
+							<p:selectOneMenu id="tipoPerfil" value="#{usuarioController.cargo.idCargo}" p:layout="grid" p:columns="1" styleClass="mdl-switch__input" label="Seleccione:">
+								<f:selectItems value="#{usuarioController.listaCargos}" var="liscar" itemLabel="#{liscar.cargo}" itemValue="#{liscar.idCargo}" />
 							</p:selectOneMenu>
-							<h:outputLabel class="mdl-textfield__label" for="tipoCargo">Cargo</h:outputLabel>
+							<h:outputLabel class="mdl-textfield__label" for="tipoPerfil">Perfil</h:outputLabel>
 							</h:panelGroup>
 						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
                             <h:inputText class="mdl-textfield__input" p:maxlength="45" value="#{usuarioController.usuario.consecutivoCotizacion}" required="required" id="consecutivo" />

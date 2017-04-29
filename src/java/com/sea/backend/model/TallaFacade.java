@@ -27,7 +27,6 @@ import com.sea.backend.entities.Talla;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 
 /**
  *
@@ -48,21 +47,4 @@ public class TallaFacade extends AbstractFacade<Talla> implements TallaFacadeLoc
 		super(Talla.class);
 	}
 
-	@Override
-	public Talla tallaDescripcion(int idTalla) throws Exception {
-		Talla tallaDescripcion = null;
-		String consulta;
-
-		try {
-			consulta = "FROM Talla t WHERE t.idTalla = ?1";
-
-			Query query = em.createQuery(consulta);
-			query.setParameter(1, idTalla);
-			tallaDescripcion = (Talla) query.getSingleResult();
-		} catch (Exception e) {
-			throw e;
-		}
-		return tallaDescripcion;
-
-	}
 }

@@ -24,7 +24,7 @@
 package com.sea.backend.model;
 
 import com.sea.backend.entities.Cotizacion;
-import com.sea.backend.entities.Usuario;
+import com.sea.backend.entities.Email;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -33,11 +33,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.ejb.Stateless;
-import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.servlet.http.HttpServletResponse;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRExporter;
 import net.sf.jasperreports.engine.JRExporterParameter;
@@ -45,7 +43,6 @@ import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.engine.export.ooxml.JRXlsxExporter;
 import net.sf.jasperreports.engine.util.JRLoader;
 
@@ -89,10 +86,42 @@ public class CotizacionFacade extends AbstractFacade<Cotizacion> implements Coti
 	}
 	
 	@Override
+	public String correoCliente(int cliente) {
+		Object email=null;
+		String correo;
+		String consulta = "SELECT e.email\n"
+				+ "FROM tbl_email AS e\n"
+				+ "INNER JOIN tbl_cliente as c \n"
+				+ "ON e.TBL_CLIENTE_ID_CLIENTE = c.ID_CLIENTE \n"
+				+ "WHERE id_usuario = ?1";
+		Query query = em.createNativeQuery(consulta);
+		query.setParameter(1, cliente);
+		email = query.getSingleResult();
+		correo = email.toString();
+		return correo;
+	}
+	
+	@Override
+	public String correoUsuario(int usuario) {
+		Object email=null;
+		String correo;
+		String consulta = "SELECT e.email\n"
+				+ "FROM tbl_email AS e\n"
+				+ "INNER JOIN tbl_usuario as u \n"
+				+ "ON e.TBL_USUARIO_ID_USUARIO = u.ID_USUARIO \n"
+				+ "WHERE id_usuario = ?1";
+		Query query = em.createNativeQuery(consulta);
+		query.setParameter(1, usuario);
+		email = query.getSingleResult();
+		correo = email.toString();
+		return correo;
+	}
+	
+	@Override
     public void getReportePDF(String ruta, String numero_cotizacion) throws  ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
         Connection conexion;
         Class.forName("com.mysql.jdbc.Driver").newInstance();
-        conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/fulldotaciones", "root", "5050");
+        conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/fulldotaciones", "root", "");
 
         //Se definen los parametros si es que el reporte necesita
         Map parameter = new HashMap();
@@ -101,7 +130,7 @@ public class CotizacionFacade extends AbstractFacade<Cotizacion> implements Coti
 
         try {
             File file = new File(ruta);
-			String destino = "C:\\Users\\homero\\Documents\\NetBeansProjects\\SEA\\web\\PDF/cotizacion_N_" + numero_cotizacion + ".pdf";
+			String destino = "C:\\Users\\EdisonArturo\\Documents\\NetBeansProjects\\SEA\\web\\PDF/cotizacion_N_" + numero_cotizacion + ".pdf";
 
 
 
@@ -129,12 +158,12 @@ public class CotizacionFacade extends AbstractFacade<Cotizacion> implements Coti
     public void getReporteXLSX(String ruta, String numero_cotizacion) throws  ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
         Connection conexion;
         Class.forName("com.mysql.jdbc.Driver").newInstance();
-        conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/fulldotaciones", "root", "5050");
+        conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/fulldotaciones", "root", "");
 
         //Se definen los parametros si es que el reporte necesita
         Map parameter = new HashMap();
 		parameter.put("numero_cotizacion", numero_cotizacion);
-		String destino = "C:\\Users\\homero\\Documents\\NetBeansProjects\\SEA\\web\\EXCEL/cotizacion_N_" + numero_cotizacion + ".xlsx";
+		String destino = "C:\\Users\\EdisonArturo\\Documents\\NetBeansProjects\\SEA\\web\\EXCEL/cotizacion_N_" + numero_cotizacion + ".xlsx";
 
         try {
             File file = new File(ruta);
@@ -169,36 +198,4 @@ public class CotizacionFacade extends AbstractFacade<Cotizacion> implements Coti
             }
         }
     }
-
-	@Override
-	public Object datosCotizacion(String numeroCotizacion) throws Exception {
-		
-		String consulta2 = "SELECT co.numero_cotizacion, c.nombre_o_razon_social, ci.nombre, e.email, d.direccion\n"
-				+ "FROM tbl_cotizacion AS co\n"
-				+ "INNER JOIN tbl_cliente as c \n"
-				+ "ON co.TBL_CLIENTE_ID_CLIENTE = c.ID_CLIENTE \n"
-				+ "INNER JOIN tbl_usuario AS u \n"
-				+ "ON c.TBL_USUARIO_ID_USUARIO = u.ID_USUARIO\n"
-				+ "INNER JOIN\n"
-				+ "TBL_EMAIL e ON c.ID_CLIENTE = e.TBL_CLIENTE_ID_CLIENTE\n"
-				+ "INNER JOIN\n"
-				+ "TBL_TIPO_EMAIL te ON e.TBL_TIPO_EMAIL_ID_TIPO_EMAIL = te.ID_TIPO_EMAIL\n"
-				+ "INNER JOIN\n"
-				+ "TBL_DIRECCION d ON d.TBL_CLIENTE_ID_CLIENTE = c.ID_CLIENTE\n"
-				+ "INNER JOIN\n"
-				+ "TBL_TIPO_DIRECCION tdi ON d.TBL_TIPO_DIRECCION_ID_TIPO_DIRECCION = tdi.ID_TIPO_DIRECCION\n"
-				+ "INNER JOIN\n"
-				+ "TBL_CIUDAD ci ON d.TBL_CIUDAD_ID_CIUDAD = ci.ID_CIUDAD\n"
-				+ "WHERE numero_cotizacion = ?1";
-
-		Query query = em.createNativeQuery(consulta2);
-		query.setParameter(1, numeroCotizacion);
-
-		//datosCliente = query.getResultList();
-		Object datosCotizacion = query.getSingleResult();
-
-		return datosCotizacion;
-	}
-
-
 }

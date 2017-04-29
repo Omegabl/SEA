@@ -24,7 +24,7 @@
 package com.sea.backend.model;
 
 import com.sea.backend.entities.Cotizacion;
-import com.sea.backend.entities.CotizacionProducto;
+import com.sea.backend.entities.Email;
 import com.sea.backend.entities.Usuario;
 import java.sql.SQLException;
 import java.util.List;
@@ -48,15 +48,15 @@ public interface CotizacionFacadeLocal {
 	List<Cotizacion> findAll();
 
 	List<Cotizacion> findRange(int[] range);
-
-	int count();
-
 	List<Cotizacion> listaSeguimiento(int usuario);
 
-	Object datosCotizacion(String numeroCotizacion) throws Exception;
+	int count();
+	
+	void getReportePDF(String ruta, String numero_cotizacion) throws  ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException;
+	
+	void getReporteXLSX(String ruta, String numero_cotizacion) throws  ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException;
 
-	void getReportePDF(String ruta, String numero_cotizacion) throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException;
-
-	void getReporteXLSX(String ruta, String numero_cotizacion) throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException;
-
+	String correoUsuario(int usuario);
+	
+	String correoCliente(int cliente);
 }

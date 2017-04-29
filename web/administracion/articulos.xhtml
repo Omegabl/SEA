@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	  xmlns:p="http://primefaces.org/ui"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core">
 	<h:head>
 		<title>Artículos | SEA</title>
 		<ui:composition template="/templates/resources.xhtml" />
@@ -10,83 +12,56 @@
 		<ui:composition template="/templates/header.xhtml" />
 		<main id="articulosDashboard">
 			<h:panelGroup layout="block" p:data-dataTable="">
-				<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-					<tr>
-						<th class="mdl-data-table__cell--non-numeric">REFERENCIA</th>
-						<th class="mdl-data-table__cell--non-numeric">DESCRIPCION</th>
-						<th class="mdl-data-table__cell--non-numeric">MATERIAL / FABRICANTE</th>
-						<th class="mdl-data-table__cell--non-numeric">FECHA </th>
-						<th class="mdl-data-table__cell--non-numeric"> COSTO </th>
-						<th class="mdl-data-table__cell--non-numeric"> PRECIO </th>
-						<th class="mdl-data-table__cell--non-numeric">12</th>
-						<th class="mdl-data-table__cell--non-numeric">50</th>
-						<th class="mdl-data-table__cell--non-numeric">100</th>
-						<th class="mdl-data-table__cell--non-numeric">300</th>
-						<th class="mdl-data-table__cell--non-numeric">500</th>
-						<th class="mdl-data-table__cell--non-numeric">1000</th>
-					</tr>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">BORDADOS</td>
-						<td class="mdl-data-table__cell--non-numeric">D</td>
-						<td class="mdl-data-table__cell--non-numeric"></td>
-						<td class="mdl-data-table__cell--non-numeric"></td>
-						<td class="mdl-data-table__cell--non-numeric"></td>
-						<td class="mdl-data-table__cell--non-numeric"></td>
-						<td class="mdl-data-table__cell--non-numeric">3%</td>
-						<td class="mdl-data-table__cell--non-numeric">5%</td>
-						<td class="mdl-data-table__cell--non-numeric">10%</td>
-						<td class="mdl-data-table__cell--non-numeric">15%</td>
-						<td class="mdl-data-table__cell--non-numeric">20%</td>
-						<td class="mdl-data-table__cell--non-numeric">25%</td>
-					</tr>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">DP</td>
-						<td class="mdl-data-table__cell--non-numeric">Programación de Logo - Para menos de 20 unidades</td>
-						<td class="mdl-data-table__cell--non-numeric">Hilo</td>
-						<td class="mdl-data-table__cell--non-numeric">13/01/2016</td>
-						<td class="mdl-data-table__cell--non-numeric">$15.000</td>
-						<td class="mdl-data-table__cell--non-numeric">$30.000</td>
-						<td class="mdl-data-table__cell--non-numeric">$29.100</td>
-						<td class="mdl-data-table__cell--non-numeric">$28.500</td>
-						<td class="mdl-data-table__cell--non-numeric">$27.000</td>
-						<td class="mdl-data-table__cell--non-numeric">$25.500</td>
-						<td class="mdl-data-table__cell--non-numeric">$2.814</td>
-						<td class="mdl-data-table__cell--non-numeric">$22.500</td>
-					</tr>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">DF</td>
-						<td class="mdl-data-table__cell--non-numeric">Logo bordado tamaño frontal</td>
-						<td class="mdl-data-table__cell--non-numeric">Hilo</td>
-						<td class="mdl-data-table__cell--non-numeric">13/01/2016</td>
-						<td class="mdl-data-table__cell--non-numeric">$1.500</td>
-						<td class="mdl-data-table__cell--non-numeric">$3.000</td>
-						<td class="mdl-data-table__cell--non-numeric">$2.910</td>
-						<td class="mdl-data-table__cell--non-numeric">$2.850</td>
-						<td class="mdl-data-table__cell--non-numeric">$2.700</td>
-						<td class="mdl-data-table__cell--non-numeric">$2.550</td>
-						<td class="mdl-data-table__cell--non-numeric">$2.400</td>
-						<td class="mdl-data-table__cell--non-numeric">$2.250</td>
-					</tr>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">DM</td>
-						<td class="mdl-data-table__cell--non-numeric">Logo bordado tamaño frontal, ubicado en Manga</td>
-						<td class="mdl-data-table__cell--non-numeric">Hilo</td>
-						<td class="mdl-data-table__cell--non-numeric">13/01/2016</td>
-						<td class="mdl-data-table__cell--non-numeric">$1.500</td>
-						<td class="mdl-data-table__cell--non-numeric">$3.000</td>
-						<td class="mdl-data-table__cell--non-numeric">$2.910</td>
-						<td class="mdl-data-table__cell--non-numeric">$2.850</td>
-						<td class="mdl-data-table__cell--non-numeric">$2.700</td>
-						<td class="mdl-data-table__cell--non-numeric">$2.550</td>
-						<td class="mdl-data-table__cell--non-numeric">$2.400</td>
-						<td class="mdl-data-table__cell--non-numeric">$2.250</td>
-					</tr>
-				</table>
+				<p:dataTable value="#{productoController.listaProducto}" var="producto" >
+					<p:column>
+							<f:facet name="header">
+								<h:outputLabel value="REFERENCIA"/>
+							</f:facet>
+							<h:outputText value="#{producto[0]}"/>
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputLabel value="DESCRIPCION"/>
+							</f:facet>
+							<h:outputText value="#{producto[1]}"/>
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputLabel value="MATERIAL"/>
+							</f:facet>
+							<h:outputText value="#{producto[2]}"/>
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputLabel value="FABRICANTE"/>
+							</f:facet>
+							<h:outputText value="#{producto[3]}"/>
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputLabel value="FECHA"/>
+							</f:facet>
+							<h:outputText value="#{producto[4]}"/>
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputLabel value="COSTO"/>
+							</f:facet>
+							<h:outputText value="#{producto[5]}"/>
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputLabel value="PRECIO"/>
+							</f:facet>
+							<h:outputText value="#{producto[6]}"/>
+						</p:column>
+				</p:dataTable>
 			</h:panelGroup>
 			<a href="#addArticulo" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored button-bottom_right toggleSubForm">
 				<i class="material-icons">add</i>
 			</a>
 		</main>
+		<p:dialog  widgetVar="agrePro">
 		<aside id="subForm">
 			<h:form id="addArticulo">
 				<h3 class="mdl-dialog__title">Registrar artículo</h3>
@@ -783,6 +758,7 @@
 				</h:panelGroup>
 			</h:form>
 		</aside>
+		</p:dialog>
 		<aside>
 			<h:panelGroup layout="block" id="articuloNuevo" class="mdl-js-snackbar mdl-snackbar">
 				<h:panelGroup layout="block" class="mdl-snackbar__text"></h:panelGroup>

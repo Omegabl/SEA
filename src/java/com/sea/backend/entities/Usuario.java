@@ -301,7 +301,7 @@ public class Usuario implements Serializable {
 
 	@Override
 	public String toString() {
-		return "com.sea.backend.entities.Usuario[ idUsuario=" + idUsuario + " ]";
+		return nombre;
 	}
 	
 }

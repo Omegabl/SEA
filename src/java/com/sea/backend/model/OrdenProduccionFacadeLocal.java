@@ -23,7 +23,6 @@
  */
 package com.sea.backend.model;
 
-import com.sea.backend.entities.Cotizacion;
 import com.sea.backend.entities.OrdenProduccion;
 import java.util.List;
 import javax.ejb.Local;
@@ -48,8 +47,5 @@ public interface OrdenProduccionFacadeLocal {
 	List<OrdenProduccion> findRange(int[] range);
 
 	int count();
-		
-	
-	
 
 }
