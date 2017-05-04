@@ -9,19 +9,13 @@
 		<link rel="shortcut icon" href="#{resource['img/favicon.ico']}"/>
 		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
         <h:outputStylesheet library="css" name="material.min.css" />
+		<h:outputStylesheet library="css" name="dialog-polyfill.css" />
+        <h:outputStylesheet library="css" name="login.css" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-        <h:outputStylesheet library="css" name="maquetacionBasica.css" />
-        <h:outputStylesheet library="css" name="mdl-selectfield.min.css" />
-        <script src="https://use.fontawesome.com/a39256cab5.js"></script>
         <h:outputScript library="js" name="checkBrowser.js"></h:outputScript>
         <h:outputScript id="materialScript" library="js" name="material.min.js"></h:outputScript>
-        <h:outputScript id="materialSelectfieldScript" library="js" name="mdl-selectfield.min.js"></h:outputScript>
         <h:outputScript library="js" name="dialog-polyfill.js"></h:outputScript>
         <h:outputScript library="js" name="dialogAndSnackbars.js"></h:outputScript>
-        <h:outputScript library="js" name="files.js"></h:outputScript>
-        <h:outputScript library="js" name="breadcrumbs.js"></h:outputScript>
-        <h:outputScript library="js" name="taksTabs.js"></h:outputScript>
-        <h:outputScript library="js" name="scrollup.js"></h:outputScript>
-        <f:event type="preRenderView" listener="#{loginController.verificarSesion()}" />
+        <f:event type="preRenderView" listener="#{loginController.verificarSesionLogin()}" />
     </head>
 </html>
