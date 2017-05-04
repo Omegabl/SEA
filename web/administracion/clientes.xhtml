@@ -98,22 +98,30 @@
                         <h:inputText class="mdl-textfield__input"  p:type="number" p:min="1" p:maxlength="32" p:step="1" required="required" id="NoDocumento" value="#{clienteController.cliente.numeroDocumento}"/>
                         <h:outputLabel class="mdl-textfield__label" for="NoDocumento">Número de documento</h:outputLabel>
                     </h:panelGroup>
-					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="DVP">
-                        <h:inputText class="mdl-textfield__input"  disabled="disabled" id="DV" value="#{clienteController.cliente.digitoVerificacion}" rendered="#{clienteController.tipoDocumento.tipo == 'Numero de identificación tributaria'}"/>
-                        <h:outputLabel class="mdl-textfield__label" for="DV" rendered="#{clienteController.tipoDocumento.tipo == 'Numero de identificación tributaria'}">Dígito de verificación</h:outputLabel>
-                    </h:panelGroup>
-                    <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth" id="panelg">
-                        <h:inputText class="mdl-textfield__input"  p:maxlength="256" required="required" id="razonSocial" value="#{clienteController.cliente.nombreORazonSocial}" rendered="#{clienteController.tipoDocumento.tipo == 'Numero de identificación tributaria'}"/>
-                        <h:outputLabel class="mdl-textfield__label" for="razonSocial" rendered="#{clienteController.tipoDocumento.tipo == 'Numero de identificación tributaria'}">Razón social</h:outputLabel>
-                    </h:panelGroup>
-                    <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="panelNom">
-                        <h:inputText class="mdl-textfield__input" p:maxlength="256" required="required" id="nombre" value="#{clienteController.cliente.nombreORazonSocial}" rendered="#{clienteController.tipoDocumento.tipo != 'Numero de identificación tributaria'}"/>
-                        <h:outputLabel class="mdl-textfield__label" for="nombre" rendered="#{clienteController.tipoDocumento.tipo != 'Numero de identificación tributaria'}">Nombre</h:outputLabel>
-                    </h:panelGroup>
-					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="panelApe">
-                        <h:inputText class="mdl-textfield__input"  p:maxlength="256" required="required" id="apellido" value="#{clienteController.cliente.apellido}" rendered="#{clienteController.tipoDocumento.tipo != 'Numero de identificación tributaria'}" />
-                        <h:outputLabel class="mdl-textfield__label" for="apellido" rendered="#{clienteController.tipoDocumento.tipo != 'Numero de identificación tributaria'}">Apellido</h:outputLabel>
-                    </h:panelGroup>
+					<h:panelGroup id="DVP">
+						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" rendered="#{clienteController.tipoDocumento.tipo == 'Numero de identificación tributaria'}">
+							<h:inputText class="mdl-textfield__input"  disabled="disabled" id="DV" value="#{clienteController.cliente.digitoVerificacion}" rendered="#{clienteController.tipoDocumento.tipo == 'Numero de identificación tributaria'}"/>
+							<h:outputLabel class="mdl-textfield__label" for="DV" rendered="#{clienteController.tipoDocumento.tipo == 'Numero de identificación tributaria'}">Dígito de verificación</h:outputLabel>
+						</h:panelGroup>
+					</h:panelGroup>
+					<h:panelGroup id="panelg">
+						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth" rendered="#{clienteController.tipoDocumento.tipo == 'Numero de identificación tributaria'}">
+							<h:inputText class="mdl-textfield__input"  p:maxlength="256" required="required"  id="razonSocial" value="#{clienteController.cliente.nombreORazonSocial}" rendered="#{clienteController.tipoDocumento.tipo == 'Numero de identificación tributaria'}"/>
+							<h:outputLabel class="mdl-textfield__label" for="razonSocial" rendered="#{clienteController.tipoDocumento.tipo == 'Numero de identificación tributaria'}">Razón social</h:outputLabel>
+						</h:panelGroup>
+					</h:panelGroup>
+					<h:panelGroup id="panelNom">
+						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" rendered="#{clienteController.tipoDocumento.tipo != 'Numero de identificación tributaria'}">
+							<h:inputText class="mdl-textfield__input" p:maxlength="256" required="required" id="nombre" value="#{clienteController.cliente.nombreORazonSocial}" rendered="#{clienteController.tipoDocumento.tipo != 'Numero de identificación tributaria'}"/>
+							<h:outputLabel class="mdl-textfield__label" for="nombre" rendered="#{clienteController.tipoDocumento.tipo != 'Numero de identificación tributaria'}">Nombre</h:outputLabel>
+						</h:panelGroup>
+					</h:panelGroup>
+					<h:panelGroup  id="panelApe">
+						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" rendered="#{clienteController.tipoDocumento.tipo != 'Numero de identificación tributaria'}">
+							<h:inputText class="mdl-textfield__input"  p:maxlength="256" required="required" id="apellido" value="#{clienteController.cliente.apellido}" rendered="#{clienteController.tipoDocumento.tipo != 'Numero de identificación tributaria'}" />
+							<h:outputLabel class="mdl-textfield__label" for="apellido" rendered="#{clienteController.tipoDocumento.tipo != 'Numero de identificación tributaria'}">Apellido</h:outputLabel>
+						</h:panelGroup>
+					</h:panelGroup>
                     <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                         <p:selectOneMenu styleClass="mdl-textfield__input" p:maxlength="64" required="required" id="telCorporativo" value="#{clienteController.tipoTelefono.idTipoTelefono}">
 							<f:selectItems value="#{clienteController.listaTipoTelefono}" var="tipTe" itemLabel="#{tipTe.tipo}" itemValue="#{tipTe.idTipoTelefono}" />
