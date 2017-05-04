@@ -2,91 +2,108 @@
 <html
 	lang="es"
 	xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
-	<head>
-		<meta charset="UTF-8" />
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+	<h:head>
 		<title>Navegador no soportado | SEA</title>
+        <meta charset="UTF-8" />
+		<link rel="shortcut icon" href="#{resource['img/favicon.ico']}"/>
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
         <h:outputStylesheet library="css" name="material.min.css" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-        <h:outputStylesheet library="css" name="maquetacionBasica.css" />
-        <script src="https://use.fontawesome.com/a39256cab5.js"></script>
+        <h:outputStylesheet library="css" name="browserUpdate.css" />
         <h:outputScript library="js" name="checkBrowser.js"></h:outputScript>
         <h:outputScript library="js" name="material.min.js"></h:outputScript>
-        <h:outputScript library="js" name="breadcrumbs.js"></h:outputScript>
-        <h:outputScript library="js" name="taksTabs.js"></h:outputScript>
-        <h:outputScript library="js" name="scrollup.js"></h:outputScript>
-	</head>
-	<body>
-		<div id="wrapper">
-			<h2>Antes de continuar...</h2>
-			<p>Esta página sólo funciona con las versiones mas recientes de los navegadores Mozilla Firefox, Google Chrome, Opera y Safari. Deberás hacer unas configuraciones para poder acceder al sistema. Por favor sigue las instrucciones según tu navegador:</p>
-			<div id="configuracion">
-				<div class="navegador">
-					<div class="logo">
-						<img src="/auth/img/firefox.svg" alt="Logo de Mozilla Firefox"/>
+	</h:head>
+	<h:body>
+		<div class="mdl-grid">
+			<h1 class="mdl-cell mdl-cell--2-offset-desktop mdl-cell--8-col mdl-typography--display-3">Antes de continuar...</h1>
+			<div class="mdl-cell mdl-cell--1-offset-desktop mdl-cell--10-col">Esta página sólo funciona con las versiones mas recientes de los navegadores Mozilla Firefox, Google Chrome, Opera y Safari. Es posible que debas hacer unas configuraciones al navegador para poder acceder al sistema. Por favor sigue las instrucciones según tu navegador:</div>
+			<div class="mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+				<div class="card-square mdl-card mdl-shadow--2dp">
+					<div class="mdl-card__title mdl-card--expand" id="firefox">
+						<h2 class="mdl-card__title-text">Mozilla Firefox</h2>
 					</div>
-					<div class="cuerpo">
-						<h3 class="mdl-typography--headline"><a href="https://www.mozilla.org/firefox/desktop/">Mozilla Firefox</a></h3>
-						<p>Activa la bandera llamada <strong>layout.css.grid.enabled</strong>. Para ello debes dirigirte a: <a href="about:config">about:config</a></p>
+					<div class="mdl-card__supporting-text">
+						El sistema funciona a partir de la versión 52.<br />
+						Si no puedes actualizar el navegador, puedes activar la bandera llamada <strong>layout.css.grid.enabled</strong>. Para ello debes escribir <a href="about:config">about:config</a> en la barra de direcciones; recomendamos hacer esto en Firefox 45 o superior.
 					</div>
-				</div>
-				<div class="navegador">
-					<div class="logo">
-						<img src="/auth/img/firefoxDeveloper.svg" alt="Logo de Firefox Developer Edition"/>
-					</div>
-					<div class="cuerpo">
-						<h3 class="mdl-typography--headline"><a href="https://www.mozilla.org/firefox/developer/">Firefox Developer Edition</a></h3>
-						<p>Esta versión de Firefox ya tiene habilitadas las características que necesita el sistema, así que no tienes que hacer nada.</p>
-					</div>
-				</div>
-				<div class="navegador">
-					<div class="logo">
-						<img src="/auth/img/chrome.svg" alt="Logo de Google Chrome"/>
-					</div>
-					<div class="cuerpo">
-						<h3 class="mdl-typography--headline"><a href="https://www.google.com/chrome/browser/desktop/">Google Chrome</a></h3>
-						<p>Activa la bandera llamada <strong>Funciones experimentales de plataforma Web</strong>. Para ello debes dirigirte a: <a href="chrome://flags/#enable-experimental-web-platform-features">chrome://flags/#enable-experimental-web-platform-features</a></p>
-					</div>
-				</div>
-				<div class="navegador">
-					<div class="logo">
-						<img src="/auth/img/opera.svg" alt="Logo de Opera browser"/>
-					</div>
-					<div class="cuerpo">
-						<h3 class="mdl-typography--headline"><a href="http://www.opera.com/">Opera browser</a></h3>
-						<p>Activa la bandera llamada <strong>Enable experimental Web Platform features</strong>. Para ello debes dirigirte a: <a href="opera://flags/#enable-experimental-web-platform-features">opera://flags/#enable-experimental-web-platform-features</a>. Aun así, no aseguramos que el sistema funcione correctamente.</p>
-					</div>
-				</div>
-				<div class="navegador">
-					<div class="logo">
-						<img src="/auth/img/safari.svg" alt="Logo de Safari browser"/>
-					</div>
-					<div class="cuerpo">
-						<h3 class="mdl-typography--headline"><a href="https://webkit.org/downloads/">Safari</a></h3>
-						<p>Este navegador tiene habilitadas las características que necesita el sistema en Safari Technology Preview y WebKit Nightly Builds; Igualmente estas características estarán habilitadas en la versión 10. Aun así, no aseguramos que el sistema funcione correctamente.</p>
-					</div>
-				</div>
-				<div class="navegador">
-					<div class="logo">
-						<img src="/auth/img/internetExplorer.svg" alt="Logo de Internet Explorer"/>
-					</div>
-					<div class="cuerpo">
-						<h3 class="mdl-typography--headline">Internet Explorer</h3>
-						<p>Lamentablemente no ofrecemos soporte para Internet Explorer.</p>
-					</div>
-				</div>
-				<div class="navegador">
-					<div class="logo">
-						<img src="/auth/img/microsoftEdge.svg" alt="Logo de Microsoft Edge"/>
-					</div>
-					<div class="cuerpo">
-						<h3 class="mdl-typography--headline">Microsoft Edge</h3>
-						<p>Lamentablemente Microsoft Edge no tiene soporte para las características que usa el sistema.</p>
+					<div class="mdl-card__actions mdl-card--border">
+						<a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="https://www.mozilla.org/firefox/desktop/" target="_blank">
+							Dercargar Mozilla Firefox
+						</a>
 					</div>
 				</div>
 			</div>
+			<div class="mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+				<div class="card-square mdl-card mdl-shadow--2dp">
+					<div class="mdl-card__title mdl-card--expand" id="chrome">
+						<h2 class="mdl-card__title-text">Google Chrome</h2>
+					</div>
+					<div class="mdl-card__supporting-text">
+						El sistema funciona a partir de la versión 57.<br />
+						Si no puedes actualizar el navegador, puedes activar la bandera llamada <strong>Funciones experimentales de plataforma Web</strong>. Para ello debes escribir <a href="chrome://flags/#enable-experimental-web-platform-features">chrome://flags/#enable-experimental-web-platform-features</a> en la barra de direcciones; recomendamos hacer esto en Chrome 50 o superior.
+					</div>
+					<div class="mdl-card__actions mdl-card--border">
+						<a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="https://www.google.com/chrome/browser/desktop/" target="_blank">
+							Dercargar Google Chrome
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+				<div class="card-square mdl-card mdl-shadow--2dp">
+					<div class="mdl-card__title mdl-card--expand" id="opera">
+						<h2 class="mdl-card__title-text">Opera</h2>
+					</div>
+					<div class="mdl-card__supporting-text">
+						El sistema funciona a partir de la versión 44.<br />
+						Si no puedes actualizar el navegador, puedes activar la bandera llamada <strong>Funciones experimentales de plataforma Web</strong>. Para ello debes escribir <a href="opera://flags/#enable-experimental-web-platform-features">opera://flags/#enable-experimental-web-platform-features</a> en la barra de direcciones; recomendamos hacer esto en Chrome 40 o superior. Aun así, no aseguramos que el sistema funcione correctamente.
+					</div>
+					<div class="mdl-card__actions mdl-card--border">
+						<a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="http://www.opera.com/" target="_blank">
+							Dercargar Opera Browser
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+				<div class="card-square mdl-card mdl-shadow--2dp">
+					<div class="mdl-card__title mdl-card--expand" id="safari">
+						<h2 class="mdl-card__title-text">Safari</h2>
+					</div>
+					<div class="mdl-card__supporting-text">
+						El sistema funciona a partir de la versión 10.1.<br />
+						Aun así, no aseguramos que el sistema funcione correctamente.
+					</div>
+					<div class="mdl-card__actions mdl-card--border">
+						<a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="https://webkit.org/downloads/" target="_blank">
+							Dercargar Safari
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+				<div class="card-square mdl-card mdl-shadow--2dp">
+					<div class="mdl-card__title mdl-card--expand"  id="ie">
+						<h2 class="mdl-card__title-text">Internet Explorer</h2>
+					</div>
+					<div class="mdl-card__supporting-text">
+						Debido a que este navegador ya no recibe actualizaciones, no se dará soporte para este navegador.
+					</div>
+					<div class="mdl-card__actions mdl-card--border"></div>
+				</div>
+			</div>
+			<div class="mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+				<div class="card-square mdl-card mdl-shadow--2dp">
+					<div class="mdl-card__title mdl-card--expand" id="edge">
+						<h2 class="mdl-card__title-text">Microsoft Edge</h2>
+					</div>
+					<div class="mdl-card__supporting-text">
+						Lamentablemente Microsoft Edge no tiene soporte para las características que usa el sistema; aun así, estaremos pendientes de las actualizaciones de este navegador para darle soporte en futuro.
+					</div>
+					<div class="mdl-card__actions mdl-card--border"></div>
+				</div>
+			</div>
 		</div>
-	</body>
+	</h:body>
 </html>
