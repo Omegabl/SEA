@@ -24,13 +24,14 @@ import com.sea.backend.model.TipoDocumentoFacadeLocal;
 import com.sea.backend.model.TipoEmailFacadeLocal;
 import com.sea.backend.model.TipoTelefonoFacadeLocal;
 import com.sea.backend.model.UsuarioFacadeLocal;
-
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import org.primefaces.json.JSONObject;
+import org.primefaces.context.RequestContext;
 
 /**
  *
@@ -39,6 +40,10 @@ import javax.inject.Named;
 @Named
 @ViewScoped
 public class ClienteController implements Serializable {
+	
+	String dialogTittle = null;
+	String dialogContent = null;
+	JSONObject snackbarData = new JSONObject();
 
 	@EJB
 	private ClienteFacadeLocal clienteEJB;
@@ -129,6 +134,7 @@ public class ClienteController implements Serializable {
 	}
 
 	public void registrarCliente() {
+		try{
 		cliente.setTblTipoDocumentoIdTipoDocumento(tipoDocumentoEJB.find(tipoDocumento.getIdTipoDocumento()));
 		cliente.setTblUsuarioIdUsuario(usuarioEJB.find(usuario.getIdUsuario()));
 		cliente.setTblOrigenIdOrigen(origenEJB.find(origen.getIdOrigen()));
@@ -143,6 +149,13 @@ public class ClienteController implements Serializable {
 		email.setTblClienteIdCliente(cliente);
 		email.setTblTipoEmailIdTipoEmail(tipoEmail);
 		emailEJB.create(email);
+	snackbarData.put("message", "Se creó al cliente'"+cliente.getNombreORazonSocial()+" "+cliente.getApellido()+"'.");
+	RequestContext.getCurrentInstance().execute("mostrarSnackbar("+snackbarData+");");
+		} catch(Exception e){
+			dialogTittle = "Error no controlado";
+			dialogContent = e.getMessage();
+			RequestContext.getCurrentInstance().execute("mostrarDialogos(`" + dialogTittle + "`, `" + dialogContent + "`);");
+		}
 	}
 
 	public void obtenerCiudad() {
