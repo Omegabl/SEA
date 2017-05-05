@@ -6,54 +6,15 @@
 		<ui:composition template="/templates/resources.xhtml" />
 	</h:head>
 	<h:body>
-		<ui:composition template="/templates/header.xhtml" />
-		<main class="menuGeneral">
-			<h:panelGroup layout="block" class="menu-card mdl-card mdl-shadow--2dp">
-				<h:panelGroup layout="block" class="mdl-card__title mdl-card--expand">
-					<h2 class="mdl-card__title-text">#{msg.envio}</h2>
-				</h:panelGroup>
-				<h:panelGroup layout="block" class="mdl-card__supporting-text">
-					#{msg.descripcion_envio}
-				</h:panelGroup>
-				<h:panelGroup layout="block" class="mdl-card__actions mdl-card--border">
-					<h:outputLink class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" value="enviarCotizacion.xhtml">Enviar cotización</h:outputLink>
-				</h:panelGroup>
-			</h:panelGroup>
-			<h:panelGroup layout="block" class="menu-card mdl-card mdl-shadow--2dp">
-				<h:panelGroup layout="block" class="mdl-card__title mdl-card--expand">
-					<h2 class="mdl-card__title-text">#{msg.seguimiento}</h2>
-				</h:panelGroup>
-				<h:panelGroup layout="block" class="mdl-card__supporting-text">
-					#{msg.descripcion_seguimiento}
-				</h:panelGroup>
-				<h:panelGroup layout="block" class="mdl-card__actions mdl-card--border">
-					<h:outputLink class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" value="./seguimiento/">Actualizar cotización</h:outputLink>
-				</h:panelGroup>
-			</h:panelGroup>
-			<h:panelGroup layout="block" class="menu-card mdl-card mdl-shadow--2dp">
-				<h:panelGroup layout="block" class="mdl-card__title mdl-card--expand">
-					<h2 class="mdl-card__title-text">Generar órdenes de producción</h2>
-				</h:panelGroup>
-				<h:panelGroup layout="block" class="mdl-card__supporting-text">
-					Genere órdenes de producción.
-				</h:panelGroup>
-				<h:panelGroup layout="block" class="mdl-card__actions mdl-card--border">
-					<h:outputLink class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" value="generarOrden.xhtml">Generar orden de producción</h:outputLink>
-				</h:panelGroup>
-			</h:panelGroup>
-			<h:panelGroup layout="block" class="menu-card mdl-card mdl-shadow--2dp">
-				<h:panelGroup layout="block" class="mdl-card__title mdl-card--expand">
-					<h2 class="mdl-card__title-text">Corrección de órdenes de producción</h2>
-				</h:panelGroup>
-				<h:panelGroup layout="block" class="mdl-card__supporting-text">
-					Corrija las órdenes de producción que no han sido aprobadas.
-				</h:panelGroup>
-				<h:panelGroup layout="block" class="mdl-card__actions mdl-card--border">
-					<h:outputLink class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" value="corregirOrden.xhtml">Corregir orden de producción</h:outputLink>
-				</h:panelGroup>
-			</h:panelGroup>
-		</main>
-		<ui:composition template="/templates/navGeneral.xhtml" />
-		<ui:composition template="/templates/taskTabs.xhtml" />
+        <div class="mdl-layout mdl-js-layout">
+			<ui:composition template="/templates/header.xhtml" />
+			<main class="mdl-layout__content">
+				<div class="page-content menuGeneral">
+					<ui:composition template="/templates/subMenu.xhtml">
+						<ui:param name="seccion" value="cotizaciones" />
+					</ui:composition>
+				</div>
+			</main>
+		</div>
 	</h:body>
 </html>

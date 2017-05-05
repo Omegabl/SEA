@@ -6,11 +6,12 @@
 		<ui:composition template="/templates/resources.xhtml" />
 	</h:head>
 	<h:body>
-		<ui:composition template="/templates/header.xhtml" />
-		<main>
-		</main>
-		<ui:composition template="/templates/navGeneral.xhtml" />
-		<ui:composition template="/templates/taskTabs.xhtml" />
-
+        <div class="mdl-layout mdl-js-layout">
+			<ui:composition template="/templates/header.xhtml" />
+			<main class="mdl-layout__content">
+				<div class="page-content">
+				</div>
+			</main>
+		</div>
 	</h:body>
 </html>

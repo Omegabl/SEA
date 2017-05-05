@@ -6,13 +6,15 @@
         <h:outputStylesheet library="css" name="administracion.css" />
 	</h:head>
 	<h:body>
-		<ui:composition template="/templates/header.xhtml" />
-		<main class="menuGeneral">
-			<ui:composition template="/templates/subMenu.xhtml">
-				<ui:param name="seccion" value="administracion" />
-			</ui:composition>
-		</main>
-		<ui:composition template="/templates/navGeneral.xhtml" />
-		<ui:composition template="/templates/taskTabs.xhtml" />
+        <div class="mdl-layout mdl-js-layout">
+			<ui:composition template="/templates/header.xhtml" />
+			<main class="mdl-layout__content">
+				<div class="page-content menuGeneral">
+					<ui:composition template="/templates/subMenu.xhtml">
+						<ui:param name="seccion" value="administracion" />
+					</ui:composition>
+				</div>
+			</main>
+		</div>
 	</h:body>
 </html>

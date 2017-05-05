@@ -7,49 +7,51 @@
         <h:outputStylesheet name="css/index.css" />
     </h:head>
 	<h:body>
-        <ui:composition template="/templates/header.xhtml" />
-        <main>
-            <section id="estadisticas">
-                <a href="#" class="contenedorStat azul">
-                    <h:panelGroup class="tipoStat">
-                        <h:panelGroup class="fa fa-shopping-cart"></h:panelGroup>
-                    </h:panelGroup>
-                    <h:panelGroup class="detalleStat">
-                        <h:panelGroup layout="block" class="numero">200</h:panelGroup>
-                        <h:panelGroup layout="block" class="descripcion">Cotizaciones enviadas</h:panelGroup>
-                    </h:panelGroup>
-                </a>
-                <a href="#" class="contenedorStat verde">
-                    <h:panelGroup class="tipoStat">
-                        <h:panelGroup class="fa fa-usd"></h:panelGroup>
-                    </h:panelGroup>
-                    <h:panelGroup class="detalleStat">
-                        <h:panelGroup layout="block" class="numero">200</h:panelGroup>
-                        <h:panelGroup layout="block" class="descripcion">Cierres efectivos</h:panelGroup>
-                    </h:panelGroup>
-                </a>
-                <a href="#" class="contenedorStat morado">
-                    <h:panelGroup class="tipoStat">
-                        <h:panelGroup class="fa fa-users"></h:panelGroup>
-                    </h:panelGroup>
-                    <h:panelGroup class="detalleStat">
-                        <h:panelGroup layout="block" class="numero">200</h:panelGroup>
-                        <h:panelGroup layout="block" class="descripcion">Clientes nuevos</h:panelGroup>
-                    </h:panelGroup>
-                </a>
-                <a href="#" class="contenedorStat rojo">
-                    <h:panelGroup class="tipoStat">
-                        <h:panelGroup class="fa fa-line-chart"></h:panelGroup>
-                    </h:panelGroup>
-                    <h:panelGroup class="detalleStat">
-                        <h:panelGroup layout="block" class="numero">200</h:panelGroup>
-                        <h:panelGroup layout="block" class="descripcion">Solicitudes de devoluciones</h:panelGroup>
-                    </h:panelGroup>
-                </a>
-            </section>
-        </main>
-        <ui:composition template="/templates/navGeneral.xhtml" />
-        <ui:composition template="/templates/taskTabs.xhtml" />
-
+		<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+			<header class="mdl-layout__header">
+				<div class="mdl-layout__header-row">
+					<!-- Title -->
+					<span class="mdl-layout-title">
+						<nav id="navBreadcrumbs">
+							<ul id="breadcrumbs"></ul>
+						</nav>
+					</span>
+				</div>
+				<!-- Tabs -->
+				<div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+					<a href="#scroll-tab-1" class="mdl-layout__tab is-active">Cotizaciones abiertas</a>
+					<a href="#scroll-tab-2" class="mdl-layout__tab">Cotizaciones próximas a vencerse</a>
+					<a href="#scroll-tab-3" class="mdl-layout__tab">OP por generar</a>
+					<a href="#scroll-tab-4" class="mdl-layout__tab">OP por corregir</a>
+					<a href="#scroll-tab-5" class="mdl-layout__tab">OP por aprobar</a>
+					<a href="#scroll-tab-6" class="mdl-layout__tab">OP en seguimiento</a>
+					<a href="#scroll-tab-7" class="mdl-layout__tab">Articulos sin actualizar</a>
+				</div>
+			</header>
+		<ui:composition template="/templates/navGeneral.xhtml" />
+			<main class="mdl-layout__content">
+				<section class="mdl-layout__tab-panel is-active" id="scroll-tab-1">
+					<div class="page-content"><!-- Your content goes here --></div>
+				</section>
+				<section class="mdl-layout__tab-panel" id="scroll-tab-2">
+					<div class="page-content"><!-- Your content goes here --></div>
+				</section>
+				<section class="mdl-layout__tab-panel" id="scroll-tab-3">
+					<div class="page-content"><!-- Your content goes here --></div>
+				</section>
+				<section class="mdl-layout__tab-panel" id="scroll-tab-4">
+					<div class="page-content"><!-- Your content goes here --></div>
+				</section>
+				<section class="mdl-layout__tab-panel" id="scroll-tab-5">
+					<div class="page-content"><!-- Your content goes here --></div>
+				</section>
+				<section class="mdl-layout__tab-panel" id="scroll-tab-6">
+					<div class="page-content"><!-- Your content goes here --></div>
+				</section>
+				<section class="mdl-layout__tab-panel" id="scroll-tab-7">
+					<div class="page-content"><!-- Your content goes here --></div>
+				</section>
+			</main>
+		</div>
     </h:body>
 </html>

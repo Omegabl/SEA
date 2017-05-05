@@ -6,80 +6,81 @@
 		<ui:composition template="/templates/resources.xhtml" />
 	</h:head>
 	<h:body>
-		<ui:composition template="/templates/header.xhtml" />
-		<main>
-			<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-				<thead>
-					<tr>
-						<th class="mdl-data-table__cell--non-numeric">ID orden</th>
-						<th class="mdl-data-table__cell--non-numeric">Cliente</th>
-						<th class="mdl-data-table__cell--non-numeric">Asesor</th>
-						<th class="mdl-data-table__cell--non-numeric">Fecha de entrega</th>
-						<th class="mdl-data-table__cell--non-numeric">Acciones</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">1834</td>
-						<td class="mdl-data-table__cell--non-numeric">UNIVERSIDAD SAN MARTIN</td>
-						<td class="mdl-data-table__cell--non-numeric">CAROLINA CARDONA</td>
-						<td class="mdl-data-table__cell--non-numeric">01/02/2016</td>
-						<td class="mdl-data-table__cell--non-numeric"><a href="./actualizarOrden.html" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Actualizar</a></td>
-					</tr>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">1855</td>
-						<td class="mdl-data-table__cell--non-numeric">ACFERBO</td>
-						<td class="mdl-data-table__cell--non-numeric">CAROLINA CARDONA</td>
-						<td class="mdl-data-table__cell--non-numeric">05/02/2016</td>
-						<td class="mdl-data-table__cell--non-numeric"><a href="./actualizarOrden.html" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Actualizar</a></td>
-					</tr>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">1860</td>
-						<td class="mdl-data-table__cell--non-numeric">POLLO BRUJO</td>
-						<td class="mdl-data-table__cell--non-numeric">CAROLINA CARDONA</td>
-						<td class="mdl-data-table__cell--non-numeric">14/02/2016</td>
-						<td class="mdl-data-table__cell--non-numeric"><a href="./actualizarOrden.html" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Actualizar</a></td>
-					</tr>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">1865</td>
-						<td class="mdl-data-table__cell--non-numeric">DIMAI DOTACIONES</td>
-						<td class="mdl-data-table__cell--non-numeric">Ángel Torres</td>
-						<td class="mdl-data-table__cell--non-numeric">02/03/2016</td>
-						<td class="mdl-data-table__cell--non-numeric"><a href="./actualizarOrden.html" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Actualizar</a></td>
-					</tr>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">1873</td>
-						<td class="mdl-data-table__cell--non-numeric">GLASS MEKANIX</td>
-						<td class="mdl-data-table__cell--non-numeric">CAROLINA CARDONA</td>
-						<td class="mdl-data-table__cell--non-numeric">23/02/2016</td>
-						<td class="mdl-data-table__cell--non-numeric"><a href="./actualizarOrden.html" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Actualizar</a></td>
-					</tr>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">1912</td>
-						<td class="mdl-data-table__cell--non-numeric">ANDERSSON ORJUELA</td>
-						<td class="mdl-data-table__cell--non-numeric">ASDRUBAL CARDENAS</td>
-						<td class="mdl-data-table__cell--non-numeric">07/042016</td>
-						<td class="mdl-data-table__cell--non-numeric"><a href="./actualizarOrden.html" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Actualizar</a></td>
-					</tr>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">1871</td>
-						<td class="mdl-data-table__cell--non-numeric">UNICERVANTINA</td>
-						<td class="mdl-data-table__cell--non-numeric">CAROLINA CARDONA</td>
-						<td class="mdl-data-table__cell--non-numeric">15/03/2016</td>
-						<td class="mdl-data-table__cell--non-numeric"><a href="./actualizarOrden.html" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Actualizar</a></td>
-					</tr>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">1918</td>
-						<td class="mdl-data-table__cell--non-numeric">ELSTER</td>
-						<td class="mdl-data-table__cell--non-numeric">CAROLINA CARDONA</td>
-						<td class="mdl-data-table__cell--non-numeric">18/04/2016</td>
-						<td class="mdl-data-table__cell--non-numeric"><a href="./actualizarOrden.html" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Actualizar</a></td>
-					</tr>
-				</tbody>
-			</table>
-		</main>
-		<ui:composition template="/templates/navGeneral.xhtml" />
-		<ui:composition template="/templates/taskTabs.xhtml" />
-
+        <div class="mdl-layout mdl-js-layout">
+			<ui:composition template="/templates/header.xhtml" />
+			<main class="mdl-layout__content">
+				<div class="page-content">
+					<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+						<thead>
+							<tr>
+								<th class="mdl-data-table__cell--non-numeric">ID orden</th>
+								<th class="mdl-data-table__cell--non-numeric">Cliente</th>
+								<th class="mdl-data-table__cell--non-numeric">Asesor</th>
+								<th class="mdl-data-table__cell--non-numeric">Fecha de entrega</th>
+								<th class="mdl-data-table__cell--non-numeric">Acciones</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="mdl-data-table__cell--non-numeric">1834</td>
+								<td class="mdl-data-table__cell--non-numeric">UNIVERSIDAD SAN MARTIN</td>
+								<td class="mdl-data-table__cell--non-numeric">CAROLINA CARDONA</td>
+								<td class="mdl-data-table__cell--non-numeric">01/02/2016</td>
+								<td class="mdl-data-table__cell--non-numeric"><a href="./actualizarOrden.html" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Actualizar</a></td>
+							</tr>
+							<tr>
+								<td class="mdl-data-table__cell--non-numeric">1855</td>
+								<td class="mdl-data-table__cell--non-numeric">ACFERBO</td>
+								<td class="mdl-data-table__cell--non-numeric">CAROLINA CARDONA</td>
+								<td class="mdl-data-table__cell--non-numeric">05/02/2016</td>
+								<td class="mdl-data-table__cell--non-numeric"><a href="./actualizarOrden.html" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Actualizar</a></td>
+							</tr>
+							<tr>
+								<td class="mdl-data-table__cell--non-numeric">1860</td>
+								<td class="mdl-data-table__cell--non-numeric">POLLO BRUJO</td>
+								<td class="mdl-data-table__cell--non-numeric">CAROLINA CARDONA</td>
+								<td class="mdl-data-table__cell--non-numeric">14/02/2016</td>
+								<td class="mdl-data-table__cell--non-numeric"><a href="./actualizarOrden.html" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Actualizar</a></td>
+							</tr>
+							<tr>
+								<td class="mdl-data-table__cell--non-numeric">1865</td>
+								<td class="mdl-data-table__cell--non-numeric">DIMAI DOTACIONES</td>
+								<td class="mdl-data-table__cell--non-numeric">Ángel Torres</td>
+								<td class="mdl-data-table__cell--non-numeric">02/03/2016</td>
+								<td class="mdl-data-table__cell--non-numeric"><a href="./actualizarOrden.html" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Actualizar</a></td>
+							</tr>
+							<tr>
+								<td class="mdl-data-table__cell--non-numeric">1873</td>
+								<td class="mdl-data-table__cell--non-numeric">GLASS MEKANIX</td>
+								<td class="mdl-data-table__cell--non-numeric">CAROLINA CARDONA</td>
+								<td class="mdl-data-table__cell--non-numeric">23/02/2016</td>
+								<td class="mdl-data-table__cell--non-numeric"><a href="./actualizarOrden.html" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Actualizar</a></td>
+							</tr>
+							<tr>
+								<td class="mdl-data-table__cell--non-numeric">1912</td>
+								<td class="mdl-data-table__cell--non-numeric">ANDERSSON ORJUELA</td>
+								<td class="mdl-data-table__cell--non-numeric">ASDRUBAL CARDENAS</td>
+								<td class="mdl-data-table__cell--non-numeric">07/042016</td>
+								<td class="mdl-data-table__cell--non-numeric"><a href="./actualizarOrden.html" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Actualizar</a></td>
+							</tr>
+							<tr>
+								<td class="mdl-data-table__cell--non-numeric">1871</td>
+								<td class="mdl-data-table__cell--non-numeric">UNICERVANTINA</td>
+								<td class="mdl-data-table__cell--non-numeric">CAROLINA CARDONA</td>
+								<td class="mdl-data-table__cell--non-numeric">15/03/2016</td>
+								<td class="mdl-data-table__cell--non-numeric"><a href="./actualizarOrden.html" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Actualizar</a></td>
+							</tr>
+							<tr>
+								<td class="mdl-data-table__cell--non-numeric">1918</td>
+								<td class="mdl-data-table__cell--non-numeric">ELSTER</td>
+								<td class="mdl-data-table__cell--non-numeric">CAROLINA CARDONA</td>
+								<td class="mdl-data-table__cell--non-numeric">18/04/2016</td>
+								<td class="mdl-data-table__cell--non-numeric"><a href="./actualizarOrden.html" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Actualizar</a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</main>
+		</div>
 	</h:body>
 </html>

@@ -11,8 +11,10 @@
         <h:outputStylesheet library="css" name="administracion.css" />
     </h:head>
     <h:body>
-        <ui:composition template="/templates/header.xhtml" />
-        <main id="clientesDashboard">
+        <div class="mdl-layout mdl-js-layout">
+			<ui:composition template="/templates/header.xhtml" />
+			<main class="mdl-layout__content" id="clientesDashboard">
+				<div class="page-content">
             <h:form id="formClient">
                 <h:dataTable value="#{clienteController.listaClientes}" var="cl" cellpadding="1" class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp" id="tableClient">
                     <h:column>
@@ -71,7 +73,6 @@
             <p:commandLink type="button" onclick="PF('createClient').show();" styleClass="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored button-bottom_right toggleSubForm">
 				<i class="material-icons">person_add</i>
 			</p:commandLink>
-        </main>
 		<p:dialog widgetVar="createClient" id="dlg">
             <h:form id="addCliente" class="mdl-dialog">
                 <h3 class="mdl-dialog__title">Registrar cliente</h3>
@@ -178,9 +179,8 @@
                 </h:panelGroup>
             </h:form>
 		</p:dialog>
-		<ui:composition template="/templates/navGeneral.xhtml" />
-		<ui:composition template="/templates/taskTabs.xhtml" />
-
+				</div>
+			</main>
+		</div>
     </h:body>
-
 </html>

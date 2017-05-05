@@ -6,78 +6,61 @@
         <h:outputStylesheet library="css" name="administracion.css" />
 	</h:head>
 	<h:body>
-		<ui:composition template="/templates/header.xhtml" />
-		<main>
-			<section id="origenes">
-				<h:form>
-					<h:dataTable value="#{origenController.listaOrigen}" var="ori" cellpadding="1" class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
-						<h:column>
-							<f:facet name="header">
-								<h:outputLabel value="Nombre"/>
-							</f:facet>
-							<h:outputText value="#{ori.nombre}"/>
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<h:outputLabel value="Descripcion"/>
-							</f:facet>
-							<h:outputText value="#{ori.descripcion}"/>
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<h:outputLabel value="Acciones"/>
-							</f:facet>
-							<h:panelGroup layout="block">
-								<h:commandButton action="#{origenController.Eliminar(ori)}" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" value="Eliminar"/>
-								<h:commandButton action="#{origenController.Eliminar(ori)}" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" value="Modificar"/>
+        <div class="mdl-layout mdl-js-layout">
+			<ui:composition template="/templates/header.xhtml" />
+			<main class="mdl-layout__content">
+				<div class="page-content">
+					<section id="origenes">
+						<h:form>
+							<h:dataTable value="#{origenController.listaOrigen}" var="ori" cellpadding="1" class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+								<h:column>
+									<f:facet name="header">
+										<h:outputLabel value="Nombre"/>
+									</f:facet>
+									<h:outputText value="#{ori.nombre}"/>
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputLabel value="Descripcion"/>
+									</f:facet>
+									<h:outputText value="#{ori.descripcion}"/>
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputLabel value="Acciones"/>
+									</f:facet>
+									<h:panelGroup layout="block">
+										<h:commandButton action="#{origenController.Eliminar(ori)}" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" value="Eliminar"/>
+										<h:commandButton action="#{origenController.Eliminar(ori)}" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" value="Modificar"/>
+									</h:panelGroup>
+								</h:column>
+							</h:dataTable>
+						</h:form>
+						<a href="#addOrigen" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored button-bottom_right toggleSubForm">
+							<i class="material-icons">add</i>
+						</a>
+					</section>
+					<aside id="subForm">
+						<h:form id="addOrigen" class="mdl-dialog">
+							<h3 class="mdl-dialog__title">Registrar origen</h3>
+							<h:panelGroup layout="block" class="mdl-dialog__content">
+								<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+									<h:inputText class="mdl-textfield__input" value="#{origenController.origen.nombre}" id="nombreOrigen" p:maxlength="45" required="true"/>
+									<h:outputLabel class="mdl-textfield__label" for="nombreOrigen">Nombre del origen</h:outputLabel>
+								</h:panelGroup>
+								<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+									<h:inputTextarea class="mdl-textfield__input" value="#{origenController.origen.descripcion}" id="descripcionOrigen" p:maxlength="45" required="true" />
+									<h:outputLabel class="mdl-textfield__label" for="descripcionOrigen">Descripción del origen</h:outputLabel>
+								</h:panelGroup>
 							</h:panelGroup>
-						</h:column>
-					</h:dataTable>
-				</h:form>
-				<a href="#addOrigen" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored button-bottom_right toggleSubForm">
-					<i class="material-icons">add</i>
-				</a>
-			</section>
-			<aside id="subForm">
-				<h:form id="addOrigen" class="mdl-dialog">
-					<h3 class="mdl-dialog__title">Registrar origen</h3>
-					<h:panelGroup layout="block" class="mdl-dialog__content">
-						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-							<h:inputText class="mdl-textfield__input" value="#{origenController.origen.nombre}" id="nombreOrigen" p:maxlength="45" required="true"/>
-							<h:outputLabel class="mdl-textfield__label" for="nombreOrigen">Nombre del origen</h:outputLabel>
-						</h:panelGroup>
-						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-							<h:inputTextarea class="mdl-textfield__input" value="#{origenController.origen.descripcion}" id="descripcionOrigen" p:maxlength="45" required="true" />
-							<h:outputLabel class="mdl-textfield__label" for="descripcionOrigen">Descripción del origen</h:outputLabel>
-						</h:panelGroup>
-					</h:panelGroup>
-					<h:panelGroup layout="block" class="mdl-dialog__actions">
-						<h:commandButton id="mostrarOrigenNuevo" action="#{origenController.registrar()}" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" type="submit" actionListener="#{origenController.registrar()}" value="Crear origen" />
-						<h:commandButton type="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm" value="Cancelar" />
-					</h:panelGroup>
-				</h:form>
-			</aside>
-		</main>
-		<aside>
-			<h:panelGroup layout="block" id="origenNuevo" class="mdl-js-snackbar mdl-snackbar">
-				<h:panelGroup layout="block" class="mdl-snackbar__text"></h:panelGroup>
-				<button class="mdl-snackbar__action" type="button"></button>
-			</h:panelGroup>
-			<script>
-				(function () {
-					'use strict';
-					window['counter'] = 0;
-					var snackbarContainer = document.querySelector('#origenNuevo');
-					var showToastButton = document.querySelector('#mostrarOrigenNuevo');
-					showToastButton.addEventListener('click', function () {
-						'use strict';
-						var data = {message: 'Origen creado satisfactoriamente.', timeout: 5000};
-						snackbarContainer.MaterialSnackbar.showSnackbar(data);
-					});
-				}());
-			</script>
-		</aside>		<ui:composition template="/templates/navGeneral.xhtml" />
-		<ui:composition template="/templates/taskTabs.xhtml" />
-
+							<h:panelGroup layout="block" class="mdl-dialog__actions">
+								<h:commandButton id="mostrarOrigenNuevo" action="#{origenController.registrar()}" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" type="submit" actionListener="#{origenController.registrar()}" value="Crear origen" />
+								<h:commandButton type="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm" value="Cancelar" />
+							</h:panelGroup>
+						</h:form>
+					</aside>
+				</div>
+			</main>
+		</div>
 	</h:body>
 </html>

@@ -7,129 +7,95 @@
         <h:outputStylesheet library="css" name="administracion.css" />
 	</h:head>
 	<h:body>
-		<ui:composition template="/templates/header.xhtml" />
-		<main>
-			<h:panelGroup layout="block" id="configuracion" class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
-				<h:panelGroup layout="block" class="mdl-tabs__tab-bar">
-					<a href="#general-panel" class="mdl-tabs__tab is-active">General</a>
-					<a href="#personalInfo-panel" class="mdl-tabs__tab">Información personal</a>
-					<a href="#contrasena-panel" class="mdl-tabs__tab">Cambio de contraseña</a>
-				</h:panelGroup>
-				<h:panelGroup layout="block" class="mdl-tabs__panel is-active" id="general-panel">
-					<h:form>
-						<h:outputLabel class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="notificaciones">
-							<h:selectBooleanCheckbox id="notificaciones" class="mdl-switch__input">
-								<h:panelGroup class="mdl-switch__label">Notificaciones</h:panelGroup>
-						</h:outputLabel>
-					</h:form>
-				</h:panelGroup>
-				<h:panelGroup layout="block" class="mdl-tabs__panel" id="personalInfo-panel">
-					<h:form>
-						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
-							<h:inputText class="mdl-textfield__input" disabled="disabled" id="nombre" value="Juan David" />
-							<h:outputLabel class="mdl-textfield__label" for="nombre">Nombre</h:outputLabel>
+        <div class="mdl-layout mdl-js-layout">
+			<ui:composition template="/templates/header.xhtml" />
+			<main class="mdl-layout__content">
+				<div class="page-content">
+					<h:panelGroup layout="block" id="configuracion" class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+						<h:panelGroup layout="block" class="mdl-tabs__tab-bar">
+							<a href="#general-panel" class="mdl-tabs__tab is-active">General</a>
+							<a href="#personalInfo-panel" class="mdl-tabs__tab">Información personal</a>
+							<a href="#contrasena-panel" class="mdl-tabs__tab">Cambio de contraseña</a>
 						</h:panelGroup>
-						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
-							<h:inputText class="mdl-textfield__input" disabled="disabled" id="apellido" value="Moyano Gutiérrez" />
-							<h:outputLabel class="mdl-textfield__label" for="apellido">Apellido</h:outputLabel>
+						<h:panelGroup layout="block" class="mdl-tabs__panel is-active" id="general-panel">
+							<h:form>
+								<h:outputLabel class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="notificaciones">
+									<h:selectBooleanCheckbox id="notificaciones" class="mdl-switch__input">
+										<h:panelGroup class="mdl-switch__label">Notificaciones</h:panelGroup>
+								</h:outputLabel>
+							</h:form>
 						</h:panelGroup>
-						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-							<h:inputText class="mdl-textfield__input" disabled="disabled" id="tipoDocumento" value="Cédula de ciudadanía">
-								<h:outputLabel class="mdl-textfield__label" for="tipoDocumento">Tipo de documento</h:outputLabel>
+						<h:panelGroup layout="block" class="mdl-tabs__panel" id="personalInfo-panel">
+							<h:form>
+								<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
+									<h:inputText class="mdl-textfield__input" disabled="disabled" id="nombre" value="Juan David" />
+									<h:outputLabel class="mdl-textfield__label" for="nombre">Nombre</h:outputLabel>
+								</h:panelGroup>
+								<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
+									<h:inputText class="mdl-textfield__input" disabled="disabled" id="apellido" value="Moyano Gutiérrez" />
+									<h:outputLabel class="mdl-textfield__label" for="apellido">Apellido</h:outputLabel>
+								</h:panelGroup>
+								<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+									<h:inputText class="mdl-textfield__input" disabled="disabled" id="tipoDocumento" value="Cédula de ciudadanía">
+										<h:outputLabel class="mdl-textfield__label" for="tipoDocumento">Tipo de documento</h:outputLabel>
+								</h:panelGroup>
+								<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+									<h:inputText class="mdl-textfield__input" disabled="disabled" id="numeroDocumento" value="1033781813">
+										<h:outputLabel class="mdl-textfield__label" for="numeroDocumento">Número de documento</h:outputLabel>
+								</h:panelGroup>
+								<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+									<h:inputText class="mdl-textfield__input" disabled="disabled" id="DV" value="2">
+										<h:outputLabel class="mdl-textfield__label" for="DV">Dígito de verificación</h:outputLabel>
+								</h:panelGroup>
+								<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
+									<h:inputText class="mdl-textfield__input" disabled="disabled" id="IDInterno" value="ABC123">
+										<h:outputLabel class="mdl-textfield__label" for="IDInterno">ID Interno</h:outputLabel>
+								</h:panelGroup>
+								<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
+									<h:inputText class="mdl-textfield__input" p:maxlength="64" id="telCorporativo" value="1234567890" required="required">
+										<h:outputLabel class="mdl-textfield__label" for="telCorporativo">Teléfono corporativo</h:outputLabel>
+								</h:panelGroup>
+								<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
+									<h:inputText class="mdl-textfield__input" p:maxlength="64" id="telPersonal" value="0987654321" required="required">
+										<h:outputLabel class="mdl-textfield__label" for="telPersonal">Teléfono personal</h:outputLabel>
+								</h:panelGroup>
+								<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
+									<h:inputText class="mdl-textfield__input" p:maxlength="64" p:type="email" id="email" value="jdmoyano-gutierrez@misena.edu.co" required="required" />
+									<h:outputLabel class="mdl-textfield__label" for="email">Correo electrónico</h:outputLabel>
+								</h:panelGroup>
+								<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
+									<h:inputText class="mdl-textfield__input" p:maxlength="128" id="direccion" value="CR 999 Ñ bis Ñ norte No. 999 Ñ bis Ñ - 999 sur edificio 999 apartamento 999" required="required" />
+									<h:outputLabel class="mdl-textfield__label" for="direccion">Dirección de residencia</h:outputLabel>
+								</h:panelGroup>
+								<h:panelGroup layout="block" class="buttons fullWidth">
+									<h:commandButton id="mostrarInfoActualizada" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" value="Actualizar información personal" />
+									<h:commandButton value="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Cancelar</button>
+								</h:panelGroup>
+							</h:form>
 						</h:panelGroup>
-						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-							<h:inputText class="mdl-textfield__input" disabled="disabled" id="numeroDocumento" value="1033781813">
-								<h:outputLabel class="mdl-textfield__label" for="numeroDocumento">Número de documento</h:outputLabel>
+						<h:panelGroup layout="block" class="mdl-tabs__panel" id="contrasena-panel">
+							<h:form>
+								<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
+									<h:inputSecret class="mdl-textfield__input" p:maxlength="45" id="contrasenaAnterior">
+										<h:outputLabel class="mdl-textfield__label" for="contrasenaAnterior">Contraseña actual</h:outputLabel>
+								</h:panelGroup>
+								<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
+									<h:inputSecret class="mdl-textfield__input" p:maxlength="45" id="nuevaContrasena">
+										<h:outputLabel class="mdl-textfield__label" for="nuevaContrasena">Nueva contraseña</h:outputLabel>
+								</h:panelGroup>
+								<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
+									<h:inputSecret class="mdl-textfield__input" p:maxlength="45" id="confirmacionContrasena">
+										<h:outputLabel class="mdl-textfield__label" for="confirmacionContrasena">Confirme la nueva contraseña</h:outputLabel>
+								</h:panelGroup>
+								<h:panelGroup layout="block" class="buttons">
+									<h:commandButton id="mostrarCambioContrasena" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" value="Cambiar contraseña" />
+									<h:commandButton value="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Cancelar</button>
+								</h:panelGroup>
+							</h:form>
 						</h:panelGroup>
-						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-							<h:inputText class="mdl-textfield__input" disabled="disabled" id="DV" value="2">
-								<h:outputLabel class="mdl-textfield__label" for="DV">Dígito de verificación</h:outputLabel>
-						</h:panelGroup>
-						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
-							<h:inputText class="mdl-textfield__input" disabled="disabled" id="IDInterno" value="ABC123">
-								<h:outputLabel class="mdl-textfield__label" for="IDInterno">ID Interno</h:outputLabel>
-						</h:panelGroup>
-						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
-							<h:inputText class="mdl-textfield__input" p:maxlength="64" id="telCorporativo" value="1234567890" required="required">
-								<h:outputLabel class="mdl-textfield__label" for="telCorporativo">Teléfono corporativo</h:outputLabel>
-						</h:panelGroup>
-						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
-							<h:inputText class="mdl-textfield__input" p:maxlength="64" id="telPersonal" value="0987654321" required="required">
-								<h:outputLabel class="mdl-textfield__label" for="telPersonal">Teléfono personal</h:outputLabel>
-						</h:panelGroup>
-						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
-							<h:inputText class="mdl-textfield__input" p:maxlength="64" p:type="email" id="email" value="jdmoyano-gutierrez@misena.edu.co" required="required" />
-							<h:outputLabel class="mdl-textfield__label" for="email">Correo electrónico</h:outputLabel>
-						</h:panelGroup>
-						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
-							<h:inputText class="mdl-textfield__input" p:maxlength="128" id="direccion" value="CR 999 Ñ bis Ñ norte No. 999 Ñ bis Ñ - 999 sur edificio 999 apartamento 999" required="required" />
-							<h:outputLabel class="mdl-textfield__label" for="direccion">Dirección de residencia</h:outputLabel>
-						</h:panelGroup>
-						<h:panelGroup layout="block" class="buttons fullWidth">
-							<h:commandButton id="mostrarInfoActualizada" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" value="Actualizar información personal" />
-							<h:commandButton value="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Cancelar</button>
-						</h:panelGroup>
-					</h:form>
-				</h:panelGroup>
-				<h:panelGroup layout="block" class="mdl-tabs__panel" id="contrasena-panel">
-					<h:form>
-						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
-							<h:inputSecret class="mdl-textfield__input" p:maxlength="45" id="contrasenaAnterior">
-								<h:outputLabel class="mdl-textfield__label" for="contrasenaAnterior">Contraseña actual</h:outputLabel>
-						</h:panelGroup>
-						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
-							<h:inputSecret class="mdl-textfield__input" p:maxlength="45" id="nuevaContrasena">
-								<h:outputLabel class="mdl-textfield__label" for="nuevaContrasena">Nueva contraseña</h:outputLabel>
-						</h:panelGroup>
-						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
-							<h:inputSecret class="mdl-textfield__input" p:maxlength="45" id="confirmacionContrasena">
-								<h:outputLabel class="mdl-textfield__label" for="confirmacionContrasena">Confirme la nueva contraseña</h:outputLabel>
-						</h:panelGroup>
-						<h:panelGroup layout="block" class="buttons">
-							<h:commandButton id="mostrarCambioContrasena" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" value="Cambiar contraseña" />
-							<h:commandButton value="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Cancelar</button>
-						</h:panelGroup>
-					</h:form>
-				</h:panelGroup>
-			</h:panelGroup>
-		</main>
-		<aside>
-			<h:panelGroup layout="block" id="infoActualizada" class="mdl-js-snackbar mdl-snackbar">
-				<h:panelGroup layout="block" class="mdl-snackbar__text"></h:panelGroup>
-				<button class="mdl-snackbar__action" type="button"></button>
-			</h:panelGroup>
-			<script>
-				(function () {
-					'use strict';
-					window['counter'] = 0;
-					var snackbarContainer = document.querySelector('#infoActualizada');
-					var showToastButton = document.querySelector('#mostrarInfoActualizada');
-					showToastButton.addEventListener('click', function () {
-						'use strict';
-						var data = {message: 'Su información ha sido actualizada.', timeout: 5000};
-						snackbarContainer.MaterialSnackbar.showSnackbar(data);
-					});
-				}());
-			</script>
-			<h:panelGroup layout="block" id="cambioContrasena" class="mdl-js-snackbar mdl-snackbar">
-				<h:panelGroup layout="block" class="mdl-snackbar__text"></h:panelGroup>
-				<button class="mdl-snackbar__action" type="button"></button>
-			</h:panelGroup>
-			<script>
-				(function () {
-					'use strict';
-					window['counter'] = 0;
-					var snackbarContainer = document.querySelector('#cambioContrasena');
-					var showToastButton = document.querySelector('#mostrarCambioContrasena');
-					showToastButton.addEventListener('click', function () {
-						'use strict';
-						var data = {message: 'La contraseña ha sido actualizada.', timeout: 5000};
-						snackbarContainer.MaterialSnackbar.showSnackbar(data);
-					});
-				}());
-			</script>
-		</aside>		<ui:composition template="/templates/navGeneral.xhtml" />
-		<ui:composition template="/templates/taskTabs.xhtml" />
-
+					</h:panelGroup>
+				</div>
+			</main>
+		</div>
 	</h:body>
 </html>

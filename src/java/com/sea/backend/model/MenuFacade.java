@@ -60,7 +60,7 @@ public class MenuFacade extends AbstractFacade<Menu> implements MenuFacadeLocal 
 		m: Menú
 		 */
 
-		String consulta = "SELECT m.icono, m.url, m.nombre FROM "
+		String consulta = "SELECT m.url, m.icono, m.nombre FROM "
 				+ "tbl_usuario AS u INNER JOIN tbl_cargo c ON u.tbl_cargo_id_cargo = c.id_cargo "
 				+ "INNER JOIN tbl_cargo_perfil AS cp ON c.id_cargo = cp.tbl_cargo_id_cargo "
 				+ "INNER JOIN tbl_perfil AS p ON cp.tbl_perfil_id_perfil = p.id_perfil "
