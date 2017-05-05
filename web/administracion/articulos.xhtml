@@ -57,9 +57,9 @@
 						</p:column>
 				</p:dataTable>
 			</h:panelGroup>
-			<a href="#addArticulo" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored button-bottom_right toggleSubForm">
-				<i class="material-icons">add</i>
-			</a>
+			<p:commandLink type="button" onclick="PF('agrePro').show();" styleClass="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored button-bottom_right toggleSubForm">
+						<i class="material-icons">add</i>
+					</p:commandLink>
 		</main>
 		<p:dialog  widgetVar="agrePro">
 		<aside id="subForm">
@@ -67,7 +67,7 @@
 				<h3 class="mdl-dialog__title">Registrar artículo</h3>
 				<h:panelGroup layout="block" class="mdl-dialog__content">
 					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<h:inputText class="mdl-textfield__input" id="referencia" value=" " disabled="disabled" />
+						<h:inputText class="mdl-textfield__input" id="referencia" value="" disabled="disabled" />
 						<h:outputLabel class="mdl-textfield__label" for="referencia">Referencia</h:outputLabel>
 					</h:panelGroup>
 					<h:outputLabel class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="personalizado">
