@@ -1,62 +1,42 @@
 /**********************************************************************
 Mensaje de configuración del navegador
 **********************************************************************/
-h2{
-	margin-bottom: 10px;
-	text-align: center;
-}
-p{
-	padding: 0 15px;
-}
-#wrapper{
-	width: 100%;
-	margin: 40px auto 0;
-}
-#configuracion{
-	display: flex;
-	flex-wrap: wrap;
-}
-.navegador{
-	flex: 1 1 100%;
-	flex-direction: column;
-	max-width: calc(100% - 40px);
-	display: flex;
-	flex-wrap: nowrap;
-	padding: 4px;
-	margin: 0 15px 20px;
-	min-height: 160px;
-	line-height: 1.42857143;
-	background-color: rgb(255, 255, 255);
-	border: 1px solid rgb(221, 221, 221);
-	border-radius: 4px;
-	box-shadow: 0 1px 2px rgba(0,0,0,.075);
-}
-.logo{
-	margin-right: 10px;
-	align-self: center;
-}
-.logo img{
-	max-height: 100px;
-}
-.cuerpo{
-	flex: 1;
-}
-.cuerpo h3{
-	text-align: center;
-}
-@media all and (min-width: 900px){
-	#wrapper{
-		width: 90%;
-	}
-	.navegador{
-		flex: 1 1 50%;
-		flex-direction: row;
-		max-width: calc(50% - 40px);
-	}
-	.logo img{
-		max-height: 140px;
-	}
-	.cuerpo h3{
-		margin-top: 0;
-	}
-}
+			.mdl-typography--display-3{
+			text-align: center;
+			}
+			.card-square.mdl-card {
+			width: 100%;
+			height: 100%;
+			}
+			.card-square > .mdl-card__title {
+			height: 200px;
+			max-height: 200px;
+			color: #fff;
+			background: bottom right 15% no-repeat #448AFF;
+			background-size: auto 150px;
+			background-origin: content-box;
+			}
+			.card-square > .mdl-card__supporting-text{
+			height: calc(100% - 285px);
+			}
+			.card-square > .mdl-card__actions{
+			min-height: 53px;
+			}
+			#firefox{
+			background-image: url('#{resource['img/firefox.svg']}');
+			}
+			#chrome{
+			background-image: url('#{resource['img/chrome.svg']}');
+			}
+			#opera{
+			background-image: url('#{resource['img/opera.svg']}');
+			}
+			#safari{
+			background-image: url('#{resource['img/safari.svg']}');
+			}
+			#ie{
+			background-image: url('#{resource['img/internetExplorer.svg']}');
+			}
+			#edge{
+			background-image: url('#{resource['img/microsoftEdge.svg']}');
+			}

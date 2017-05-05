@@ -11,13 +11,10 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
-import javax.faces.convert.Converter;
-import javax.faces.convert.FacesConverter;
-import javax.faces.model.SelectItem;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import org.primefaces.json.JSONObject;
+import org.primefaces.context.RequestContext;
 
 /**
  *
@@ -27,6 +24,11 @@ import javax.inject.Named;
 @ViewScoped
 public class CategoriaController implements Serializable {
 
+	//Variables de los dialogos y snackbars
+	String dialogTittle = null;
+	String dialogContent = null;
+	JSONObject snackbarData = new JSONObject();
+
 	@EJB
 	private CategoriaFacadeLocal categoriaEJB;
 
@@ -35,7 +37,7 @@ public class CategoriaController implements Serializable {
 	private List<Categoria> ListaCategoria;
 
 	private String accion;
-	private String categori="";
+	private String categori = "";
 
 	public List<Categoria> getListaCategoria() {
 		return ListaCategoria;
@@ -48,7 +50,7 @@ public class CategoriaController implements Serializable {
 	public void setCategori(String categori) {
 		this.categori = categori;
 	}
-	
+
 	public String getAccion() {
 		return accion;
 	}
@@ -80,15 +82,23 @@ public class CategoriaController implements Serializable {
 		try {
 			getAccion();
 			categoriaEJB.create(categoria);
+			snackbarData.put("message", "Se creó la categoría '" + categoria.getNombre() + "'");
+			RequestContext.getCurrentInstance().execute("mostrarSnackbar(" + snackbarData + ");");
 		} catch (Exception e) {
+			dialogTittle = "Error no controlado";
+			dialogContent = e.getMessage();
+			RequestContext.getCurrentInstance().execute("mostrarDialogos(`" + dialogTittle + "`, `" + dialogContent + "`);");
 		}
 	}
 
 	public void eliminar(Categoria c) {
 		try {
 			categoriaEJB.remove(c);
+			snackbarData.put("message", "Se eliminó la categoría '" + categoria.getNombre() + "'");
 		} catch (Exception e) {
-
+			dialogTittle = "Error no controlado";
+			dialogContent = e.getMessage();
+			RequestContext.getCurrentInstance().execute("mostrarDialogos(`" + dialogTittle + "`, `" + dialogContent + "`);");
 		}
 	}
 
@@ -96,14 +106,16 @@ public class CategoriaController implements Serializable {
 		try {
 			getAccion();
 			categoriaEJB.edit(categoria);
+			snackbarData.put("message", "Se modificó la categoría '" + categoria.getNombre() + "'");
 		} catch (Exception e) {
-
+			dialogTittle = "Error no controlado";
+			dialogContent = e.getMessage();
+			RequestContext.getCurrentInstance().execute("mostrarDialogos(`" + dialogTittle + "`, `" + dialogContent + "`);");
 		}
 		categoria.setNombre(categori);
 	}
-	
-	public void limpiar() {
 
+	public void limpiar() {
 		categoria.setNombre(categori);
 	}
 

@@ -83,6 +83,8 @@ import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.engine.export.JRXlsExporter;
 import net.sf.jasperreports.engine.export.JRXlsExporterParameter;
 import net.sf.jasperreports.engine.util.JRLoader;
+import org.primefaces.context.RequestContext;
+import org.primefaces.json.JSONObject;
 
 /**
  *
@@ -91,7 +93,10 @@ import net.sf.jasperreports.engine.util.JRLoader;
 @Named
 @ViewScoped
 public class CotizacionController implements Serializable {
-
+	//Variables de los dialogos y snackbars
+	String dialogTittle = null;
+	String dialogContent = null;
+	JSONObject snackbarData = new JSONObject();
 	//EJB cotización
 	@EJB
 	private CotizacionFacadeLocal cotizacionEJB;
@@ -240,14 +245,13 @@ public class CotizacionController implements Serializable {
 
 	public void agregarCotizacionProducto() {
 		CotizacionProducto cot = new CotizacionProducto();
-
 		cot.setTblProductoIdProducto(productoEJB.find(idProducto));
 		cot.setCantidad(cotizacionP.getCantidad());
 		cot.setPrecioParaCliente(cotizacionP.getPrecioParaCliente());
-
 		//  ven.setTblProductoIdProducto(productoEJB.find(producto.getIdProducto()));
 		listaCotizacionP.add(cot);
-
+	snackbarData.put("message", "Se agregó el artículo con referencia '"+cot.getTblProductoIdProducto().getReferencia()+"'.");
+	RequestContext.getCurrentInstance().execute("mostrarSnackbar("+snackbarData+");");
 	}
 
 	//Metodo para calcular el precio del producto seleccionado
@@ -398,6 +402,9 @@ public class CotizacionController implements Serializable {
 			FacesContext.getCurrentInstance().responseComplete();
 
 		} catch (Exception e) {
+			dialogTittle = "Error no controlado";
+			dialogContent = e.getMessage();
+			RequestContext.getCurrentInstance().execute("mostrarDialogos(`" + dialogTittle + "`, `" + dialogContent + "`);");
 		}
 		int consecutivo = consecutivoCotizacion();
 		EJBUsuario.actualizarNumeroCotizacion(idUsuario(), consecutivo);

@@ -2,21 +2,15 @@
 <html lang="es"
 	  xmlns="http://www.w3.org/1999/xhtml"
 	  xmlns:h="http://java.sun.com/jsf/html"
-	  xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+	  xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <meta charset="UTF-8" />
         <title>Recuperar contraseña | SEA</title>
-        <link rel="shortcut icon" href="/auth/img/favicon.ico" />
-        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
-        <link rel="shortcut icon" href="/auth/img/favicon.ico" />
-        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
-        <h:outputStylesheet library="css" name="material.min.css" />
-        <h:outputStylesheet library="css" name="login.css" />
-        <h:outputScript library="js" name="material.min.js"></h:outputScript>
-        <h:outputScript library="js" name="checkBrowser.js"></h:outputScript>
+		<ui:composition template="/templates/loginResources.xhtml" />
     </h:head>
 	<h:body>
 	<main class="mdl-shadow--4dp">
+			<h:graphicImage library="img" name="LogoSEA.svg" id="logoSEA" />
 		<h1 class="mdl-typography--display-1">Recuperar contraseña</h1>
 		<h:form>
 			<div class="mdl-textfield mdl-textfield--floating-label mdl-textfield mdl-js-textfield mdl-textfield--floating-label">

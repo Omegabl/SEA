@@ -60,17 +60,17 @@ public class LoginController implements Serializable {
 				} else {
 					dialogTittle = "Error al iniciar sesión";
 					dialogContent = "Usted no se encuentra activo en el sistema.<br />Por favor, comuníquese con el administrador del sistema.";
-					RequestContext.getCurrentInstance().execute("mostrarDialogos(`"+dialogTittle+"`, `"+dialogContent+"`);");
-					}
+					RequestContext.getCurrentInstance().execute("mostrarDialogos(`" + dialogTittle + "`, `" + dialogContent + "`);");
+				}
 			} else {
 				dialogTittle = "Error al iniciar sesión";
 				dialogContent = "El nombre de usuario y/o la contraseña son incorrectos.";
-				RequestContext.getCurrentInstance().execute("mostrarDialogos(`"+dialogTittle+"`, `"+dialogContent+"`);");
+				RequestContext.getCurrentInstance().execute("mostrarDialogos(`" + dialogTittle + "`, `" + dialogContent + "`);");
 			}
 		} catch (Exception e) {
 			dialogTittle = "Error no controlado";
 			dialogContent = e.getMessage();
-			RequestContext.getCurrentInstance().execute("mostrarDialogos(`"+dialogTittle+"`, `"+dialogContent+"`);");
+			RequestContext.getCurrentInstance().execute("mostrarDialogos(`" + dialogTittle + "`, `" + dialogContent + "`);");
 		}
 	}
 

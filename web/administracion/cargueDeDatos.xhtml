@@ -7,10 +7,8 @@
 	  xmlns:p="http://primefaces.org/ui"
 	  xmlns:f="http://xmlns.jcp.org/jsf/core">
 	<h:head>
-		<meta charset="UTF-8" />
 		<title>Cargue masivo de datos | SEA</title>
-		<link rel="shortcut icon" href="#{request.contextPath}/img/favicon.ico"/>
-		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+		<ui:composition template="/templates/resources.xhtml" />
         <h:outputStylesheet library="css" name="administracion.css" />
 	</h:head>
 	<h:body>
@@ -18,7 +16,8 @@
 		<main id="DBLoadData">
 			<h:form enctype="multipart/form-data">
 				<div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
-					<h:selectOneMenu class="mdl-selectfield__select" id="tabla" pt:required="required">
+					<p:selectOneMenu styleClass="mdl-selectfield__select" value="#{loadDataController.tabla}" id="tabla" pt:required="required">
+						<p:ajax event="valueChange" listener="#{loadDataController.leerTabla()}" update="linkPlantilla" />
 						<f:selectItem itemValue="" itemLabel="Seleccione" />
 						<f:selectItem itemValue="tbl_categoria" itemLabel="tbl_categoria" />
 						<f:selectItem itemValue="tbl_ciudad" itemLabel="tbl_ciudad" />
@@ -67,11 +66,11 @@
 						<f:selectItem itemValue="tbl_tipo_telefono" itemLabel="tbl_tipo_telefono" />
 						<f:selectItem itemValue="tbl_usuario" itemLabel="tbl_usuario" />
 						<f:selectItem itemValue="tbl_usuario_perfil" itemLabel="tbl_usuario_perfil" />
-					</h:selectOneMenu>
+					</p:selectOneMenu>
 					<h:outputLabel class="mdl-selectfield__label" for="tabla">Tabla</h:outputLabel>
 				</div>
 				<p>Descargue y diligencie la siguiente plantilla. Tenga en cuenta que esta debe guardarse con una configuración separada por comas (",") de lo contrario no se subiran los registros a la base de datos.<br />
-					<h:outputLink class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"><i class="material-icons">file_download</i> Descargar plantilla</h:outputLink></p>
+					<h:outputLink id="linkPlantilla" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" value="#{loadDataController.tabla}"><i class="material-icons">file_download</i> Descargar plantilla</h:outputLink></p>
 				<div class="mdl-textfield mdl-js-textfield mdl-textfield--file">
 					<h:inputText class="mdl-textfield__input" pt:placeholder="Seleccione un archivo" pt:data-inputFileText="CSVBD" pt:readonly="readonly"/>
 					<div class="mdl-button mdl-button--primary mdl-button--icon mdl-button--file">

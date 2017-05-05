@@ -22,6 +22,9 @@
  * THE SOFTWARE.
  */
 
+/*
+ * Dialogos
+ */
 function mostrarDialogos(titulo, mensaje) {
 	if (!document.querySelector('#dialogExceptions')) {
 		crearDialogExceptions();
@@ -29,6 +32,7 @@ function mostrarDialogos(titulo, mensaje) {
 	var dialog = document.querySelector('#dialogExceptions');
 	if (!dialog.showModal) {
 		dialogPolyfill.registerDialog(dialog);
+		console.log("Dialogos no soportados por el navegador");
 	}
 	dialog.querySelector('.mdl-dialog__title').innerHTML = titulo;
 	dialog.querySelector('.mdl-dialog__content p').innerHTML = mensaje;
@@ -70,6 +74,35 @@ function crearDialogExceptions() {
 	dialogTag.appendChild(dialogActions);
 	dialogActions.appendChild(dialogButton);
 	dialogButton.innerHTML="Aceptar";
+}
+/*
+ * Snackbar
+ */
+function mostrarSnackbar(data){
+	var snackbarMessage = document.querySelector('#snackbarMessage');
+	console.log(data);
+	snackbarMessage.MaterialSnackbar.showSnackbar(data);
+}
+function crearSnackbar(){
+	var snackbarTag = document.createElement('div');
+	var snackbarText = document.createElement('div');
+	var snackbarButton = document.createElement('div');
+	
+	agregarAtributos(snackbarTag, atributos = {
+		"id": "snackbarMessage",
+		"class": "mdl-js-snackbar mdl-snackbar"
+	});
+	agregarAtributos(snackbarText, atributos = {
+		"class": "mdl-snackbar__text"
+	});
+	agregarAtributos(snackbarButton, atributos = {
+		"aria-relevant": "text",
+		"class": "mdl-snackbar__action"
+	});
+	
+	document.body.appendChild(snackbarTag);
+	snackbarTag.appendChild(snackbarText);
+	snackbarTag.appendChild(snackbarButton);
 }
 function agregarAtributos(elemento, atributos) {
 	for (var atributo in atributos) {

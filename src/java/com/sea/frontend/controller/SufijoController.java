@@ -13,6 +13,8 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import org.primefaces.json.JSONObject;
+import org.primefaces.context.RequestContext;
 
 /**
  *
@@ -21,6 +23,11 @@ import javax.inject.Named;
 @Named
 @ViewScoped
 public class SufijoController implements Serializable {
+
+	//Variables de los dialogos y snackbars
+	String dialogTittle = null;
+	String dialogContent = null;
+	JSONObject snackbarData = new JSONObject();
 
 	@EJB
 	private SufijoFacadeLocal sufijoEJB;
@@ -72,15 +79,24 @@ public class SufijoController implements Serializable {
 		try {
 			getAccion();
 			sufijoEJB.create(sufijo);
+			snackbarData.put("message", "Se creó la subcategoría '" + sufijo.getDescripcionFabricante()+ "'");
+			RequestContext.getCurrentInstance().execute("mostrarSnackbar(" + snackbarData + ");");
 		} catch (Exception e) {
+			dialogTittle = "Error no controlado";
+			dialogContent = e.getMessage();
+			RequestContext.getCurrentInstance().execute("mostrarDialogos(`" + dialogTittle + "`, `" + dialogContent + "`);");
 		}
 	}
 
 	public void eliminar(Sufijo sufijo) {
 		try {
 			sufijoEJB.remove(sufijo);
+			snackbarData.put("message", "Se creó la subcategoría '" + sufijo.getDescripcionFabricante() + "'");
+			RequestContext.getCurrentInstance().execute("mostrarSnackbar(" + snackbarData + ");");
 		} catch (Exception e) {
-
+			dialogTittle = "Error no controlado";
+			dialogContent = e.getMessage();
+			RequestContext.getCurrentInstance().execute("mostrarDialogos(`" + dialogTittle + "`, `" + dialogContent + "`);");
 		}
 	}
 
@@ -88,8 +104,12 @@ public class SufijoController implements Serializable {
 		try {
 			getAccion();
 			sufijoEJB.edit(sufijo);
+			snackbarData.put("message", "Se creó la subcategoría '" + sufijo.getDescripcionFabricante() + "'");
+			RequestContext.getCurrentInstance().execute("mostrarSnackbar(" + snackbarData + ");");
 		} catch (Exception e) {
-
+			dialogTittle = "Error no controlado";
+			dialogContent = e.getMessage();
+			RequestContext.getCurrentInstance().execute("mostrarDialogos(`" + dialogTittle + "`, `" + dialogContent + "`);");
 		}
 		sufijo.setCodigo(subcat);
 		sufijo.setDescripcionFabricante(subcat);

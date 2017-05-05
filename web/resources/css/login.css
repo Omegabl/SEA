@@ -14,19 +14,28 @@ body{
 	grid-template-rows: auto;
 	grid-template-areas: "main .";
 	height: 100vh;
-	background: #fff url(#{resource['/img/fondoLogin.png']}) no-repeat fixed left top / cover;
+	background: #fff url('#{resource['/img/fondoLogin.png']}') no-repeat fixed left top / cover;
 }
 main{
 	grid-area: main;
 	display: grid;
 	grid-template-columns: 1fr;
-	grid-template-rows: 90px auto auto;
-	grid-template-areas: "titulo" "formulario" "creditos";
+	grid-template-rows: auto 90px auto auto;
+	grid-template-areas: "logo" "titulo" "formulario";
+	align-items: center;
 	background: #FFF;
 }
 main h1{
 	grid-area: titulo;
 	text-align: center;
+}
+/**********************************************************************
+Logo
+**********************************************************************/
+#logoSEA{
+	grid-area: logo;
+	width: 50%;
+	margin: 0 auto;
 }
 /**********************************************************************
 Formulario
@@ -73,19 +82,13 @@ form > button[type="submit"]{
 	content: "(*) ";
 	color: #d50000;
 }
-main > div{
-	grid-area: creditos;
-	padding-bottom: 30px;
-	text-align: center;
-	align-self: end;
-}
 .ui-button .ui-button-text{
-display: initial !important;
-line-height: initial !important;
+	display: initial !important;
+	line-height: initial !important;
 
 }
 .ui-button-text-only .ui-button-text{
-padding: 0 !important;
+	padding: 0 !important;
 }
 @media all and (max-width: 360px){
 	body{
@@ -101,4 +104,13 @@ padding: 0 !important;
 		padding-top: 15px;
 		width: 100%;
 	}
+}
+/***********************************************************
+Dialogos
+***********************************************************/
+#dialogExceptions{
+	width: 420px;
+}
+#dialogExceptions > .mdl-dialog__title{
+	font-size: 2rem;
 }

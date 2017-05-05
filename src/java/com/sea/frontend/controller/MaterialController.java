@@ -13,6 +13,8 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import org.primefaces.json.JSONObject;
+import org.primefaces.context.RequestContext;
 
 /**
  *
@@ -21,6 +23,11 @@ import javax.inject.Named;
 @Named
 @ViewScoped
 public class MaterialController implements Serializable {
+
+	//Variables de los dialogos y snackbars
+	String dialogTittle = null;
+	String dialogContent = null;
+	JSONObject snackbarData = new JSONObject();
 
 	@EJB
 	private MaterialFacadeLocal materialEJB;
@@ -85,22 +92,30 @@ public class MaterialController implements Serializable {
 	@PostConstruct
 	public void init() {
 		material = new Material();
-
 	}
 
 	public void registrar() {
 		try {
 			getAccion();
 			materialEJB.create(material);
+			snackbarData.put("message", "Se creó el material '" + material.getNombre() + "'");
+			RequestContext.getCurrentInstance().execute("mostrarSnackbar(" + snackbarData + ");");
 		} catch (Exception e) {
+			dialogTittle = "Error no controlado";
+			dialogContent = e.getMessage();
+			RequestContext.getCurrentInstance().execute("mostrarDialogos(`" + dialogTittle + "`, `" + dialogContent + "`);");
 		}
 	}
 
 	public void eliminar(Material material) {
 		try {
 			materialEJB.remove(material);
+			snackbarData.put("message", "Se eliminó el material '" + material.getNombre() + "'");
+			RequestContext.getCurrentInstance().execute("mostrarSnackbar(" + snackbarData + ");");
 		} catch (Exception e) {
-
+			dialogTittle = "Error no controlado";
+			dialogContent = e.getMessage();
+			RequestContext.getCurrentInstance().execute("mostrarDialogos(`" + dialogTittle + "`, `" + dialogContent + "`);");
 		}
 	}
 
@@ -108,8 +123,12 @@ public class MaterialController implements Serializable {
 		try {
 			getAccion();
 			materialEJB.edit(material);
+			snackbarData.put("message", "Se medificó el material '" + material.getNombre() + "'");
+			RequestContext.getCurrentInstance().execute("mostrarSnackbar(" + snackbarData + ");");
 		} catch (Exception e) {
-
+			dialogTittle = "Error no controlado";
+			dialogContent = e.getMessage();
+			RequestContext.getCurrentInstance().execute("mostrarDialogos(`" + dialogTittle + "`, `" + dialogContent + "`);");
 		}
 		material.setNombre(subcat);
 		material.setCodigo(subcat);

@@ -50,4 +50,5 @@ public interface ProductoFacadeLocal {
 
 	Producto productoDescripcion(int idProducto) throws Exception;
 	List<Producto> productoPrecio(int idProducto) throws Exception;
+	List<Producto> listaProductos();
 }

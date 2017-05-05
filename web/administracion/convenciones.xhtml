@@ -3,16 +3,9 @@
 	  xmlns:p="http://primefaces.org/ui"
 	  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
-        <meta charset="UTF-8" />
         <title>Conveniones | SEA</title>
-        <link rel="shortcut icon" href="#{request.contextPath}/img/favicon.ico"/>
-        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
-		<f:facet name="last">
-			<h:outputStylesheet library="css" name="mdl-selectfield.min.css" />
-			<h:outputStylesheet library="css" name="administracion.css" />
-			<!--h:outputScript library="js" name="mdl-selectfield.min.js"></h:outputScript-->
-			<script src="https://rawgit.com/MEYVN-digital/mdl-selectfield/master/mdl-selectfield.min.js"></script>
-		</f:facet>
+		<ui:composition template="/templates/resources.xhtml" />
+        <h:outputStylesheet library="css" name="administracion.css" />
     </h:head>
 	<h:body>
 		<ui:composition template="/templates/header.xhtml" />
@@ -45,6 +38,7 @@
 						</p:dataTable>
 						<p:commandLink type="button" onclick="PF('dlg1').show();" styleClass="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored button-bottom_right toggleSubForm" actionListener="#{categoriaController.setAccion('Nuevo')}" update="addCategoria" action="#{categoriaController.limpiar()}">
 							<i class="material-icons">add</i>
+							<p:ajax update="materialScript, materialSelectfieldScript" />
 						</p:commandLink>
                     </h:form>
                 </h:panelGroup>
@@ -147,7 +141,7 @@
 
             </h:panelGroup>
 			<p:dialog widgetVar="dlg1" id="categoria">
-				<h:form id="addCategoria" >
+				<h:form id="addCategoria" class="mdl-dialog">
 					<h3 class="mdl-dialog__title">Categoría</h3>
 					<h:panelGroup layout="block" class="mdl-dialog__content ">
 						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -163,9 +157,8 @@
 				</h:form>
 			</p:dialog>
         </main>
-
 		<p:dialog widgetVar="dlg2" id="subcategoria">
-            <h:form id="addSubcategoria" >
+            <h:form id="addSubcategoria" class="mdl-dialog">
 				<h3 class="mdl-dialog__title">Registrar subcategoría</h3>
 				<h:panelGroup layout="block" class="mdl-dialog__content">
 					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -176,13 +169,13 @@
 						<h:inputText value="#{subcategoriaController.subcategoria.codigo}" class="mdl-textfield__input" p:maxlength="5" required="required" id="codigoSubcategoria" />
 						<h:outputLabel class="mdl-textfield__label" for="codigoSubcategoria">Código</h:outputLabel>
 					</h:panelGroup>
-					<h:panelGroup layout="block" class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
+					<div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
 					<h:selectOneMenu id="categoriaIdCategoria" value="#{subcategoriaController.idCategoria.idCategoria}" styleClass="mdl-selectfield__select" title="Categorias" required="true" requiredMessage="Categoria creada">
 						<f:selectItem itemValue="" itemLabel="" />
 						<f:selectItems value="${categoriaController.listaCategoria}" var="cats" itemLabel="#{cats.nombre}" itemValue="#{cats.idCategoria}" />
 					</h:selectOneMenu>
 						<h:outputLabel class="mdl-selectfield__label" for="categoriaIdCategoria">Categorias</h:outputLabel>
-					</h:panelGroup>
+					</div>
 				</h:panelGroup>
 				<h:panelGroup layout="block" class="mdl-dialog__actions">
 					<p:commandButton actionListener="#{subcategoriaController.registrar()}" value="Registrar" styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSub	Form" oncomplete="PF('dlg2').hide();" update=":subcat:subTable" rendered="${subcategoriaController.accion == 'Nuevo'}"/>
@@ -192,7 +185,7 @@
 			</h:form>
 		</p:dialog>
 		<p:dialog widgetVar="dlg3" id="material">
-            <h:form id="addMaterial" >
+            <h:form id="addMaterial" class="mdl-dialog">
 				<h3 class="mdl-dialog__title">Registrar material</h3>
 				<h:panelGroup layout="block" class="mdl-dialog__content">
 					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -212,7 +205,7 @@
 			</h:form>
 		</p:dialog>
 		<p:dialog widgetVar="dlg4" id="sufijo">
-            <h:form id="addSufijo" >
+            <h:form id="addSufijo" class="mdl-dialog">
 				<h3 class="mdl-dialog__title">Registrar sufijo</h3>
 				<h:panelGroup layout="block" class="mdl-dialog__content">
 					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">

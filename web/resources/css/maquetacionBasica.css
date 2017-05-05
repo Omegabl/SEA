@@ -1,9 +1,6 @@
 /*******************************************************************************
 Estilos generales
 *******************************************************************************/
-:root {
-	--FuentesDelSistema: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-}
 *, *::before, *::after{
 	box-sizing: border-box;
 }
@@ -150,441 +147,467 @@ body > nav{
 #logo{
 	flex: 0 0 230px;
 	height: var(--altoHeader);
-	background: #3f51b5 url(#{resource['img/logo.png']});
-		background-size: auto 75%;
-		background-repeat: no-repeat;
-		background-position: top center;
-		box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
-		}
-		#user{
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-end;
-		position: relative;
-		padding: 0 22px;
-		height: 150px;
-		background: url(#{resource['img/user-bg.png']});
-		background-size: cover;
-		}
-		#userName{
-		font-size: 18px;
-		line-height: 20px;
-		}
-		#userPosition{
-		font-size: 15px;
-		line-height: 17px;
-		display: flex;
-		align-items: center;
-		}
-		#userPosition span{
-		flex: 1;
-		}
-		body > nav ul{
-		display: flex;
-		flex-direction: column;
-		list-style: none;
-		}
-		body > nav li{
-		flex: 0 0 44px;
-		}
-		body > nav li a{
-		line-height: 44px !important;
-		text-decoration: none;
-		color: rgba(0,0,0,0.87);
-		}
-		body > nav li a.fa{
-		display: flex;
-		overflow: hidden;
-		text-decoration: none;
-		}
-		body > nav li a::before{
-		padding: 0 1.5rem 0 1rem;
-		color: #aaa;
-		font-size: 1.5rem;
-		min-width: 70px;
-		text-align: center;
-		}
-		body > nav > ul li a:hover {
-		background-color: rgba(158,158,158,0.2);
-		}
-		.logoSena::before{
-		content: "";
-		background: url(#{resource['img/LogoSENA.svg']});
-		background-size: 30px 30px;
-		background-repeat: no-repeat;
-		background-position: 15px center;
-		}
-		/*********************************************************************
-		Panel de tareas
-		*********************************************************************/
-		#taskList{
-		right: calc(-1 * var(--anchoNavbar));
-		background-color: #fff;
-		box-shadow: 0 2px 4px -1px rgba(0,0,0,.2),0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12);
-		}
-		#taskList.taskList{
-		right: 0;
-		}
-		#taskList .mdl-tabs__tab{
-		padding: 0 12px;
-		}
-		/***********************************************************
-		Pestañas de los eventos
-		***********************************************************/
-		#fechaSistema{
-		padding: 5px;
-		height: 100px;
-		font-size: 34px;
-		line-height: 34px;
-		border-bottom: 1px solid #bbb;
-		}
-		.tarea{
-		padding-bottom: 7px;
-		padding-left: 7px;
-		font-size: 13px;
-		border-bottom: 1px solid #f3f3f3;
-		}
-		a.tarea{
-		display: block;
-		text-decoration: none;
-		color: #000;
-		}
-		.tarea:hover{
-		background-color: rgba(158,158,158,0.2);
-		}
-		.tarea div span{
-		font-weight: bold;
-		}
-		.tarea div span:first-child:not(:only-child)::after{
-		content: "\00a0|\00a0";
-		}
-		/*******************************************************************************
-		Sección principal
-		*******************************************************************************/
-		main{
-		grid-area: main;
-		max-width: 100%;
-		overflow: auto;
-		padding: 15px;
-		}
-		/*********************************************************************
-		Tarjetas de los menús principales
-		*********************************************************************/
-		.menu-card.mdl-card {
-		width: 100%;
-		height: 320px;
-		}
-		.menu-card > .mdl-card__title {
-		color: #fff;
-		background: #448AFF;
-		transition: background-color .3s ease-in-out;
-		}
-		.menu-card:hover > .mdl-card__title {
-		background: #3F51B5;
-		}
-		main.menuGeneral{
-		--grid-gap: 15px;
-		--anchoCards:calc(100% - (var(--grid-gap) * 2));
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(var(--anchoCards), 1fr));
-		grid-gap: var(--grid-gap);
-		}
-		@media all and (min-width: 768px){
-		main.menuGeneral{
+	background: #3f51b5 url('#{resource['img/logo.png']}');
+	background-size: auto 75%;
+	background-repeat: no-repeat;
+	background-position: top center;
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+}
+#user{
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	position: relative;
+	padding: 0 22px;
+	height: 150px;
+	background: url('#{resource['img/user-bg.png']}');
+	background-size: cover;
+}
+#userName{
+	font-size: 18px;
+	line-height: 20px;
+}
+#userPosition{
+	font-size: 15px;
+	line-height: 17px;
+	display: flex;
+	align-items: center;
+}
+#userPosition span{
+	flex: 1;
+}
+body > nav ul{
+	display: flex;
+	flex-direction: column;
+	list-style: none;
+}
+body > nav li{
+	flex: 0 0 44px;
+}
+body > nav li a{
+	line-height: 44px !important;
+	text-decoration: none;
+	color: rgba(0,0,0,0.87);
+}
+body > nav li a.fa{
+	display: flex;
+	overflow: hidden;
+	text-decoration: none;
+}
+body > nav li a::before{
+	padding: 0 1.5rem 0 1rem;
+	color: #aaa;
+	font-size: 1.5rem;
+	min-width: 70px;
+	text-align: center;
+}
+body > nav > ul li a:hover {
+	background-color: rgba(158,158,158,0.2);
+}
+.logoSena::before{
+	content: "";
+	background: url('#{resource['img/LogoSENA.svg']}');
+	background-size: 30px 30px;
+	background-repeat: no-repeat;
+	background-position: 15px center;
+}
+/*********************************************************************
+Panel de tareas
+*********************************************************************/
+#taskList{
+	right: calc(-1 * var(--anchoNavbar));
+	background-color: #fff;
+	box-shadow: 0 2px 4px -1px rgba(0,0,0,.2),0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12);
+}
+#taskList.taskList{
+	right: 0;
+}
+#taskList .mdl-tabs__tab{
+	padding: 0 12px;
+}
+/***********************************************************
+Dialogos
+***********************************************************/
+#dialogExceptions{
+	width: 420px;
+}
+#dialogExceptions > .mdl-dialog__title{
+	font-size: 2rem;
+}
+/***********************************************************
+Pestañas de los eventos
+***********************************************************/
+#fechaSistema{
+	padding: 5px;
+	height: 100px;
+	font-size: 34px;
+	line-height: 34px;
+	border-bottom: 1px solid #bbb;
+}
+.tarea{
+	padding-bottom: 7px;
+	padding-left: 7px;
+	font-size: 13px;
+	border-bottom: 1px solid #f3f3f3;
+}
+a.tarea{
+	display: block;
+	text-decoration: none;
+	color: #000;
+}
+.tarea:hover{
+	background-color: rgba(158,158,158,0.2);
+}
+.tarea div span{
+	font-weight: bold;
+}
+.tarea div span:first-child:not(:only-child)::after{
+	content: "\00a0|\00a0";
+}
+/*******************************************************************************
+Sección principal
+*******************************************************************************/
+main{
+	grid-area: main;
+	max-width: 100%;
+	overflow: auto;
+	padding: 15px;
+}
+/*********************************************************************
+Tarjetas de los menús principales
+*********************************************************************/
+.menu-card.mdl-card {
+	width: 100%;
+	height: 320px;
+}
+.menu-card > .mdl-card__title {
+	color: #fff;
+	background: #448AFF;
+	transition: background-color .3s ease-in-out;
+}
+.menu-card:hover > .mdl-card__title {
+	background: #3F51B5;
+}
+main.menuGeneral{
+	--grid-gap: 15px;
+	--anchoCards:calc(100% - (var(--grid-gap) * 2));
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(var(--anchoCards), 1fr));
+	grid-gap: var(--grid-gap);
+}
+@media all and (min-width: 768px){
+	main.menuGeneral{
 		--anchoCards:calc(50% - (var(--grid-gap) * 2));
-		}
-		}
-		@media all and (max-width: 640px){
-		#breadcrumbs{
+	}
+}
+@media all and (max-width: 640px){
+	#breadcrumbs{
 		display: none;
-		}
-		}
-		@media all and (min-width: 1280px){
-		main.menuGeneral{
+	}
+}
+@media all and (min-width: 1280px){
+	main.menuGeneral{
 		--anchoCards:calc(33% - (var(--grid-gap) * 2));
-		}
-		}
-		/*********************************************************************
-		Botón ir arriba
-		*********************************************************************/
-		#scrollButton{
-		position: fixed;
-		bottom: 0px;
-		right: 10px;
-		padding: 5px 10px;
-		background: #2296f3;
-		color: #fff;
-		cursor: pointer;
-		font-size: 30px;
-		z-index: 1;
-		opacity: 0;
-		visibility: hidden;
-		pointer-events: none;
-		transition: opacity .2s linear;
-		}
-		/*********************************************************************
-		iframes
-		*********************************************************************/
-		.iframe{
-		width: 100%;
-		height: calc(100vh - var(--altoHeader) - 30px);
-		}
-		/*********************************************************************
-		tablas
-		*********************************************************************/
-		table{
-		width: 100%;
-		margin: auto;
-		}
-		.mdl-data-table--selectable td:first-of-type{
-		text-align: center;
-		}
-		.mdl-tabs__panel table:first-of-type{
-		margin-top: 15px;
-		}
-		table td{
-		white-space: pre-wrap;
-		}
-		.ui-datatable tr, .ui-datatable th, .ui-datatable td{
-		border: 1px solid rgba(0, 0, 0, 0.12);
-		}
-		.ui-datatable th:not(:first-child), .ui-datatable td:not(:first-child){
-		border-left: none;
-		}
-		.ui-datatable th:not(:last-child), .ui-datatable td:not(:last-child){
-		border-right: none;
-		}
-		.ui-datatable thead th,.ui-datatable tbody td {
-		position: relative;
-		vertical-align: middle;
-		height: 48px;
-		border-top: 1px solid rgba(0, 0, 0, 0.12);
-		border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-		padding-top: 12px;
-		box-sizing: border-box
-		}
-		.mdl-data-table th{
-		text-align: center;
-		}
-		/*********************************************************************
-		Gráficas
-		*********************************************************************/
-		.chartdiv{
-		width: 100%;
-		height: calc(100vh - var(--altoHeader) - 30px);
-		background-color: #fff;
-		border: 1px solid rgba(0,0,0,.12);
-		}
-		/*********************************************************************
-		Clase para mostrar elementos ocultos
-		*********************************************************************/
-		#scrollButton.visible, #ofuscador.visible{
-		opacity: 1;
-		visibility: visible;
-		pointer-events: auto;
-		}
-		/*********************************************************************
-		Formularios
-		*********************************************************************/
-		form{
-		padding: 0 15px;
-		border: 1px solid rgba(0,0,0,.12);
-		background-color: #fff;
-		}
-		.mdl-textfield__input[required] + .mdl-textfield__label::before, .mdl-selectfield__select[required] + .mdl-selectfield__label::before{
-		content: "(*) ";
-		color: #d50000;
-		}
-		.mdl-selectfield, .mdl-textfield, .mdl-switch{
-		width: 100%;
-		}
-		.mdl-textfield textarea{
-		min-height: 6em;
-		}
-		.fullWidth{
-		grid-column: 1 / -1;
-		}
-		fieldset[disabled] .mdl-textfield .mdl-textfield__label, .mdl-textfield.is-disabled.is-disabled .mdl-textfield__label {
-		color: rgb(63,81,181);
-		}
-		fieldset[disabled] .mdl-textfield .mdl-textfield__input, .mdl-textfield.is-disabled .mdl-textfield__input {
-		color: rgba(0,0,0,.5);
-		}
-		.mdl-textfield--floating-label .mdl-textfield__label, .mdl-selectfield--floating-label .mdl-selectfield__label {
-		top: 4px;
-		}
-		.ui-button .ui-button-text{
-		display: initial !important;
-		line-height: initial !important;
+	}
+}
+/*********************************************************************
+Botón ir arriba
+*********************************************************************/
+#scrollButton{
+	position: fixed;
+	bottom: 0px;
+	right: 10px;
+	padding: 5px 10px;
+	background: #2296f3;
+	color: #fff;
+	cursor: pointer;
+	font-size: 30px;
+	z-index: 1;
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+	transition: opacity .2s linear;
+}
+/*********************************************************************
+iframes
+*********************************************************************/
+.iframe{
+	width: 100%;
+	height: calc(100vh - var(--altoHeader) - 30px);
+}
+/*********************************************************************
+tablas
+*********************************************************************/
+table{
+	width: 100%;
+	margin: auto;
+}
+.mdl-data-table--selectable td:first-of-type{
+	text-align: center;
+}
+.mdl-tabs__panel table:first-of-type{
+	margin-top: 15px;
+}
+table td{
+	white-space: pre-wrap;
+}
+.ui-datatable tr, .ui-datatable th, .ui-datatable td{
+	border: 1px solid rgba(0, 0, 0, 0.12);
+}
+.ui-datatable th:not(:first-child), .ui-datatable td:not(:first-child){
+	border-left: none;
+}
+.ui-datatable th:not(:last-child), .ui-datatable td:not(:last-child){
+	border-right: none;
+}
+.ui-datatable thead th,.ui-datatable tbody td {
+	position: relative;
+	vertical-align: middle;
+	height: 48px;
+	border-top: 1px solid rgba(0, 0, 0, 0.12);
+	border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+	padding-top: 12px;
+	box-sizing: border-box
+}
+.mdl-data-table th{
+	text-align: center;
+}
+/*********************************************************************
+Gráficas
+*********************************************************************/
+.chartdiv{
+	width: 100%;
+	height: calc(100vh - var(--altoHeader) - 30px);
+	background-color: #fff;
+	border: 1px solid rgba(0,0,0,.12);
+}
+/*********************************************************************
+Clase para mostrar elementos ocultos
+*********************************************************************/
+#scrollButton.visible, #ofuscador.visible{
+	opacity: 1;
+	visibility: visible;
+	pointer-events: auto;
+}
+/*********************************************************************
+Formularios
+*********************************************************************/
+form{
+	padding: 0 15px;
+	border: 1px solid rgba(0,0,0,.12);
+	background-color: #fff;
+}
+.mdl-textfield__input[required] + .mdl-textfield__label::before, .mdl-selectfield__select[required] + .mdl-selectfield__label::before, .ui-selectonemenu[required] + .mdl-textfield__label::before{
+	content: "(*) ";
+	color: #d50000;
+}
+.mdl-selectfield, .mdl-textfield, .mdl-switch, .ui-selectonemenu{
+	width: 100% !important;
+}
+.mdl-textfield textarea{
+	min-height: 6em;
+}
+.fullWidth{
+	grid-column: 1 / -1;
+}
+fieldset[disabled] .mdl-textfield .mdl-textfield__label, .mdl-textfield.is-disabled.is-disabled .mdl-textfield__label, .ui-selectonemenu + .mdl-textfield__label{
+	color: rgb(63,81,181);
+}
+fieldset[disabled] .mdl-textfield .mdl-textfield__input, .mdl-textfield.is-disabled .mdl-textfield__input{
+	color: rgba(0,0,0,.5);
+}
+.mdl-textfield--floating-label .mdl-textfield__label, .mdl-selectfield--floating-label .mdl-selectfield__label{
+	top: 4px;
+}
+.ui-button .ui-button-text{
+	display: initial !important;
+	line-height: initial !important;
 
-		}
-		.ui-button-text-only .ui-button-text{
-		padding: 0 !important;
-		}
-		.mdl-button--file input {
-		cursor: pointer;
-		height: 100%;
-		right: 0;
-		opacity: 0;
-		position: absolute;
-		top: 0;
-		width: 300px;
-		z-index: 4;
-		}
-
-		.mdl-textfield--file .mdl-textfield__input {
-		box-sizing: border-box;
-		width: calc(100% - 32px);
-		margin-left: 32px;
-		}
-		/**********************************************************************
-		Formularios complejos
-		**********************************************************************/
-		#subForm, .ui-dialog{
-		position: fixed;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		left: 0;
-		z-index: 100;
-		background-color: rgba(0,0,0,0.4);
-		/*opacity: 0;
-		pointer-events: none;
-		transition: opacity .7s ease;*/
-		}
-		#subForm.mostrar, #subForm.mostrar form.mostrar{
-		opacity: 1;
-		pointer-events: auto;
-		}
-		#subForm form, form.mdl-dialog{
-		display: grid;
-		grid-template-columns: 1fr;
-		grid-gap: 15px;
-		}
-		#subForm form, form.mdl-dialog{
-		--height: 30px;
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		padding: 0;
-		width: 700px;
-		min-height: auto;
-		max-height: calc(100vh - (var(--height) * 2));
-		overflow-x: hidden;
-		background-color: #fff;
-		transform: translate(-50%, -50%);
-		/*opacity: 0;
-		pointer-events: none;
-		transition: opacity .7s ease;*/
-		}
-		@media all and (max-width: 640px){
-		#subForm form, form.mdl-dialog{
+}
+.ui-button-text-only .ui-button-text{
+	padding: 0 !important;
+}
+.mdl-button--file input {
+	cursor: pointer;
+	height: 100%;
+	right: 0;
+	opacity: 0;
+	position: absolute;
+	top: 0;
+	width: 300px;
+	z-index: 4;
+}
+.mdl-textfield--file .mdl-textfield__input {
+	box-sizing: border-box;
+	width: calc(100% - 32px);
+	margin-left: 32px;
+}
+.ui-selectonemenu-item.ui-selectonemenu-list-item{
+	font-size: 16px;
+	color: rgba(33,33,33,0.87);
+	line-height: 19px;
+	min-height: 19px;
+	padding: 10px 14px 8px 14px !important;
+	-webkit-transition: background-color cubic-bezier(0.4, 0, 0.2, 1);
+	transition: background-color cubic-bezier(0.4, 0, 0.2, 1);
+	cursor: pointer;
+	outline: none;
+	box-sizing: content-box;
+}
+.ui-selectonemenu-item.ui-selectonemenu-list-item.ui-state-hover{
+	background-color: #f8f8f8;
+}
+/**********************************************************************
+Formularios complejos
+**********************************************************************/
+#subForm, .ui-dialog{
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 100;
+	background-color: rgba(0,0,0,0.4);
+}
+#subForm.mostrar, #subForm.mostrar form.mostrar{
+	opacity: 1;
+	pointer-events: auto;
+}
+#subForm form, form.mdl-dialog{
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-gap: 15px;
+}
+#subForm form, form.mdl-dialog{
+	--height: 30px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	padding: 0;
+	width: 700px;
+	min-height: auto;
+	max-height: calc(100vh - (var(--height) * 2));
+	overflow-x: hidden;
+	background-color: #fff;
+	transform: translate(-50%, -50%);
+}
+@media all and (max-width: 640px){
+	#subForm form, form.mdl-dialog{
 		--height: 0;
 		width: 100%;
 		height: 100vh;
 		max-height: 100vh;
 		margin: 0;
-		}
-		}
-		/*********************************************************************
-		Grupos de botones
-		*********************************************************************/
-		.buttons{
-		--buttonWidth: 260px;
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(var(--buttonWidth), 1fr));
-		grid-gap: 10px;
-		padding-bottom: 15px;
-		}
-		/*********************************************************************
-		Sobreescritura de estilos del framework
-		*********************************************************************/
-		body{
-		--altoHeader: 64px;
-		}
-		@media screen and (max-width:1024px){
-		body{
+	}
+}
+/*********************************************************************
+Grupos de botones
+*********************************************************************/
+.buttons{
+	--buttonWidth: 260px;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(var(--buttonWidth), 1fr));
+	grid-gap: 10px;
+	padding-bottom: 15px;
+}
+.ui-button {
+	padding: 0 16px !important;
+	margin-right: 8px !important;
+	overflow: hidden !important;
+}
+/*********************************************************************
+Sobreescritura de estilos del framework
+*********************************************************************/
+body{
+	--altoHeader: 64px;
+}
+@media screen and (max-width:1024px){
+	body{
 		--altoHeader: 56px;
-		}
-		}
-		/***********************************************************
-		Altura del header
-		***********************************************************/
-		.mdl-layout__header{
-		height: var(--altoHeader);
-		}
-		/***********************************************************
-		Tabs
-		***********************************************************/
-		@media all and (max-width: 640px){
-		.mdl-tabs__tab{
+	}
+}
+/***********************************************************
+Altura del header
+***********************************************************/
+.mdl-layout__header{
+	height: var(--altoHeader);
+}
+/***********************************************************
+Tabs
+***********************************************************/
+@media all and (max-width: 640px){
+	.mdl-tabs__tab{
 		flex: 1;
 		padding: 0;
-		}
-		}
-		/***********************************************************
-		Botón para mostar subformularios
-		***********************************************************/
-		.button-bottom_right{
-		position: fixed;
-		right: 10px;
-		bottom: 50px;
-		z-index: 1;
-		}
-		/***********************************************************
-		input file: https://codepen.io/akhmed_gaziev/pen/JdVQQm
-		***********************************************************/
-		.fileInput{
-		display: none;
-		}
-		/***********************************************************
-		páginas de error
-		***********************************************************/
-		#errorPage img{
-		width: 100%;
-		}
-		/***********************************************************
-		Sobreescritura de estilos de primefaces
-		***********************************************************/
-		.ui-dialog-titlebar {
-		border: 0!important;
-		padding: 0!important;
-		display: none!important
-		}
-		.ui-datatable.borderless .ui-datatable-data tr,
-		.ui-datatable.borderless .ui-datatable-data-empty tr,
-		.ui-datatable.borderless .ui-datatable-data td,
-		.ui-datatable.borderless .ui-datatable-data-empty td {
-		border-style: none;
-		}
-		.ui-datatable tbody td{border-color: rgba(0, 0, 0, .12);}
-		.ui-dialog .ui-dialog-content {
-		position: fixed !important;
-		border: 0!important;
-		padding: 0!important;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		overflow-x: none;
-		}
-		.ui-selectonemenu{
-		width: 100%;
-		}
-		.ui-selectonemenu-panel .ui-selectonemenu-list, .ui-selectonemenu-panel .ui-selectonemenu-filter-container{
-		background-color: #fff;
-		width: 100%;
-		}
-		.ui-selectonemenu-panel .ui-selectonemenu-filter{
-		border: none;
-		border-bottom: 1px solid rgb(63,81,181);
-		display: block;
-		font-size: 16px;
-		font-family: "Helvetica","Arial",sans-serif;
-		margin: 0;
-		padding: 4px 0;
-		width: 100%;
-		background: 0 0;
-		text-align: left;
-		color: inherit;
-		}
+	}
+}
+/***********************************************************
+Botón para mostar subformularios
+***********************************************************/
+.button-bottom_right{
+	position: fixed;
+	right: 10px;
+	bottom: 50px;
+	z-index: 1;
+}
+/***********************************************************
+input file: https://codepen.io/akhmed_gaziev/pen/JdVQQm
+***********************************************************/
+.fileInput{
+	display: none;
+}
+/***********************************************************
+Sobreescritura de estilos de primefaces
+***********************************************************/
+.ui-dialog-titlebar {
+	border: 0!important;
+	padding: 0!important;
+	display: none!important
+}
+.ui-datatable.borderless .ui-datatable-data tr,
+.ui-datatable.borderless .ui-datatable-data-empty tr,
+.ui-datatable.borderless .ui-datatable-data td,
+.ui-datatable.borderless .ui-datatable-data-empty td {
+	border-style: none;
+}
+.ui-datatable tbody td{border-color: rgba(0, 0, 0, .12);}
+.ui-dialog .ui-dialog-content {
+	position: fixed !important;
+	border: 0!important;
+	padding: 0!important;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	overflow-x: none;
+}
+.ui-selectonemenu{
+	width: 100%;
+}
+.ui-selectonemenu-panel .ui-selectonemenu-list, .ui-selectonemenu-panel .ui-selectonemenu-filter-container{
+	background-color: #fff;
+	width: 100%;
+}
+.ui-selectonemenu-panel.ui-widget.ui-widget-content.ui-corner-all.ui-helper-hidden{
+    background: rgb(255,255,255);
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-radius: 2px;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 3px 1px -2px rgba(0,0,0,0.2),0 1px 5px 0 rgba(0,0,0,0.12);
+    -webkit-transition: opacity .2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity .2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.ui-selectonemenu-panel .ui-selectonemenu-filter {
+	border: none;
+	border-bottom: 1px solid rgba(63,81,181,1);
+	display: block;
+	font-size: 16px;
+	font-family: "Helvetica","Arial",sans-serif;
+	margin: 0;
+	padding: 4px 0;
+	width: 100%;
+	background: 0 0;
+	text-align: left;
+	color: inherit;
+}

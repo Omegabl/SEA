@@ -14,6 +14,8 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
+import org.primefaces.json.JSONObject;
+import org.primefaces.context.RequestContext;
 
 /**
  *
@@ -22,6 +24,11 @@ import javax.faces.view.ViewScoped;
 @Named
 @ViewScoped
 public class SubcategoriaController implements Serializable {
+
+	//Variables de los dialogos y snackbars
+	String dialogTittle = null;
+	String dialogContent = null;
+	JSONObject snackbarData = new JSONObject();
 
 	@EJB
 	private SubcategoriaFacadeLocal SubcategoriaEJB;
@@ -61,7 +68,6 @@ public class SubcategoriaController implements Serializable {
 		subcategoria = new Subcategoria();
 		listaSubcategoria = SubcategoriaEJB.findAll();
 		idCategoria = new Categoria();
-
 	}
 
 	public String getAccion() {
@@ -85,16 +91,24 @@ public class SubcategoriaController implements Serializable {
 			getAccion();
 			subcategoria.setTblCategoriaIdCategoria(idCategoria);
 			SubcategoriaEJB.create(subcategoria);
-			
+			snackbarData.put("message", "Se creó la subcategoría '" + subcategoria.getNombre() + "'");
+			RequestContext.getCurrentInstance().execute("mostrarSnackbar(" + snackbarData + ");");
 		} catch (Exception e) {
+			dialogTittle = "Error no controlado";
+			dialogContent = e.getMessage();
+			RequestContext.getCurrentInstance().execute("mostrarDialogos(`" + dialogTittle + "`, `" + dialogContent + "`);");
 		}
 	}
 
 	public void eliminar(Subcategoria sub) {
 		try {
 			SubcategoriaEJB.remove(sub);
+			snackbarData.put("message", "Se eliminó la subcategoría '" + subcategoria.getNombre() + "'");
+			RequestContext.getCurrentInstance().execute("mostrarSnackbar(" + snackbarData + ");");
 		} catch (Exception e) {
-
+			dialogTittle = "Error no controlado";
+			dialogContent = e.getMessage();
+			RequestContext.getCurrentInstance().execute("mostrarDialogos(`" + dialogTittle + "`, `" + dialogContent + "`);");
 		}
 	}
 
@@ -102,8 +116,12 @@ public class SubcategoriaController implements Serializable {
 		try {
 			getAccion();
 			SubcategoriaEJB.edit(subcategoria);
+			snackbarData.put("message", "Se modificó la subcategoría '" + subcategoria.getNombre() + "'");
+			RequestContext.getCurrentInstance().execute("mostrarSnackbar(" + snackbarData + ");");
 		} catch (Exception e) {
-
+			dialogTittle = "Error no controlado";
+			dialogContent = e.getMessage();
+			RequestContext.getCurrentInstance().execute("mostrarDialogos(`" + dialogTittle + "`, `" + dialogContent + "`);");
 		}
 		subcategoria.setCodigo(subcat);
 		subcategoria.setNombre(subcat);

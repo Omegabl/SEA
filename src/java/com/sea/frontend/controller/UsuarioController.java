@@ -37,7 +37,8 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
-import static jdk.nashorn.internal.runtime.ListAdapter.create;
+import org.primefaces.json.JSONObject;
+import org.primefaces.context.RequestContext;
 
 /**
  *
@@ -46,6 +47,11 @@ import static jdk.nashorn.internal.runtime.ListAdapter.create;
 @Named
 @ViewScoped
 public class UsuarioController implements Serializable {
+
+	//Variables de los dialogos y snackbars
+	String dialogTittle = null;
+	String dialogContent = null;
+	JSONObject snackbarData = new JSONObject();
 
 	@EJB
 	private UsuarioFacadeLocal usuarioEJB;
@@ -75,7 +81,7 @@ public class UsuarioController implements Serializable {
 	@EJB
 	private EmailFacadeLocal correoEJB;
 	private Email correo;
-	
+
 	@EJB
 	private CargoFacadeLocal CargoEJB;
 	private Cargo cargo;
@@ -92,11 +98,11 @@ public class UsuarioController implements Serializable {
 	@EJB
 	private DireccionFacadeLocal direccionEJB;
 	private Direccion direccion;
-	
+
 	@EJB
 	private DepartamentoFacadeLocal departamentoEJB;
 	private Departamento departamento;
-	
+
 	@EJB
 	private CiudadFacadeLocal ciudadEJB;
 	private Ciudad ciudad;
@@ -105,7 +111,6 @@ public class UsuarioController implements Serializable {
 	@EJB
 	private TipoDocumentoFacadeLocal tipoDocumentoEJB;
 	private TipoDocumento tipoDocumento;
-
 
 	public Departamento getDepartamento() {
 		return departamento;
@@ -271,24 +276,30 @@ public class UsuarioController implements Serializable {
 			direccion.setTblUsuarioIdUsuario(usuarioEJB.find(usuario.getIdUsuario()));
 			direccion.setTblCiudadIdCiudad(ciudadEJB.listaCiudad(ciudad.getNombre()));
 			direccionEJB.create(direccion);
+			snackbarData.put("message", "Se registró al usuario '" + usuario.getNombre() + " " + usuario.getApellido() + "'.");
+			RequestContext.getCurrentInstance().execute("mostrarSnackbar(" + snackbarData + ");");
 		} catch (Exception e) {
-
+			dialogTittle = "Error no controlado";
+			dialogContent = e.getMessage();
+			RequestContext.getCurrentInstance().execute("mostrarDialogos(`" + dialogTittle + "`, `" + dialogContent + "`);");
 		}
 		lista = usuarioEJB.listaUsuario();
 	}
-	
-	
+
 	public void obtenerCiudad() {
 		ciudades = ciudadEJB.listaCiudades(departamento);
-
 	}
 
 	public void modificar() {
 		try {
 			getAccion();
 			usuarioEJB.edit(usuario);
+			snackbarData.put("message", "Se modificó al usuario '" + usuario.getNombre() + " " + usuario.getApellido() + "'.");
+			RequestContext.getCurrentInstance().execute("mostrarSnackbar(" + snackbarData + ");");
 		} catch (Exception e) {
-
+			dialogTittle = "Error no controlado";
+			dialogContent = e.getMessage();
+			RequestContext.getCurrentInstance().execute("mostrarDialogos(`" + dialogTittle + "`, `" + dialogContent + "`);");
 		}
 
 	}
@@ -297,8 +308,12 @@ public class UsuarioController implements Serializable {
 		try {
 			getAccion();
 			usuarioEJB.remove(usuario);
+			snackbarData.put("message", "Se eliminó al usuario '" + usuario.getNombre() + " " + usuario.getApellido() + "'.");
+			RequestContext.getCurrentInstance().execute("mostrarSnackbar(" + snackbarData + ");");
 		} catch (Exception e) {
-
+			dialogTittle = "Error no controlado";
+			dialogContent = e.getMessage();
+			RequestContext.getCurrentInstance().execute("mostrarDialogos(`" + dialogTittle + "`, `" + dialogContent + "`);");
 		}
 
 	}
@@ -345,12 +360,5 @@ public class UsuarioController implements Serializable {
 	public void setCargoPerfil(CargoPerfil cargoPerfil) {
 		this.cargoPerfil = cargoPerfil;
 	}
-
-	
-
-
-	
-	
-	
 
 }
