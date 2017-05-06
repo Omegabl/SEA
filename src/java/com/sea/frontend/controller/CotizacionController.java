@@ -331,9 +331,11 @@ public class CotizacionController implements Serializable {
 					multiparte.addBodyPart(adjunto);
 					MimeMessage message = new MimeMessage(session);
 					message.setFrom(new InternetAddress(user, "Fulldotaciones"));
+					String emailC = cotizacionEJB.correoCliente(idCliente);
+					String emailU = cotizacionEJB.correoUsuario(idUsuario());
 					InternetAddress[] destinatarios = {
-						new InternetAddress(cotizacionEJB.correoCliente(idCliente)),
-						new InternetAddress(cotizacionEJB.correoUsuario(idUsuario()))
+						new InternetAddress(emailC),
+						new InternetAddress(emailU)
 					};
 
 					message.setRecipients(Message.RecipientType.TO, destinatarios);
@@ -382,9 +384,11 @@ public class CotizacionController implements Serializable {
 					multiparte.addBodyPart(adjunto);
 					MimeMessage message = new MimeMessage(session);
 					message.setFrom(new InternetAddress(user, "Fulldotaciones"));
+					String emailC = cotizacionEJB.correoCliente(idCliente);
+					String emailU = cotizacionEJB.correoUsuario(idUsuario());
 					InternetAddress[] destinatarios = {
-						new InternetAddress("edarvio.98@gmail.com"),
-						new InternetAddress("andresfqm@misena.edu.co")
+						new InternetAddress(emailC),
+						new InternetAddress(emailU)
 					};
 
 					message.setRecipients(Message.RecipientType.TO, destinatarios);

@@ -40,7 +40,7 @@
 								</p:dataTable>
 								<p:commandLink type="button" onclick="PF('dlg1').show();" styleClass="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored button-bottom_right toggleSubForm" actionListener="#{categoriaController.setAccion('Nuevo')}" update="addCategoria" action="#{categoriaController.limpiar()}">
 									<i class="material-icons">add</i>
-									<p:ajax update="materialScript, materialSelectfieldScript" />
+									<p:ajax update="materialScript" />
 								</p:commandLink>
 							</h:form>
 						</h:panelGroup>

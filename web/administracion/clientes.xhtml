@@ -174,7 +174,7 @@
                     </h:panelGroup>
                 </h:panelGroup>
                 <h:panelGroup layout="block" class="mdl-dialog__actions">
-                    <p:commandButton actionListener="#{clienteController.registrarCliente()}" oncomplete="PF('createClient').hide();" id="mostrarClienteNuevo" styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" value="Crear cliente"  update=":formClient:tableClient"/>
+                    <p:commandButton actionListener="#{clienteController.registrarCliente()}" oncomplete="PF('createClient').hide();" id="mostrarClienteNuevo" styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" value="Crear cliente"  update="formClient:tableClient"/>
                     <p:commandButton type="reset" styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm" value="Cancelar" onclick="PF('createClient').hide();"/>
                 </h:panelGroup>
             </h:form>

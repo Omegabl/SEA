@@ -156,6 +156,7 @@ public class ClienteController implements Serializable {
 			dialogContent = e.getMessage();
 			RequestContext.getCurrentInstance().execute("mostrarDialogos(`" + dialogTittle + "`, `" + dialogContent + "`);");
 		}
+		listaClientes = clienteEJB.listaClientes();
 	}
 
 	public void obtenerCiudad() {

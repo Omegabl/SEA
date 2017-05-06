@@ -93,7 +93,7 @@ public class CotizacionFacade extends AbstractFacade<Cotizacion> implements Coti
 				+ "FROM tbl_email AS e\n"
 				+ "INNER JOIN tbl_cliente as c \n"
 				+ "ON e.TBL_CLIENTE_ID_CLIENTE = c.ID_CLIENTE \n"
-				+ "WHERE id_usuario = ?1";
+				+ "WHERE id_cliente = ?1";
 		Query query = em.createNativeQuery(consulta);
 		query.setParameter(1, cliente);
 		email = query.getSingleResult();
