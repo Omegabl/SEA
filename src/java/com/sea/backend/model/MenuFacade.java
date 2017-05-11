@@ -24,6 +24,7 @@
 package com.sea.backend.model;
 
 import com.sea.backend.entities.Menu;
+import com.sea.backend.entities.ViewMenusUsuario;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -50,28 +51,10 @@ public class MenuFacade extends AbstractFacade<Menu> implements MenuFacadeLocal 
 	}
 
 	@Override
-	public List<Menu> obtenerMenusGenerales(int idUsuario) {
-		/*
-        Nomenclatura de la consulta
-		u: Usuario
-		up: Usuario perfil
-		p: Perfil
-		pp: Página
-		m: Menú
-		 */
-
-		String consulta = "SELECT m.url, m.icono, m.nombre FROM "
-				+ "tbl_usuario AS u INNER JOIN tbl_cargo c ON u.tbl_cargo_id_cargo = c.id_cargo "
-				+ "INNER JOIN tbl_cargo_perfil AS cp ON c.id_cargo = cp.tbl_cargo_id_cargo "
-				+ "INNER JOIN tbl_perfil AS p ON cp.tbl_perfil_id_perfil = p.id_perfil "
-				+ "INNER JOIN tbl_perfil_pagina AS pp ON p.id_perfil = pp.tbl_perfil_id_perfil "
-				+ "INNER JOIN tbl_pagina AS pa ON pp.tbl_pagina_id_pagina = pa.id_pagina "
-				+ "INNER JOIN tbl_menu AS m ON pa.tbl_menu_id_menu = m.id_menu "
-				+ "WHERE u.id_usuario = ?1 GROUP BY m.nombre ORDER BY m.POSICION;";
-		Query query = em.createNativeQuery(consulta);
-		query.setParameter(1, idUsuario);
-		List<Menu> menusUsuario;
-		menusUsuario = query.getResultList();
+	public List<ViewMenusUsuario> obtenerMenusGenerales(int idUsuario) {
+		List<ViewMenusUsuario> menusUsuario=em.createNamedQuery("ViewMenusUsuario.findByUsuario")
+            .setParameter("usuario", idUsuario)
+            .getResultList();
 		return menusUsuario;
 	}
 }

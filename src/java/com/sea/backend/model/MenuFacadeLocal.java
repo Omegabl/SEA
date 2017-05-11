@@ -24,6 +24,7 @@
 package com.sea.backend.model;
 
 import com.sea.backend.entities.Menu;
+import com.sea.backend.entities.ViewMenusUsuario;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -48,5 +49,11 @@ public interface MenuFacadeLocal {
 
 	int count();
 
-	List<Menu> obtenerMenusGenerales(int idUsuario) throws Exception;
+	List<ViewMenusUsuario> obtenerMenusGenerales(int idUsuario) throws Exception;
+
+	/*ViewMenusUsuario find(Object id);
+
+	List<ViewMenu> findAll();
+
+	List<ViewMenu> findRange(int[] range);*/
 }

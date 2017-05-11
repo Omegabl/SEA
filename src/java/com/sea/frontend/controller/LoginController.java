@@ -20,7 +20,7 @@ import org.primefaces.context.RequestContext;
 
 /**
  *
- * @author homero
+ * @author Depurador
  */
 @Named
 @ViewScoped
@@ -92,7 +92,7 @@ public class LoginController implements Serializable {
 		HttpSession sesion = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
 		Usuario u = (Usuario) sesion.getAttribute("usuario");
 		this.usuario = u;
-		return u.getIdInterno() + " -" + u.getConsecutivoCotizacion();
+		return u.getIdInterno() + "-" + u.getConsecutivoCotizacion();
 	}
 
 	public void verificarSesion() {

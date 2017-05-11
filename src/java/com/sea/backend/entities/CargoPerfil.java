@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 EdisonArturo.
+ * Copyright 2017 Depurador.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -39,14 +39,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author EdisonArturo
+ * @author Depurador
  */
 @Entity
 @Table(name = "tbl_cargo_perfil")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "CargoPerfil.findAll", query = "SELECT c FROM CargoPerfil c"),
-	@NamedQuery(name = "CargoPerfil.findByIdCargoPerfil", query = "SELECT c FROM CargoPerfil c WHERE c.idCargoPerfil = :idCargoPerfil")})
+	@NamedQuery(name = "CargoPerfil.findAll", query = "SELECT c FROM CargoPerfil c")
+	, @NamedQuery(name = "CargoPerfil.findByIdCargoPerfil", query = "SELECT c FROM CargoPerfil c WHERE c.idCargoPerfil = :idCargoPerfil")})
 public class CargoPerfil implements Serializable {
 
 	private static final long serialVersionUID = 1L;

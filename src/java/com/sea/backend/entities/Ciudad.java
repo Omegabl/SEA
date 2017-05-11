@@ -140,7 +140,7 @@ public class Ciudad implements Serializable {
 
 	@Override
 	public String toString() {
-		return nombre;
+		return "com.sea.backend.entities.Ciudad[ idCiudad=" + idCiudad + " ]";
 	}
 	
 }

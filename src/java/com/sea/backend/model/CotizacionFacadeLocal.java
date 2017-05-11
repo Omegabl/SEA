@@ -48,6 +48,7 @@ public interface CotizacionFacadeLocal {
 	List<Cotizacion> findAll();
 
 	List<Cotizacion> findRange(int[] range);
+	
 	List<Cotizacion> listaSeguimiento(int usuario);
 
 	int count();

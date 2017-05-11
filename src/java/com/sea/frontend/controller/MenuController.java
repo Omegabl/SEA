@@ -6,6 +6,7 @@
 package com.sea.frontend.controller;
 
 import com.sea.backend.entities.Menu;
+import com.sea.backend.entities.ViewMenusUsuario;
 import com.sea.backend.entities.Usuario;
 import com.sea.backend.model.MenuFacadeLocal;
 import java.io.Serializable;
@@ -30,7 +31,7 @@ public class MenuController implements Serializable {
 
 	@EJB
 	private MenuFacadeLocal menuEJB;
-	private List<Menu> listaMenuGeneral;
+	private List<ViewMenusUsuario> listaMenuGeneral;
 
 	@PostConstruct
 	public void init() {
@@ -60,11 +61,11 @@ public class MenuController implements Serializable {
 		return u.getIdUsuario();
 	}
 
-	public List<Menu> getListaMenuGeneral() {
+	public List<ViewMenusUsuario> getListaMenuGeneral() {
 		return listaMenuGeneral;
 	}
 
-	public void setListaMenuGeneral(List<Menu> listaMenuGeneral) {
+	public void setListaMenuGeneral(List<ViewMenusUsuario> listaMenuGeneral) {
 		this.listaMenuGeneral = listaMenuGeneral;
 	}
 

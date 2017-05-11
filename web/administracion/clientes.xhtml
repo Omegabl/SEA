@@ -115,7 +115,7 @@
                     <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                         <p:selectOneMenu styleClass="mdl-textfield__input" p:maxlength="64" required="required" id="telCorporativo" value="#{clienteController.tipoTelefono.idTipoTelefono}">
 							<f:selectItems value="#{clienteController.listaTipoTelefono}" var="tipTe" itemLabel="#{tipTe.tipo}" itemValue="#{tipTe.idTipoTelefono}" />
-						</p:selectOneMenu> 
+						</p:selectOneMenu>
                         <h:outputLabel class="mdl-textfield__label" for="telCorporativo">Tipo de teléfono</h:outputLabel>
                     </h:panelGroup>
                     <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -125,7 +125,7 @@
 					<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                         <p:selectOneMenu styleClass="mdl-textfield__input" p:maxlength="64" required="required" id="tipoEmail" value="#{clienteController.tipoEmail.idTipoEmail}">
 							<f:selectItems value="#{clienteController.listaTipoEmail}" var="tipEm" itemLabel="#{tipEm.tipo}" itemValue="#{tipEm.idTipoEmail}" />
-						</p:selectOneMenu> 
+						</p:selectOneMenu>
                         <h:outputLabel class="mdl-textfield__label" for="tipoEmail">Tipo de correo</h:outputLabel>
                     </h:panelGroup>
                     <h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
