@@ -48,6 +48,7 @@ public class LoginController implements Serializable {
 	}
 
 	public void iniciarSesion() {
+		System.out.println("inicia sesión");
 		Usuario us;
 		try {
 			us = EJBUsuario.iniciarSesion(usuario);
