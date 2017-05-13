@@ -177,14 +177,11 @@ table{
 	width: 100%;
 	margin: auto;
 }
-.mdl-data-table--selectable td:first-of-type{
-	text-align: center;
+.mdl-data-table{
+	border: none !important;
 }
 .mdl-tabs__panel table:first-of-type{
 	margin-top: 15px;
-}
-.mdl-data-table th{
-	text-align: center;
 }
 table td{
 	white-space: pre-wrap;
@@ -202,10 +199,12 @@ table td{
 	position: relative;
 	vertical-align: middle;
 	height: 48px;
-	border-top: 1px solid rgba(0, 0, 0, 0.12);
-	border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-	padding-top: 12px;
-	box-sizing: border-box
+	border-top: 1px solid rgba(0, 0, 0, 0.12) !important;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.12) !important;
+	padding-top: 12px !important;
+}
+.ui-datatable-empty-message td{
+	text-align: left;
 }
 /*********************************************************************
 Formularios
@@ -390,10 +389,10 @@ Sobreescritura de estilos de primefaces
 	left: 0;
 	right: 0;
 	bottom: 0;
-	overflow-x: none;
+	overflow-x: auto;
 }
 .ui-selectonemenu{
-	width: 100%;
+	border-bottom: 1px dotted rgba(0,0,0,.12);
 }
 .ui-selectonemenu-panel .ui-selectonemenu-list, .ui-selectonemenu-panel .ui-selectonemenu-filter-container{
 	background-color: #fff;

@@ -25,6 +25,11 @@ package com.sea.backend.model;
 
 import com.sea.backend.entities.Cotizacion;
 import com.sea.backend.entities.Email;
+import com.sea.backend.entities.ViewIndexCotizacionesActivas;
+import com.sea.backend.entities.ViewArticulosPorActualizar;
+import com.sea.backend.entities.ViewIndexOpPorGenerar;
+import com.sea.backend.entities.ViewOpEnSeguimiento;
+import com.sea.backend.entities.ViewOpPorEstado;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -83,6 +88,46 @@ public class CotizacionFacade extends AbstractFacade<Cotizacion> implements Coti
 
 		listaSeguimientoCotizacions = query.getResultList();
 		return listaSeguimientoCotizacions;
+	}
+	
+	@Override
+	public List<ViewArticulosPorActualizar> IndexArticulosPorActualizar() {
+		List<ViewArticulosPorActualizar> listaArticulosPorActualizar=em.createNamedQuery("ViewArticulosPorActualizar.findAll")
+            .getResultList();
+		return listaArticulosPorActualizar;
+	}
+	
+	@Override
+	public List<ViewIndexCotizacionesActivas> IndexSeguimientoCotizacion(int idUsuario) {
+		List<ViewIndexCotizacionesActivas> listaIndexSeguimientoCotizacion=em.createNamedQuery("ViewIndexCotizacionesActivas.findByUsuario")
+            .setParameter("usuario", idUsuario)
+            .getResultList();
+		return listaIndexSeguimientoCotizacion;
+	}
+	
+	@Override
+	public List<ViewIndexOpPorGenerar> IndexOpPorGenerar(int idUsuario) {
+		List<ViewIndexOpPorGenerar> listaIndexOpPorGenerar=em.createNamedQuery("ViewIndexOpPorGenerar.findByUsuario")
+            .setParameter("usuario", idUsuario)
+            .getResultList();
+		return listaIndexOpPorGenerar;
+	}
+	
+	@Override
+	public List<ViewOpEnSeguimiento> IndexOpEnSeguimiento(int idUsuario) {
+		List<ViewOpEnSeguimiento> listaOpEnSeguimiento=em.createNamedQuery("ViewOpEnSeguimiento.findByUsuario")
+            .setParameter("usuario", idUsuario)
+            .getResultList();
+		return listaOpEnSeguimiento;
+	}
+	
+	@Override
+	public List<ViewOpPorEstado> IndexOpPorEstado(int idUsuario, String estado) {
+		List<ViewOpPorEstado> listaIndexOpPorEstado=em.createNamedQuery("ViewOpPorEstado.findByUsuarioAndEstado")
+            .setParameter("usuario", idUsuario)
+            .setParameter("estado", estado)
+            .getResultList();
+		return listaIndexOpPorEstado;
 	}
 	
 	@Override

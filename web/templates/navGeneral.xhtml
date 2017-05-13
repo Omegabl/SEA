@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-	  xmlns:pt="http://java.sun.com/jsf/passthrough">
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:body>
 		<ui:composition>
 			<div class="mdl-layout__drawer">
@@ -24,8 +23,8 @@
 					</h:form>
 				</div>
 				<nav class="mdl-navigation">
-					<ui:repeat value="#{menuController.listaMenuGeneral}" var="item">
-						<a class="mdl-navigation__link" href="#{item.url}"><i class="material-icons">#{item.icono}</i> #{item.nombre}</a>
+					<ui:repeat value="#{menuController.listaMenuGeneral}" var="nav">
+						<a class="mdl-navigation__link" href="#{nav.url}"><i class="material-icons">#{nav.icono}</i> #{nav.nombre}</a>
 					</ui:repeat>
 				</nav>
 			</div>
