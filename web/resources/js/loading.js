@@ -5,10 +5,10 @@ document.addEventListener("DOMContentLoaded", function () {
 	var loadingText=loadingWrapper.querySelector("#loading-text");
 	
 	function showLoadingWrapper(){
-	loadingWrapper.classList.remove("visible");
+	loadingWrapper.classList.add("visible");
 	}
 	function hideLoadingWrapper(){
-	loadingWrapper.classList.add("visible");
+	loadingWrapper.classList.remove("visible");
 	}
 	function showLoading(loadingId){
 		showLoadingWrapper();
