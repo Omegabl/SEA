@@ -170,6 +170,11 @@ Botón ir arriba
 	pointer-events: none;
 	transition: opacity .2s linear;
 }
+#scrollButton.visible{
+	opacity: 1;
+	visibility: visible;
+	pointer-events: auto;
+}
 /*********************************************************************
 tablas
 *********************************************************************/
@@ -344,12 +349,6 @@ body{
 	}
 }
 /***********************************************************
-Altura del header (no index)
-***********************************************************/
-.mdl-layout__header.mdl-layout__header--scroll{
-	/*height: var(--altoHeader);*/
-}
-/***********************************************************
 Botón para mostar subformularios
 ***********************************************************/
 .button-bottom_right{
@@ -358,13 +357,47 @@ Botón para mostar subformularios
 	bottom: 50px;
 	z-index: 1;
 }
-/*********************************************************************
-Clase para mostrar elementos ocultos
-*********************************************************************/
-#scrollButton.visible{
+/***********************************************************
+Loadings
+***********************************************************/
+#loading-wrapper {
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	top: 0;
+	background-color: rgba(255,255,255,0.45);
+	display: flex;
+	z-index: 999999;
+	opacity: 1;
+	visibility: hidden;
+	transition: opacity .2s cubic-bezier(.4,0,.2,1);
+	pointer-events: none;
+}
+#loading-content{
+	margin: auto;
+	display: flex;
+	flex-direction: column;
+}
+#loadings{
+	margin: auto;
+	display: flex;
+}
+#loading-text{
+	text-align: center;
+}
+#loading-text::after{
+	content: "...";
+}
+#loading-wrapper.visible{
 	opacity: 1;
 	visibility: visible;
 	pointer-events: auto;
+}
+.mdl-spinner{
+	--dimentions: 50px;
+	height: var(--dimentions);
+	width: var(--dimentions);
 }
 /***********************************************************
 Sobreescritura de estilos de primefaces
@@ -416,7 +449,7 @@ Sobreescritura de estilos de primefaces
 	font-family: "Helvetica","Arial",sans-serif;
 	margin: 0;
 	padding: 4px 0;
-	width: 100%;
+	width: 100% !important;
 	background: 0 0;
 	text-align: left;
 	color: inherit;
