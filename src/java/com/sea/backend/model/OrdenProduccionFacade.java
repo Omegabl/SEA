@@ -23,7 +23,9 @@
  */
 package com.sea.backend.model;
 
+import com.sea.backend.entities.ObservacionesOrdenProduccion;
 import com.sea.backend.entities.OrdenProduccion;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -45,6 +47,15 @@ public class OrdenProduccionFacade extends AbstractFacade<OrdenProduccion> imple
 
 	public OrdenProduccionFacade() {
 		super(OrdenProduccion.class);
+	}
+
+	@Override
+	public List<ObservacionesOrdenProduccion> observacionesOP(OrdenProduccion op) {
+		List<ObservacionesOrdenProduccion> observacionesOP;
+		observacionesOP=em.createNamedQuery("ObservacionesOrdenProduccion.findByIdOrdenProduccion")
+            .setParameter("tblOrdenProduccionIdOrdenProduccion", op)
+            .getResultList();
+		return observacionesOP;
 	}
 
 }
