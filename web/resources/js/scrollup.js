@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	var bodyElement = document.querySelector("body");
 	var element = document.createElement("i");
 	element.setAttribute("id", "scrollButton");
-	element.setAttribute("class", "material-icons visible");
+	element.setAttribute("class", "material-icons");
 	element.setAttribute("aria-hidden", "true");
 	element.innerHTML="navigation";
 	bodyElement.appendChild(element);

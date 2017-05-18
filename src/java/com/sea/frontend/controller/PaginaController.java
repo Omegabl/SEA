@@ -8,6 +8,7 @@ package com.sea.frontend.controller;
 import com.sea.backend.entities.Pagina;
 import com.sea.backend.entities.Usuario;
 import com.sea.backend.model.PaginaFacadeLocal;
+import com.sea.backend.entities.ViewSubmenusUsuario;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -19,7 +20,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author homero
+ * @author Depurador
  */
 @Named
 @ViewScoped
@@ -27,7 +28,7 @@ public class PaginaController implements Serializable {
 
 	@EJB
 	private PaginaFacadeLocal PaginaEJB;
-	private List<Pagina> listaSubMenus;
+	private List<ViewSubmenusUsuario> listaSubMenus;
 	private String seccion;
 
 	@PostConstruct
@@ -49,11 +50,11 @@ public class PaginaController implements Serializable {
 		return u.getIdUsuario();
 	}
 
-	public List<Pagina> getListaSubMenus() {
+	public List<ViewSubmenusUsuario> getListaSubMenus() {
 		return listaSubMenus;
 	}
 
-	public void setListaSubMenus(List<Pagina> listaMenuGeneral) {
+	public void setListaSubMenus(List<ViewSubmenusUsuario> listaMenuGeneral) {
 		this.listaSubMenus = listaMenuGeneral;
 	}
 

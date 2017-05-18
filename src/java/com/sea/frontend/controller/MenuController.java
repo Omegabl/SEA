@@ -5,7 +5,6 @@
  */
 package com.sea.frontend.controller;
 
-import com.sea.backend.entities.Menu;
 import com.sea.backend.entities.ViewMenusUsuario;
 import com.sea.backend.entities.Usuario;
 import com.sea.backend.model.MenuFacadeLocal;
