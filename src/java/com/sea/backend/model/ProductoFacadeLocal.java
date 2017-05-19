@@ -24,6 +24,7 @@
 package com.sea.backend.model;
 
 import com.sea.backend.entities.Producto;
+import com.sea.frontend.controller.ProductoAuxiliar;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -51,4 +52,5 @@ public interface ProductoFacadeLocal {
 	Producto productoDescripcion(int idProducto) throws Exception;
 	List<Producto> productoPrecio(int idProducto) throws Exception;
 	List<Producto> listaProductos();
+	List<ProductoAuxiliar> datosEspecificacionProducto(String referencia) throws Exception;
 }
