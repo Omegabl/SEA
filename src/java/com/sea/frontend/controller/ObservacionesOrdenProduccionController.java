@@ -11,6 +11,7 @@ import com.sea.backend.model.OrdenProduccionFacadeLocal;
 import com.sea.backend.model.ObservacionesOrdenProduccionFacadeLocal;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Date;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.context.FacesContext;
@@ -28,8 +29,7 @@ import org.primefaces.context.RequestContext;
 public class ObservacionesOrdenProduccionController implements Serializable {
 
 	//Variables de los dialogos y snackbars
-	String dialogTittle = null;
-	String dialogContent = null;
+	JSONObject dialogData = new JSONObject();
 	JSONObject snackbarData = new JSONObject();
 
 	@EJB
@@ -59,23 +59,30 @@ public class ObservacionesOrdenProduccionController implements Serializable {
 	}
 
 	public void agregarObservacion() {
-		System.out.println("");
-		System.out.println("agregar");
-		observacionesRegistradas.add(observacionesOP);
-		snackbarData.put("message", "proceso agregado.");
-		RequestContext.getCurrentInstance().execute("mostrarSnackbar(" + snackbarData + ");");
-		System.out.println("");
+		try {
+			ObservacionesOrdenProduccion nuevaObservacion = new ObservacionesOrdenProduccion();
+			nuevaObservacion.setFechaObservacion(new Date());
+			nuevaObservacion.setTblOrdenProduccionIdOrdenProduccion(ordenProduccion);
+			nuevasObservaciones.add(nuevaObservacion);
+			observacionesRegistradas.add(nuevaObservacion);
+			snackbarData.put("message", "proceso agregado.");
+			RequestContext.getCurrentInstance().execute("mostrarSnackbar(" + snackbarData + ");");
+		} catch (Exception e) {
+			dialogData.put("titulo", "Error no controlado");
+			dialogData.put("mensaje", e.getMessage());
+			RequestContext.getCurrentInstance().execute("mostrarDialogos(" + dialogData + ");");
+		}
 	}
 
 	public void registrarObservacion() {
 		try {
-			for(ObservacionesOrdenProduccion itemRegistro : observacionesRegistradas){
+			for (ObservacionesOrdenProduccion itemRegistro : nuevasObservaciones) {
 				observacionesOPEJB.create(itemRegistro);
 			}
 		} catch (Exception e) {
-			dialogTittle = "Error no controlado";
-			dialogContent = e.getMessage();
-			RequestContext.getCurrentInstance().execute("mostrarDialogos(`" + dialogTittle + "`, `" + dialogContent + "`);");
+			dialogData.put("titulo", "Error no controlado");
+			dialogData.put("mensaje", e.getMessage());
+			RequestContext.getCurrentInstance().execute("mostrarDialogos(" + dialogData + ");");
 		}
 	}
 
@@ -102,7 +109,6 @@ public class ObservacionesOrdenProduccionController implements Serializable {
 			RequestContext.getCurrentInstance().execute("mostrarDialogos(`" + dialogTittle + "`, `" + dialogContent + "`);");
 		}
 	}*/
-
 	public void actualizarOrden() {
 		try {
 			System.out.println("Modificando OP");
@@ -112,9 +118,9 @@ public class ObservacionesOrdenProduccionController implements Serializable {
 			FacesContext context = FacesContext.getCurrentInstance();
 			context.getExternalContext().redirect("./");
 		} catch (Exception e) {
-			dialogTittle = "Error no controlado";
-			dialogContent = e.getMessage();
-			RequestContext.getCurrentInstance().execute("mostrarDialogos(`" + dialogTittle + "`, `" + dialogContent + "`);");
+			dialogData.put("titulo", "Error no controlado");
+			dialogData.put("mensaje", e.toString());
+			RequestContext.getCurrentInstance().execute("mostrarDialogos(" + dialogData + ");");
 		}
 	}
 

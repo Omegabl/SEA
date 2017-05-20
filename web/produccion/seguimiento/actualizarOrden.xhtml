@@ -10,9 +10,9 @@
 		<title>Actualizar orden de producción | SEA</title>
 		<ui:composition template="/templates/resources.xhtml" />
 	</h:head>
-	<f:metadata>  
-		<f:viewParam name="op" value="#{observacionesOrdenProduccionController.idOP}" required="true"/>
-	</f:metadata>
+	<!--f:metadata>  
+		<f:viewParam name="op" value="# {observacionesOrdenProduccionController.idOP}" required="true"/>
+	</-->
 	<h:body>
 		<!--{observacionesOrdenProduccionController.obtenerDatosOP(op)}-->
         <div class="mdl-layout mdl-js-layout">
@@ -182,10 +182,6 @@
 						<h:form class="mdl-dialog" id="process">
 							<h3 class="mdl-dialog__title">Registrar novedad</h3>
 							<div class="mdl-dialog__content">
-								<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-									<h:inputText class="mdl-textfield__input" pt:type="date" id="fechaProceso" value="#{observacionesOrdenProduccionController.observacionesOP.fechaObservacion}" pt:required="required" />
-									<h:outputLabel class="mdl-textfield__label" for="fechaProceso">Fecha</h:outputLabel>
-								</div>
 								<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 									<h:inputTextarea class="mdl-textfield__input" id="descripcionProceso" value="#{observacionesOrdenProduccionController.observacionesOP.descripcion}" pt:required="required" pt:maxlength="512" />
 									<h:outputLabel class="mdl-textfield__label" for="descripcionProceso">Descripción del proceso</h:outputLabel>
