@@ -100,14 +100,15 @@
 							<p:commandLink styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" onclick="PF('dlg3').show();" value="Agregar tallas" />
 							<br/>
 
-							<h:panelGroup class="fullWidth">
-								<h:form id="formTable" enctype="multipart/form-data">
-									<p:dataTable id="tableP" var="proET" emptyMessage="No se encontraron registros"
-												 value="#{ordenProduccionController.listaDiseñoProducto}" 
-												 styleClass="mdl-data-table mdl-js-data-table  mdl-shadow--2dp " rowStyleClass="mdl-data-table__cell--non-numeric">
+						</ui:repeat>
+						<div>
+						<h:panelGroup layout="block" class="fullWidth">
+							<h:form id="formTable">
+								<p:dataTable id="tableP" var="proET" emptyMessage="No se encontraron registros" value="#{ordenProduccionController.listaDiseñoProducto}" styleClass="mdl-data-table mdl-js-data-table  mdl-shadow--2dp">
 
-										<c:if test="#{item[4] == proET.idDisenoProducto}" >
-
+										<p:column headerText="Diseño">
+											<h:outputText value="#{proET.diseno}"/>
+										</p:column>
 										<p:column headerText="Diseño">
 											<h:outputText value="#{proET.diseno}"/>
 										</p:column>
@@ -115,30 +116,26 @@
 											<h:outputText value="#{proET.descripcionDiseno}"/>
 										</p:column>
 
-									</c:if>
-									</p:dataTable>
-								</h:form>
+								</p:dataTable>
+							</h:form>
 
 
-							</h:panelGroup>
-							<h:panelGroup class="fullWidth">
-								<h:form id="formt">
-									<p:dataTable id="tablaT" var="proT" emptyMessage="No se encontraron registros"
-												 value="#{ordenProduccionController.listaTallaDisenoProductos}" 
-												 styleClass="mdl-data-table mdl-js-data-table  mdl-shadow--2dp " rowStyleClass="mdl-data-table__cell--non-numeric">
-										<p:column headerText="Talla">
-											<h:outputText value="#{proT.tblTallaIdTalla.talla}"/>
-										</p:column>
-										<p:column headerText="Cantidad">
-											<h:outputText value="#{proT.cantidad}"/>
-										</p:column>
+						</h:panelGroup><br/>
+						<h:panelGroup layout="block" class="fullWidth">
+							<h:form id="formt">
+								<p:dataTable id="tablaT" var="proT" emptyMessage="No se encontraron registros" value="#{ordenProduccionController.listaTallaDisenoProductos}" styleClass="mdl-data-table mdl-js-data-table  mdl-shadow--2dp">
+									<p:column headerText="Talla">
+										<h:outputText value="#{proT.tblTallaIdTalla.talla}"/>
+									</p:column>
+									<p:column headerText="Cantidad">
+										<h:outputText value="#{proT.cantidad}"/>
+									</p:column>
 
-									</p:dataTable>
+								</p:dataTable>
 
-								</h:form>
-							</h:panelGroup>
-						</ui:repeat>
-
+							</h:form>
+						</h:panelGroup>
+						</div>
 						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 							<h:inputText class="mdl-textfield__input" id="totalPrendas" pt:type="number" p:min="1" p:step="1" pt:maxlength="32" pt:required="true" value="#{ordenProduccionController.ordenProduccion.totalPrendas}" />
 							<h:outputLabel class="mdl-textfield__label" for="totalPrendas">Total prendas</h:outputLabel>
