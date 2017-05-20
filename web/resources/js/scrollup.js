@@ -4,10 +4,11 @@ document.addEventListener("DOMContentLoaded", function () {
 	var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
 
 	var bodyElement = document.querySelector("body");
-	var element = document.createElement("div");
+	var element = document.createElement("i");
 	element.setAttribute("id", "scrollButton");
-	element.setAttribute("class", "fa fa-angle-up");
+	element.setAttribute("class", "material-icons");
 	element.setAttribute("aria-hidden", "true");
+	element.innerHTML="navigation";
 	bodyElement.appendChild(element);
 
 	var scrollButton = document.querySelector("#scrollButton");

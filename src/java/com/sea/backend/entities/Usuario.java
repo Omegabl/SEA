@@ -101,7 +101,7 @@ public class Usuario implements Serializable {
 	private String nombreUsuario;
 	@Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 32)
+    @Size(min = 1, max = 128)
     @Column(name = "CONTRASENA")
 	private String contrasena;
 	@Basic(optional = false)
@@ -301,7 +301,7 @@ public class Usuario implements Serializable {
 
 	@Override
 	public String toString() {
-		return nombre;
+		return "com.sea.backend.entities.Usuario[ idUsuario=" + idUsuario + " ]";
 	}
 	
 }

@@ -1,237 +1,195 @@
 <!DOCTYPE html>
-<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<html lang="es"
+	  xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://xmlns.jcp.org/jsf/html"
+	  xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
 	<h:head>
 		<title>Actualizar orden de producción | SEA</title>
 		<ui:composition template="/templates/resources.xhtml" />
-		<h:outputStylesheet library="css" name="produccion.css" />
 	</h:head>
 	<h:body>
+		<!--{observacionesOrdenProduccionController.obtenerDatosOP(op)}-->
         <div class="mdl-layout mdl-js-layout">
 			<ui:composition template="/templates/header.xhtml" />
 			<main class="mdl-layout__content">
 				<div class="page-content">
-					<section id="detallesOrden">
-						<h:panelGroup layout="block">
-							<h1 class="mdl-typography--display-1">Detalles de la orden #1912</h1>
-							<h3 class="mdl-typography--headline">Fecha de envío: 23/03/2016</h3>
-						</h:panelGroup>
-						<h:form>
-							<h:panelGroup layout="block" id="detallesCliente">
-								<h6 class="mdl-typography--title">Detalles del cliente</h6>
-								<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-									<h:inputText class="mdl-textfield__input" id="cliente" disabled="disabled" value="Anderson Orjuela">
+					<div class="mdl-grid">
+						<div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+							<h1 class="mdl-typography--display-1">Detalles de la orden No. #{observacionesOrdenProduccionController.ordenProduccion.idOrdenProduccion}</h1>
+							<h3 class="mdl-typography--headline">Fecha de envío: <h:outputText value="#{observacionesOrdenProduccionController.ordenProduccion.fechaExpedicion}">
+									<f:convertDateTime locale="es_CO" dateStyle="long" />
+								</h:outputText></h3>
+						</div>
+						<h:form class="mdl-grid mdl-cell mdl-cell--12-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone" id="formSeguimiento">
+							<div class="mdl-grid mdl-cell mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+								<h6 class="mdl-cell mdl-cell--12-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-typography--title">Detalles del cliente</h6>
+								<div class="mdl-grid mdl-cell mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+										<h:inputText class="mdl-textfield__input" id="cliente" pt:disabled="disabled" value="#{observacionesOrdenProduccionController.ordenProduccion.tblCotizacionNumeroCotizacion.tblClienteIdCliente.nombreORazonSocial} #{observacionesOrdenProduccionController.ordenProduccion.tblCotizacionNumeroCotizacion.tblClienteIdCliente.apellido}" />
 										<h:outputLabel class="mdl-textfield__label" for="cliente">Cliente</h:outputLabel>
-								</h:panelGroup>
-								<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-									<h:inputText class="mdl-textfield__input" id="ciudad" disabled="disabled" value="Bogotá">
+									</div>
+								</div>
+								<div class="mdl-grid mdl-cell mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+										<h:inputText class="mdl-textfield__input" id="ciudad" pt:disabled="disabled" value="#{observacionesOrdenProduccionController.ordenProduccion.ciudadExpedicion}" />
 										<h:outputLabel class="mdl-textfield__label" for="ciudad">Ciudad</h:outputLabel>
-								</h:panelGroup>
-								<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-									<h:inputText class="mdl-textfield__input" id="telefono" disabled="disabled" value="3165254025">
+									</div>
+								</div>
+								<div class="mdl-grid mdl-cell mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+										<h:inputText class="mdl-textfield__input" id="telefono" pt:disabled="disabled" value="" />
 										<h:outputLabel class="mdl-textfield__label" for="telefono">Teléfono</h:outputLabel>
-								</h:panelGroup>
-								<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-									<h:inputText class="mdl-textfield__input" id="direccion" disabled="disabled" value="C.C. Hayuelos. Loc 252">
+									</div>
+								</div>
+								<div class="mdl-grid mdl-cell mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+										<h:inputText class="mdl-textfield__input" id="direccion" pt:disabled="disabled" value="" />
 										<h:outputLabel class="mdl-textfield__label" for="direccion">Dirección de entrega</h:outputLabel>
-								</h:panelGroup>
-								<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-									<h:inputText class="mdl-textfield__input" id="asesor" disabled="disabled" value="Asdrubal">
+									</div>
+								</div>
+								<div class="mdl-grid mdl-cell mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+										<h:inputText class="mdl-textfield__input" id="asesor" pt:disabled="disabled" value="#{observacionesOrdenProduccionController.ordenProduccion.tblCotizacionNumeroCotizacion.tblClienteIdCliente.tblUsuarioIdUsuario.nombre} #{observacionesOrdenProduccionController.ordenProduccion.tblCotizacionNumeroCotizacion.tblClienteIdCliente.tblUsuarioIdUsuario.apellido}" />
 										<h:outputLabel class="mdl-textfield__label" for="asesor">Asesor</h:outputLabel>
-								</h:panelGroup>
-								<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-									<h:inputText class="mdl-textfield__input" p:type="date" id="fechaEntrega" disabled="disabled" value="15/04/2016">
+									</div>
+								</div>
+								<div class="mdl-grid mdl-cell mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+										<h:inputText class="mdl-textfield__input" pt:type="date" id="fechaEntrega" value="#{observacionesOrdenProduccionController.ordenProduccion.fechaEntregaFinal}">
+											<f:convertDateTime pattern="dd/MM/yyyy" />
+										</h:inputText>
 										<h:outputLabel class="mdl-textfield__label" for="fechaEntrega">Fecha de entrega</h:outputLabel>
-								</h:panelGroup>
-							</h:panelGroup>
-							<h:panelGroup layout="block" id="detallesOP">
-								<h6 class="mdl-typography--title">Detalles de la OP</h6>
-								<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-									<h:inputText class="mdl-textfield__input" id="NoOrden" disabled="disabled" value="1912">
+									</div>
+								</div>
+							</div>
+							<div class="mdl-grid mdl-cell mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+								<h6 class="mdl-cell mdl-cell--12-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-typography--title">Detalles de la OP</h6>
+								<div class="mdl-grid mdl-cell mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+										<h:inputText class="mdl-textfield__input" id="NoOrden" pt:disabled="disabled" value="#{observacionesOrdenProduccionController.ordenProduccion.idOrdenProduccion}" />
 										<h:outputLabel class="mdl-textfield__label" for="NoOrden">Número de orden</h:outputLabel>
-								</h:panelGroup>
-								<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-									<h:inputText class="mdl-textfield__input" p:type="date" id="fechaEnvioOC" disabled="disabled" value="15/03/2016">
+									</div>
+								</div>
+								<div class="mdl-grid mdl-cell mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+										<h:inputText class="mdl-textfield__input" pt:type="date" id="fechaEnvioOC" pt:disabled="disabled" value="#{observacionesOrdenProduccionController.ordenProduccion.tblCotizacionNumeroCotizacion.fechaEmision}">
+											<f:convertDateTime pattern="dd/MM/yyyy" />
+										</h:inputText>
 										<h:outputLabel class="mdl-textfield__label" for="fechaEnvioOC">Fecha de envio de cotización</h:outputLabel>
-								</h:panelGroup>
-								<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-									<h:inputText class="mdl-textfield__input" id="facturado" value="Hasta entrega">
+									</div>
+								</div>
+								<div class="mdl-grid mdl-cell mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+										<h:inputText class="mdl-textfield__input" id="facturado" value="#{observacionesOrdenProduccionController.ordenProduccion.tblCotizacionNumeroCotizacion.fechaFacturacion}">
+											<f:convertDateTime pattern="dd/MM/yyyy" />
+										</h:inputText>
 										<h:outputLabel class="mdl-textfield__label" for="facturado">Fecha de facturación</h:outputLabel>
-								</h:panelGroup>
-								<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-									<h:inputText class="mdl-textfield__input" p:type="date" id="fechaEntrega1" value="13/04/2016">
+									</div>
+								</div>
+								<div class="mdl-grid mdl-cell mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+										<h:inputText class="mdl-textfield__input" pt:type="date" id="fechaEntrega1" value="#{observacionesOrdenProduccionController.ordenProduccion.fechaEntrega1}">
+											<f:convertDateTime pattern="dd/MM/yyyy" />
+										</h:inputText>
 										<h:outputLabel class="mdl-textfield__label" for="fechaEntrega1">Fecha de entrega 1</h:outputLabel>
-								</h:panelGroup>
-								<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-									<h:inputText class="mdl-textfield__input" p:type="date" id="fechaEntrega2" value="15/04/2016">
+									</div>
+								</div>
+								<div class="mdl-grid mdl-cell mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+										<h:inputText class="mdl-textfield__input" pt:type="date" id="fechaEntrega2" value="#{observacionesOrdenProduccionController.ordenProduccion.fechaEntrega2}">
+											<f:convertDateTime pattern="dd/MM/yyyy" />
+										</h:inputText>
 										<h:outputLabel class="mdl-textfield__label" for="fechaEntrega2">Fecha de entrega 2</h:outputLabel>
-								</h:panelGroup>
-								<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-									<h:inputText class="mdl-textfield__input" id="valorContrato" disabled="disabled" value="1680000">
+									</div>
+								</div>
+								<div class="mdl-grid mdl-cell mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+										<h:inputText class="mdl-textfield__input" id="valorContrato" pt:disabled="disabled" value="" />
 										<h:outputLabel class="mdl-textfield__label" for="valorContrato">Valor del contrato</h:outputLabel>
-								</h:panelGroup>
-							</h:panelGroup>
-							<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
-								<h:inputTextarea class="mdl-textfield__input" id="observaciones">58 CAMISAS, POR ORDEN DE ANGEL: En esta Orden de producción van DOS  camisas de Muestra para full dotaciones. MUJER BEIGE TALLA M y HOMBRE GRIS TALLA M. POR FAVOR TENER EN CUENTA AL MOMENTO DE ENTREGA.</h:inputTextarea>
-								<h:outputLabel class="mdl-textfield__label" for="observaciones">Observaciones</h:outputLabel>
-							</h:panelGroup>
+									</div>
+								</div>
+							</div>
+							<div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+								<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+									<h:inputTextarea class="mdl-textfield__input" id="observaciones" value="#{observacionesOrdenProduccionController.ordenProduccion.observaciones}"></h:inputTextarea>
+									<h:outputLabel class="mdl-textfield__label" for="observaciones">Observaciones</h:outputLabel>
+								</div>
+							</div>
+							<section class="mdl-cell mdl-cell--12-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+								<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+									<div class="mdl-tabs__tab-bar">
+										<a href="#seguimiento" class="mdl-tabs__tab is-active">Historial de la orden</a>
+										<a href="#listaProductos" class="mdl-tabs__tab">Lista de productos</a>
+									</div>
+									<div class="mdl-tabs__panel is-active" id="seguimiento">
+										<div class="mdl-grid">
+											<div class="buttons">
+												<p:commandLink type="button" onclick="PF('opprocess').show();" styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm">Agregar Proceso</p:commandLink>
+											</div>
+											<div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+												<p:dataTable id="procesos" var="proceso" value="#{observacionesOrdenProduccionController.observacionesRegistradas}" emptyMessage="No existe registro de seguimiento para esta orden de producción" styleClass="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+													<p:column headerText="Fecha" styleClass="mdl-data-table__cell--non-numeric">
+														<h:outputText value="#{proceso.fechaObservacion}">
+															<f:convertDateTime pattern="dd/MM/yyyy" />
+														</h:outputText>
+													</p:column>
+													<p:column headerText="Proceso realizado" styleClass="mdl-data-table__cell--non-numeric">
+														<h:outputText value="#{proceso.descripcion}"/>
+													</p:column>
+												</p:dataTable>
+											</div>
+										</div>
+									</div>
+									<div class="mdl-tabs__panel" id="listaProductos">
+										<div class="mdl-grid">
+											<table class="mdl-cell mdl-cell--12-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+												<thead>
+													<tr>
+														<th class="mdl-data-table__cell--non-numeric">Referencia</th>
+														<th class="mdl-data-table__cell--non-numeric">Fabricante</th>
+														<th class="mdl-data-table__cell--non-numeric">Diseño</th>
+														<th>Talla</th>
+														<th>Cantidad</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td class="mdl-data-table__cell--non-numeric">1912</td>
+														<td class="mdl-data-table__cell--non-numeric">Full Dotaciones</td>
+														<td class="mdl-data-table__cell--non-numeric">Mujer Beige</td>
+														<td>S</td>
+														<td>10</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</section>
+							<div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone buttons">
+								<p:commandButton styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent notificacion" value="Actualizar seguimiento" actionListener="#{observacionesOrdenProduccionController.actualizarOrden()}"/>
+								<p:commandButton styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent notificacion" value="Realizar entrega" actionListener="#{observacionesOrdenProduccionController.actualizarOrden()}"/>
+							</div>
 						</h:form>
-					</section>
-					<section id="actualizacion">
-						<h:panelGroup layout="block" class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
-							<h:panelGroup layout="block" class="mdl-tabs__tab-bar">
-								<a href="#listaProductos" class="mdl-tabs__tab is-active">Lista de productos</a>
-								<a href="#seguimiento" class="mdl-tabs__tab">Historial de la orden</a>
-							</h:panelGroup>
-							<h:panelGroup layout="block" class="mdl-tabs__panel is-active" id="listaProductos">
-								<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-									<thead>
-										<tr>
-											<th class="mdl-data-table__cell--non-numeric">Referencia</th>
-											<th class="mdl-data-table__cell--non-numeric">Fabricante</th>
-											<th class="mdl-data-table__cell--non-numeric">Diseño</th>
-											<th>Talla</th>
-											<th>Cantidad</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td class="mdl-data-table__cell--non-numeric">1912</td>
-											<td class="mdl-data-table__cell--non-numeric">Full Dotaciones</td>
-											<td class="mdl-data-table__cell--non-numeric">Mujer Beige</td>
-											<td>S</td>
-											<td>10</td>
-										</tr>
-										<tr>
-											<td class="mdl-data-table__cell--non-numeric">1912</td>
-											<td class="mdl-data-table__cell--non-numeric">Full Dotaciones</td>
-											<td class="mdl-data-table__cell--non-numeric">Mujer Beige</td>
-											<td>M</td>
-											<td>4</td>
-										</tr>
-										<tr>
-											<td class="mdl-data-table__cell--non-numeric">1912</td>
-											<td class="mdl-data-table__cell--non-numeric">Full Dotaciones</td>
-											<td class="mdl-data-table__cell--non-numeric">Mujer Beige</td>
-											<td>L</td>
-											<td>2</td>
-										</tr>
-										<tr>
-											<td class="mdl-data-table__cell--non-numeric">1912</td>
-											<td class="mdl-data-table__cell--non-numeric">Full Dotaciones</td>
-											<td class="mdl-data-table__cell--non-numeric">Mujer Beige</td>
-											<td>XL</td>
-											<td>1</td>
-										</tr>
-										<tr>
-											<td class="mdl-data-table__cell--non-numeric">1912</td>
-											<td class="mdl-data-table__cell--non-numeric">Full Dotaciones</td>
-											<td class="mdl-data-table__cell--non-numeric">Hombre Beige</td>
-											<td>M</td>
-											<td>7</td>
-										</tr>
-										<tr>
-											<td class="mdl-data-table__cell--non-numeric">1912</td>
-											<td class="mdl-data-table__cell--non-numeric">Full Dotaciones</td>
-											<td class="mdl-data-table__cell--non-numeric">Hombre Beige</td>
-											<td>L</td>
-											<td>1</td>
-										</tr>
-										<tr>
-											<td class="mdl-data-table__cell--non-numeric">1912</td>
-											<td class="mdl-data-table__cell--non-numeric">Full Dotaciones</td>
-											<td class="mdl-data-table__cell--non-numeric">Mujer gris</td>
-											<td>S</td>
-											<td>10</td>
-										</tr>
-										<tr>
-											<td class="mdl-data-table__cell--non-numeric">1912</td>
-											<td class="mdl-data-table__cell--non-numeric">Full Dotaciones</td>
-											<td class="mdl-data-table__cell--non-numeric">Mujer gris</td>
-											<td>M</td>
-											<td>4</td>
-										</tr>
-										<tr>
-											<td class="mdl-data-table__cell--non-numeric">1912</td>
-											<td class="mdl-data-table__cell--non-numeric">Full Dotaciones</td>
-											<td class="mdl-data-table__cell--non-numeric">Mujer gris</td>
-											<td>L</td>
-											<td>4</td>
-										</tr>
-										<tr>
-											<td class="mdl-data-table__cell--non-numeric">1912</td>
-											<td class="mdl-data-table__cell--non-numeric">Full Dotaciones</td>
-											<td class="mdl-data-table__cell--non-numeric">Mujer gris</td>
-											<td>XL</td>
-											<td>2</td>
-										</tr>
-										<tr>
-											<td class="mdl-data-table__cell--non-numeric">1912</td>
-											<td class="mdl-data-table__cell--non-numeric">Full Dotaciones</td>
-											<td class="mdl-data-table__cell--non-numeric">Hombre gris</td>
-											<td>M</td>
-											<td>11</td>
-										</tr>
-										<tr>
-											<td class="mdl-data-table__cell--non-numeric">1912</td>
-											<td class="mdl-data-table__cell--non-numeric">Full Dotaciones</td>
-											<td class="mdl-data-table__cell--non-numeric">Hombre gris</td>
-											<td>L</td>
-											<td>2</td>
-										</tr>
-									</tbody>
-								</table>
-							</h:panelGroup>
-							<h:panelGroup layout="block" class="mdl-tabs__panel" id="seguimiento">
-								<h:panelGroup layout="block" class="buttons fullWidth">
-									<a href="#addProceso" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm">Agregar Proceso</a>
-									<a href="#addProceso" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm">Modificar Proceso</a>
-									<a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm">Eliminar proceso</a>
-								</h:panelGroup>
-								<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-									<thead>
-										<tr>
-											<th class="mdl-data-table__cell--non-numeric">Fecha</th>
-											<th class="mdl-data-table__cell--non-numeric">Proeso realizado</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td class="mdl-data-table__cell--non-numeric">2016/03/23</td>
-											<td class="mdl-data-table__cell--non-numeric">LAS  ORDENES DE  COMPRA  YA  SE REALIZARON ANTICIPOS Y  ESTAN EN PROCESO D E FABRICACION</td>
-										</tr>
-										<tr>
-											<td class="mdl-data-table__cell--non-numeric">2016/04/04</td>
-											<td class="mdl-data-table__cell--non-numeric">el  corte   fue  realizado  desde el  1 de  abril al  3 de  abril  y la  tela   estaba  en planta  desde el  18 de marzo pero por  cuestiones de  corte no  fue  cortada  hasta  la  el primero  del presente mes, la  satelite  se compromete a  entregar el  12 de  abril</td>
-										</tr>
-										<tr>
-											<td class="mdl-data-table__cell--non-numeric">2016/04/04</td>
-											<td class="mdl-data-table__cell--non-numeric">la dotacion esta lista para entrega, pero no se ha podido despachar por pago</td>
-										</tr>
-									</tbody>
-								</table>
-							</h:panelGroup>
-						</h:panelGroup>
-					</section>
-					<aside id="subForm">
-						<h:form id="addProceso" class="mdl-dialog">
+					</div>
+					<p:dialog widgetVar="opprocess" id="dlg">
+						<h:form class="mdl-dialog" id="process">
 							<h3 class="mdl-dialog__title">Registrar novedad</h3>
-							<h:panelGroup layout="block" class="mdl-dialog__content">
-								<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-									<h:inputText class="mdl-textfield__input" p:type="date" id="fechaProceso" required="required" />
-									<h:outputLabel class="mdl-textfield__label" for="fechaProceso">Fecha</h:outputLabel>
-								</h:panelGroup>
-								<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-									<h:inputTextarea class="mdl-textfield__input" id="descripcionProceso" required="required" p:maxlength="512" />
+							<div class="mdl-dialog__content">
+								<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+									<h:inputTextarea class="mdl-textfield__input" id="descripcionProceso" value="#{observacionesOrdenProduccionController.observacionesOP.descripcion}" pt:required="required" pt:maxlength="512" />
 									<h:outputLabel class="mdl-textfield__label" for="descripcionProceso">Descripción del proceso</h:outputLabel>
-								</h:panelGroup>
-							</h:panelGroup>
-							<h:panelGroup layout="block" class="mdl-dialog__actions">
-								<button id="mostarErrorRegistrar" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" type="submit">Enviar cotización</button>
-								<h:commandButton class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect toggleSubForm" value="reset" value="Cancelar" />
-							</h:panelGroup>
+								</div>
+							</div>
+							<div class="mdl-dialog__actions">
+								<p:commandButton styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" actionListener="#{observacionesOrdenProduccionController.agregarObservacion()}" value="Registrar proceso" oncomplete="PF('opprocess').hide();" update="formSeguimiento:procesos" />
+								<p:commandButton styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" value="Cancelar" oncomplete="PF('opprocess').hide();" />
+							</div>
 						</h:form>
-					</aside>
+					</p:dialog>
 				</div>
 			</main>
 		</div>

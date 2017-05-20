@@ -717,6 +717,7 @@ public class OrdenProduccionController implements Serializable {
 	//Metodo para agragar diseño del producto
 	public void diseñoProducto() {
 		DisenoProducto diseñoP = new DisenoProducto();
+		diseñoP.setIdDisenoProducto(producto.getIdProducto());
 		diseñoP.setLogotipo(disenoProducto.getLogotipo());
 		diseñoP.setDiagramaDiseno(disenoProducto.getDiagramaDiseno());
 		diseñoP.setNecesitaBordado(disenoProducto.getNecesitaBordado());
@@ -724,9 +725,6 @@ public class OrdenProduccionController implements Serializable {
 		diseñoP.setDescripcionDiseno(disenoProducto.getDescripcionDiseno());
 		diseñoP.setTblProductoEspecificacionIdProductoEspecificacion(productoEspecificacion);
 		listaDiseñoProducto.add(diseñoP);
-		for (CotizacionProductoAuxiliar producto : listaDatosCotizacionProducto) {
-			this.producto.setIdProducto(producto.getIdProducto());
-		}
 		listaTablaProductoDiseño.get(0).add(diseñoP);
 
 	}

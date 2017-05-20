@@ -96,7 +96,7 @@
 
 							<h3 class="mdl-typography--headline">Cantidad por tallas</h3>
 							<!-- Usar <template> para los artículos a cotizar -->
-							<p:commandLink styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" onclick="PF('dlg2').show();" actionListener="#{ordenProduccionController.producto.setIdProducto(item[4])}" value="Agregar diseño producto" update=":cantidadTallas"/>
+							<p:commandLink ajax="true" styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" onclick="PF('dlg2').show();" actionListener="#{ordenProduccionController.producto.setIdProducto(item[4])}" value="Agregar diseño producto" update=":addCantidadTallas"/>
 							<p:commandLink styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" onclick="PF('dlg3').show();" value="Agregar tallas" />
 							<br/>
 
@@ -106,7 +106,7 @@
 												 value="#{ordenProduccionController.listaDiseñoProducto}" 
 												 styleClass="mdl-data-table mdl-js-data-table  mdl-shadow--2dp " rowStyleClass="mdl-data-table__cell--non-numeric">
 
-									<c:if test="#{item[4] == item[4]}" >
+										<c:if test="#{item[4] == proET.idDisenoProducto}" >
 
 										<p:column headerText="Diseño">
 											<h:outputText value="#{proET.diseno}"/>

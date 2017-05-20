@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-	  xmlns:pt="http://java.sun.com/jsf/passthrough">
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:body>
 		<ui:composition>
 			<div class="mdl-layout__drawer">
@@ -24,14 +23,23 @@
 					</h:form>
 				</div>
 				<nav class="mdl-navigation">
-					<ui:repeat value="#{menuController.listaMenuGeneral}" var="item">
-						<a class="mdl-navigation__link" href="#{item[0]}"><i class="material-icons">#{item[1]}</i> #{item[2]}</a>
+					<ui:repeat value="#{menuController.listaMenuGeneral}" var="nav">
+						<a class="mdl-navigation__link" href="#{nav.url}"><i class="material-icons">#{nav.icono}</i> #{nav.nombre}</a>
 					</ui:repeat>
 				</nav>
 			</div>
 			<div id="snackbarMessage" class="mdl-js-snackbar mdl-snackbar">
 				<div class="mdl-snackbar__text"></div>
 				<button class="mdl-snackbar__action" type="button"></button>
+			</div>
+			<div id="loading-wrapper" class="visible">
+				<div id="loading-content">
+					<div id="loading-text" class="mdl-typography--title hidden"></div>
+					<div id="loadings">
+						<div class="mdl-progress mdl-js-progress mdl-progress__indeterminate hidden"></div>
+						<div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active"></div>
+					</div>
+				</div>
 			</div>
 		</ui:composition>
     </h:body>

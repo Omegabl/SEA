@@ -24,6 +24,7 @@
 package com.sea.backend.model;
 
 import com.sea.backend.entities.OrdenProduccion;
+import com.sea.backend.entities.ObservacionesOrdenProduccion;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -47,5 +48,7 @@ public interface OrdenProduccionFacadeLocal {
 	List<OrdenProduccion> findRange(int[] range);
 
 	int count();
-
+	
+	List<ObservacionesOrdenProduccion> observacionesOP(OrdenProduccion op);
+	
 }

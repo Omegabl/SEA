@@ -25,7 +25,7 @@
 /*
  * Dialogos
  */
-function mostrarDialogos(titulo, mensaje) {
+function mostrarDialogos(data) {
 	if (!document.querySelector('#dialogExceptions')) {
 		crearDialogExceptions();
 	}
@@ -34,8 +34,8 @@ function mostrarDialogos(titulo, mensaje) {
 		dialogPolyfill.registerDialog(dialog);
 		console.log("Dialogos no soportados por el navegador");
 	}
-	dialog.querySelector('.mdl-dialog__title').innerHTML = titulo;
-	dialog.querySelector('.mdl-dialog__content p').innerHTML = mensaje;
+	dialog.querySelector('.mdl-dialog__title').innerHTML = data.titulo;
+	dialog.querySelector('.mdl-dialog__content p').innerHTML = data.mensaje;
 	dialog.showModal();
 	dialog.querySelector('.close').addEventListener('click', function () {
 		dialog.close();

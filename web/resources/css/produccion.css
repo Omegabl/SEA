@@ -32,3 +32,6 @@ form h6, .fullWidth{
 		grid-template-columns: 1fr;
 	}
 }
+#subForm, #subForm form, form.mdl-dialog{
+	display: none;
+}

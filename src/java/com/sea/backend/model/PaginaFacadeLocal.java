@@ -24,6 +24,8 @@
 package com.sea.backend.model;
 
 import com.sea.backend.entities.Pagina;
+import com.sea.backend.entities.ViewPaginasUsuario;
+import com.sea.backend.entities.ViewSubmenusUsuario;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -44,10 +46,12 @@ public interface PaginaFacadeLocal {
 
 	List<Pagina> findAll();
 
+	List<ViewPaginasUsuario> obtenerPagianasPermitidas(int idUsuario);
+
 	List<Pagina> findRange(int[] range);
 
 	int count();
 	
-	List<Pagina> obtenerSubMenus(int idUsuario, String seccion) throws Exception;
+	List<ViewSubmenusUsuario> obtenerSubMenus(int idUsuario, String seccion) throws Exception;
 
 }

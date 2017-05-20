@@ -24,6 +24,11 @@
 package com.sea.backend.model;
 
 import com.sea.backend.entities.Cotizacion;
+import com.sea.backend.entities.ViewArticulosPorActualizar;
+import com.sea.backend.entities.ViewIndexCotizacionesActivas;
+import com.sea.backend.entities.ViewIndexOpPorGenerar;
+import com.sea.backend.entities.ViewOpEnSeguimiento;
+import com.sea.backend.entities.ViewOpPorEstado;
 import com.sea.backend.entities.Email;
 import com.sea.backend.entities.Usuario;
 import java.sql.SQLException;
@@ -48,7 +53,18 @@ public interface CotizacionFacadeLocal {
 	List<Cotizacion> findAll();
 
 	List<Cotizacion> findRange(int[] range);
+	
 	List<Cotizacion> listaSeguimiento(int usuario);
+	
+	List<ViewArticulosPorActualizar> IndexArticulosPorActualizar();
+	
+	List<ViewIndexCotizacionesActivas> IndexSeguimientoCotizacion(int usuario);
+	
+	List<ViewIndexOpPorGenerar> IndexOpPorGenerar(int usuario);
+	
+	List<ViewOpEnSeguimiento> IndexOpEnSeguimiento(int usuario);
+	
+	List<ViewOpPorEstado> IndexOpPorEstado(int usuario, String estado);
 
 	int count();
 	
