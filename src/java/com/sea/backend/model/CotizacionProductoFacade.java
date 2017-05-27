@@ -76,4 +76,19 @@ public class CotizacionProductoFacade extends AbstractFacade<CotizacionProducto>
 		//List<Object[]> miLista = query.getResultList();
 	}
 
+	@Override
+	public List<CotizacionProducto> productosCotizados(String numeroCotizacion) throws Exception {
+		List<CotizacionProducto> listaProductosCotizados;
+		String consulta2 = " SELECT pr.referencia, pr.descripcion, cp.cantidad, cp.precio_base, cp.precio_para_cliente\n"
+				+ "                FROM tbl_cotizacion_producto AS cp\n"
+				+ "                INNER JOIN tbl_producto AS pr\n"
+				+ "                ON cp.tbl_producto_id_producto = pr.id_producto\n"
+				+ "                WHERE cp.tbl_cotizacion_numero_cotizacion = ?1";
+
+		Query query = em.createNativeQuery(consulta2);
+		query.setParameter(1, numeroCotizacion);
+		listaProductosCotizados = query.getResultList();
+		return listaProductosCotizados;
+
+	}
 }

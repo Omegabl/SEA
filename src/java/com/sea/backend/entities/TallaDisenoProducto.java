@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 EdisonArturo.
+ * Copyright 2017 Depurador.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -40,15 +40,15 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author EdisonArturo
+ * @author Depurador
  */
 @Entity
 @Table(name = "tbl_talla_diseno_producto")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "TallaDisenoProducto.findAll", query = "SELECT t FROM TallaDisenoProducto t"),
-	@NamedQuery(name = "TallaDisenoProducto.findByIdTallaDisenoProducto", query = "SELECT t FROM TallaDisenoProducto t WHERE t.idTallaDisenoProducto = :idTallaDisenoProducto"),
-	@NamedQuery(name = "TallaDisenoProducto.findByCantidad", query = "SELECT t FROM TallaDisenoProducto t WHERE t.cantidad = :cantidad")})
+	@NamedQuery(name = "TallaDisenoProducto.findAll", query = "SELECT t FROM TallaDisenoProducto t")
+	, @NamedQuery(name = "TallaDisenoProducto.findByIdTallaDisenoProducto", query = "SELECT t FROM TallaDisenoProducto t WHERE t.idTallaDisenoProducto = :idTallaDisenoProducto")
+	, @NamedQuery(name = "TallaDisenoProducto.findByCantidad", query = "SELECT t FROM TallaDisenoProducto t WHERE t.cantidad = :cantidad")})
 public class TallaDisenoProducto implements Serializable {
 
 	private static final long serialVersionUID = 1L;

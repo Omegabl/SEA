@@ -50,4 +50,6 @@ public interface CotizacionProductoFacadeLocal {
 	int count();
 
 	List<Object[]> datosCotizacionProducto(String numeroCotizacion) throws Exception;
+
+	List<CotizacionProducto> productosCotizados(String numeroCotizacion) throws Exception;
 }

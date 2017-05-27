@@ -18,6 +18,7 @@ import com.sea.backend.entities.Producto;
 import com.sea.backend.entities.PropuestaNoIncluye;
 import com.sea.backend.entities.TiempoEntrega;
 import com.sea.backend.entities.Usuario;
+import com.sea.backend.entities.ViewIndexCotizacionesActivas;
 import com.sea.backend.model.CiudadFacadeLocal;
 import com.sea.backend.model.ClienteFacadeLocal;
 import com.sea.backend.model.CotizacionFacadeLocal;
@@ -93,9 +94,9 @@ import org.primefaces.json.JSONObject;
 @Named
 @ViewScoped
 public class CotizacionController implements Serializable {
+
 	//Variables de los dialogos y snackbars
-	String dialogTittle = null;
-	String dialogContent = null;
+	JSONObject dialogData = new JSONObject();
 	JSONObject snackbarData = new JSONObject();
 	//EJB cotización
 	@EJB
@@ -103,6 +104,9 @@ public class CotizacionController implements Serializable {
 	private Cotizacion cotizacion;
 	private Double descuentoCotizacion;
 	private List<Cotizacion> listaSeguimientoCotizacions;
+	private List<ViewIndexCotizacionesActivas> listaCotizacionesPorEstados;
+	private Object DatosModificacionCotizacion;
+	private List<Cotizacion> listaDatosCotizacion;
 
 	@EJB
 	private UsuarioFacadeLocal EJBUsuario;
@@ -122,6 +126,7 @@ public class CotizacionController implements Serializable {
 	@EJB
 	private CotizacionProductoFacadeLocal cotizacionProductoEJB;
 	private CotizacionProducto cotizacionProducto;
+	private List<CotizacionProducto> listaProductosCotizacion;
 	private List<CotizacionProducto> listaCotizacionP;
 	private int cantidad;
 	private Float precioParaCliente;
@@ -130,6 +135,7 @@ public class CotizacionController implements Serializable {
 	@EJB
 	private CotizacionProductoFacadeLocal cotizacionpEJB;
 	private CotizacionProducto cotizacionP;
+	String numeroCotizacion;
 
 	@EJB
 	private MaterialFacadeLocal materialEJB;
@@ -186,9 +192,9 @@ public class CotizacionController implements Serializable {
 	private LugaresEntrega lugaresEntrega;
 	private List<LugaresEntrega> listaLugaresEntrega;
 
+	//Entidad producto
 	@EJB
 	private ProductoFacadeLocal productoEJB;
-	//Entidad producto
 	private Producto producto;
 	private int idProducto;
 	private List<Material> listaMateriales;
@@ -201,7 +207,7 @@ public class CotizacionController implements Serializable {
 	private int idDescuento;
 
 	private int formatoCotizacion;
-	
+
 	private String mensaje;
 
 	@PostConstruct
@@ -213,7 +219,7 @@ public class CotizacionController implements Serializable {
 		cotizacion.setDescuento(15);
 		cotizacion.setIva(19);
 		cotizacionP = new CotizacionProducto();
-		clientes = clienteEJB.listaClienteCotizacion(setUsuarioLogueado());
+//		clientes = clienteEJB.listaClienteCotizacion(setUsuarioLogueado());
 		cliente = new Cliente();
 		producto = new Producto();
 		listaCotizacionP = new ArrayList<>();
@@ -230,7 +236,8 @@ public class CotizacionController implements Serializable {
 		listaSeguimientoCotizacions = cotizacionEJB.listaSeguimiento(idUsuario());
 		propuestaNoIncluye = new PropuestaNoIncluye();
 		usuario.getConsecutivoCotizacion();
-
+		listaCotizacionesPorEstados = cotizacionEJB.IndexSeguimientoCotizacion(idUsuario());
+		listaProductosCotizacion = new ArrayList();
 	}
 
 	//Obteniendo todos los datos del cliente
@@ -250,8 +257,8 @@ public class CotizacionController implements Serializable {
 		cot.setPrecioParaCliente(cotizacionP.getPrecioParaCliente());
 		//  ven.setTblProductoIdProducto(productoEJB.find(producto.getIdProducto()));
 		listaCotizacionP.add(cot);
-	snackbarData.put("message", "Se agregó el artículo con referencia '"+cot.getTblProductoIdProducto().getReferencia()+"'.");
-	RequestContext.getCurrentInstance().execute("mostrarSnackbar("+snackbarData+");");
+		snackbarData.put("message", "Se agregó el artículo con referencia '" + cot.getTblProductoIdProducto().getReferencia() + "'.");
+		RequestContext.getCurrentInstance().execute("mostrarSnackbar(" + snackbarData + ");");
 	}
 
 	//Metodo para calcular el precio del producto seleccionado
@@ -260,6 +267,17 @@ public class CotizacionController implements Serializable {
 
 	}
 
+	//Obtener los datos basicos de la cotización
+	public void obtenerDatosRegistradosCotizacion() throws Exception {
+		try {
+			cotizacion = cotizacionEJB.find(numeroCotizacion);
+			DatosModificacionCotizacion = cotizacionEJB.ModificacionCotizacion(numeroCotizacion);
+			//listaDatosCotizacion = cotizacionEJB.datosRegistradosCotizacion(numeroCotizacion);
+			ObtenerProductosCotizados();
+		} catch (Exception e) {
+		}
+
+	}
 	public void registrarCotización()
 			throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
 
@@ -287,7 +305,7 @@ public class CotizacionController implements Serializable {
 				cotizacionP.setPrecioBase(itemVenta.getPrecioBase());
 				if (itemVenta.getPrecioParaCliente() == null) {
 					cotizacionP.setPrecioParaCliente(itemVenta.getTblProductoIdProducto().getPrecio());
-				}else{
+				} else {
 					cotizacionP.setPrecioParaCliente(itemVenta.getPrecioParaCliente());
 				}
 				cotizacionP.setCantidad(itemVenta.getCantidad());
@@ -399,16 +417,16 @@ public class CotizacionController implements Serializable {
 					Transport.send(message);
 
 					System.out.println("Done");
-					} catch (MessagingException e) {
+				} catch (MessagingException e) {
 					throw new RuntimeException(e);
 				}
 			}
 			FacesContext.getCurrentInstance().responseComplete();
 
 		} catch (Exception e) {
-			dialogTittle = "Error no controlado";
-			dialogContent = e.getMessage();
-			RequestContext.getCurrentInstance().execute("mostrarDialogos(`" + dialogTittle + "`, `" + dialogContent + "`);");
+			dialogData.put("titulo", "Error no controlado");
+			dialogData.put("mensaje", e.getStackTrace());
+			RequestContext.getCurrentInstance().execute("mostrarDialogos(" + dialogData + ");");
 		}
 		int consecutivo = consecutivoCotizacion();
 		EJBUsuario.actualizarNumeroCotizacion(idUsuario(), consecutivo);
@@ -422,11 +440,9 @@ public class CotizacionController implements Serializable {
 		}
 
 	}
-
 	public String leerId(Cotizacion cotizacion) {
 		this.cotizacion = cotizacionEJB.find(cotizacion.getNumeroCotizacion());
 		return "actualizarCotizacion.xhtml";
-
 	}
 
 	public PropuestaNoIncluye getPropuestaNoIncluye() {
@@ -677,7 +693,7 @@ public class CotizacionController implements Serializable {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	
+
 	public Usuario setUsuarioLogueado() {
 		return EJBUsuario.find(idUsuario());
 	}
@@ -692,7 +708,6 @@ public class CotizacionController implements Serializable {
 
 	public void obtenerDescripcionReferencia() throws Exception {
 		try {
-
 			producto = productoEJB.productoDescripcion(idProducto);
 			listaMateriales = materialEJB.datosMaterial(idProducto);
 			listaFabricante = fabricanteEJB.descripcionFabricante(idProducto);
@@ -716,7 +731,7 @@ public class CotizacionController implements Serializable {
 		Usuario u = (Usuario) sesion.getAttribute("usuario");
 		return u.getIdUsuario();
 	}
-	
+
 	public int consecutivoCotizacion() {
 		HttpSession sesion = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
 		Usuario u = (Usuario) sesion.getAttribute("usuario");
@@ -761,6 +776,18 @@ public class CotizacionController implements Serializable {
 
 	public void setListaProducto(List<Producto> listaProducto) {
 		this.listaProducto = listaProducto;
+	}
+	
+	// Metodo para obtener los productos registrados en una cotización
+	public void ObtenerProductosCotizados() throws Exception {
+		try {
+			
+			listaProductosCotizacion = cotizacionProductoEJB.productosCotizados(getNumeroCotizacion());
+		} catch (Exception e) {
+			dialogData.put("titulo", "Error no controlado");
+			dialogData.put("mensaje", e.getStackTrace());
+			RequestContext.getCurrentInstance().execute("mostrarDialogos(" + dialogData + ");");
+		}
 	}
 
 	//Forma de generar el id de la cotización
@@ -810,7 +837,45 @@ public class CotizacionController implements Serializable {
 	public void setMensaje(String mensaje) {
 		this.mensaje = mensaje;
 	}
-	
-	
+
+	public List<ViewIndexCotizacionesActivas> getListaCotizacionesPorEstados() {
+		return listaCotizacionesPorEstados;
+	}
+
+	public void setListaCotizacionesPorEstados(List<ViewIndexCotizacionesActivas> listaCotizacionesPorEstados) {
+		this.listaCotizacionesPorEstados = listaCotizacionesPorEstados;
+	}
+
+	public String getNumeroCotizacion() {
+		return numeroCotizacion;
+	}
+
+	public void setNumeroCotizacion(String numeroCotizacion) {
+		this.numeroCotizacion = numeroCotizacion;
+	}
+
+	public Object getDatosModificacionCotizacion() {
+		return DatosModificacionCotizacion;
+	}
+
+	public void setDatosModificacionCotizacion(Object DatosModificacionCotizacion) {
+		this.DatosModificacionCotizacion = DatosModificacionCotizacion;
+	}
+
+	public List<CotizacionProducto> getListaProductosCotizacion() {
+		return listaProductosCotizacion;
+	}
+
+	public void setListaProductosCotizacion(List<CotizacionProducto> listaProductosCotizacion) {
+		this.listaProductosCotizacion = listaProductosCotizacion;
+	}
+
+	public List<Cotizacion> getListaDatosCotizacion() {
+		return listaDatosCotizacion;
+	}
+
+	public void setListaDatosCotizacion(List<Cotizacion> listaDatosCotizacion) {
+		this.listaDatosCotizacion = listaDatosCotizacion;
+	}
 
 }

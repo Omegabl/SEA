@@ -77,4 +77,8 @@ public interface CotizacionFacadeLocal {
 	String correoCliente(int cliente);
 	
 	Object datosCotizacion(String numeroCotizacion) throws Exception;
+	
+    Object ModificacionCotizacion(String numeroCotizacion) throws Exception;
+	
+	List<Cotizacion> datosRegistradosCotizacion(String numeroCotizacion);
 }

@@ -122,8 +122,6 @@ public class Cotizacion implements Serializable {
 	@Column(name = "FECHA_FACTURACION")
     @Temporal(TemporalType.TIMESTAMP)
 	private Date fechaFacturacion;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblCotizacionNumeroCotizacion")
-	private List<CotizacionProducto> cotizacionProductoList;
 	@JoinColumn(name = "TBL_CLIENTE_ID_CLIENTE", referencedColumnName = "ID_CLIENTE")
     @ManyToOne(optional = false)
 	private Cliente tblClienteIdCliente;
@@ -143,9 +141,11 @@ public class Cotizacion implements Serializable {
     @ManyToOne(optional = false)
 	private TiempoEntrega tblTiempoEntregaIdTiempoEntrega;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblCotizacionNumeroCotizacion")
-	private List<OrdenProduccion> ordenProduccionList;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblCotizacionNumeroCotizacion")
 	private List<RegistroSeguimiento> registroSeguimientoList;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblCotizacionNumeroCotizacion")
+	private List<CotizacionProducto> cotizacionProductoList;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblCotizacionNumeroCotizacion")
+	private List<OrdenProduccion> ordenProduccionList;
 
 	public Cotizacion() {
 	}
@@ -276,15 +276,6 @@ public class Cotizacion implements Serializable {
 		this.fechaFacturacion = fechaFacturacion;
 	}
 
-	@XmlTransient
-	public List<CotizacionProducto> getCotizacionProductoList() {
-		return cotizacionProductoList;
-	}
-
-	public void setCotizacionProductoList(List<CotizacionProducto> cotizacionProductoList) {
-		this.cotizacionProductoList = cotizacionProductoList;
-	}
-
 	public Cliente getTblClienteIdCliente() {
 		return tblClienteIdCliente;
 	}
@@ -334,21 +325,30 @@ public class Cotizacion implements Serializable {
 	}
 
 	@XmlTransient
-	public List<OrdenProduccion> getOrdenProduccionList() {
-		return ordenProduccionList;
-	}
-
-	public void setOrdenProduccionList(List<OrdenProduccion> ordenProduccionList) {
-		this.ordenProduccionList = ordenProduccionList;
-	}
-
-	@XmlTransient
 	public List<RegistroSeguimiento> getRegistroSeguimientoList() {
 		return registroSeguimientoList;
 	}
 
 	public void setRegistroSeguimientoList(List<RegistroSeguimiento> registroSeguimientoList) {
 		this.registroSeguimientoList = registroSeguimientoList;
+	}
+
+	@XmlTransient
+	public List<CotizacionProducto> getCotizacionProductoList() {
+		return cotizacionProductoList;
+	}
+
+	public void setCotizacionProductoList(List<CotizacionProducto> cotizacionProductoList) {
+		this.cotizacionProductoList = cotizacionProductoList;
+	}
+
+	@XmlTransient
+	public List<OrdenProduccion> getOrdenProduccionList() {
+		return ordenProduccionList;
+	}
+
+	public void setOrdenProduccionList(List<OrdenProduccion> ordenProduccionList) {
+		this.ordenProduccionList = ordenProduccionList;
 	}
 
 	@Override
