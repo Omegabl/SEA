@@ -321,7 +321,7 @@ public class CotizacionController implements Serializable {
 				try {
 
 					BodyPart adjunto = new MimeBodyPart();
-					adjunto.setDataHandler(new DataHandler(new FileDataSource("C:\\Users\\APRENDIZ\\Documents\\NetBeansProjects\\SEA\\web\\PDF/cotizacion_N_" + cotizacion.getNumeroCotizacion() + ".pdf")));
+					adjunto.setDataHandler(new DataHandler(new FileDataSource("C:\\Users\\EdisonArturo\\Documents\\NetBeansProjects\\SEA\\web\\PDF/cotizacion_N_" + cotizacion.getNumeroCotizacion() + ".pdf")));
 					adjunto.setFileName("cotizacion.pdf");
 
 					BodyPart texto = new MimeBodyPart();
@@ -374,7 +374,7 @@ public class CotizacionController implements Serializable {
 				try {
 
 					BodyPart adjunto = new MimeBodyPart();
-					adjunto.setDataHandler(new DataHandler(new FileDataSource("C:\\Users\\APRENDIZ\\Documents\\NetBeansProjects\\SEA\\web\\EXCEL/cotizacion_N_" + cotizacion.getNumeroCotizacion() + ".xlsx")));
+					adjunto.setDataHandler(new DataHandler(new FileDataSource("C:\\Users\\EdisonArturo\\Documents\\NetBeansProjects\\SEA\\web\\EXCEL/cotizacion_N_" + cotizacion.getNumeroCotizacion() + ".xlsx")));
 					adjunto.setFileName("cotizacion.xlsx");
 
 					BodyPart texto = new MimeBodyPart();
