@@ -58,6 +58,7 @@ import javax.xml.bind.annotation.XmlTransient;
 	, @NamedQuery(name = "DisenoProducto.findByDiagramaDiseno", query = "SELECT d FROM DisenoProducto d WHERE d.diagramaDiseno = :diagramaDiseno")
 	, @NamedQuery(name = "DisenoProducto.findByNecesitaBordado", query = "SELECT d FROM DisenoProducto d WHERE d.necesitaBordado = :necesitaBordado")
 	, @NamedQuery(name = "DisenoProducto.findByDiseno", query = "SELECT d FROM DisenoProducto d WHERE d.diseno = :diseno")})
+
 public class DisenoProducto implements Serializable {
 
 	private static final long serialVersionUID = 1L;

@@ -23,7 +23,9 @@
  */
 package com.sea.backend.model;
 
+import com.sea.backend.entities.DisenoProducto;
 import com.sea.backend.entities.TallaDisenoProducto;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -45,6 +47,15 @@ public class TallaDisenoProductoFacade extends AbstractFacade<TallaDisenoProduct
 
 	public TallaDisenoProductoFacade() {
 		super(TallaDisenoProducto.class);
+	}
+	
+	@Override
+		public List<TallaDisenoProducto> datosTablaTalla(DisenoProducto op) {
+		List<TallaDisenoProducto> observacionesOP;
+		observacionesOP=em.createNamedQuery("TallaDisenoProducto.findByTblDisenoProductoIdDisenoProducto")
+            .setParameter("tblDisenoProductoIdDisenoProducto", op)
+            .getResultList();
+		return observacionesOP;
 	}
 	
 }

@@ -39,15 +39,6 @@
 											<h:panelGroup class="mdl-switch__label"></h:panelGroup>
 										</h:outputLabel>
 									</h:column>
-									<h:column>
-										<f:facet name="header">
-											<h:outputLabel value="Acciones"/>
-										</f:facet>
-										<h:panelGroup layout="block">
-											<h:commandButton  class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" value="Eliminar"/>
-											<h:commandButton class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" value="Modificar"/>
-										</h:panelGroup>
-									</h:column>
 								</h:dataTable>
 							</h:form>
 							<p:commandLink type="button" onclick="PF('modalidadPago').show();" styleClass="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored button-bottom_right toggleSubForm">
@@ -82,10 +73,10 @@
 										</h:panelGroup>
 									</h:column>
 								</h:dataTable>
+								<p:commandLink type="button" onclick="PF('lugarEntrega').show();" styleClass="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored button-bottom_right toggleSubForm">
+									<i class="material-icons">add</i>
+								</p:commandLink>
 							</h:form>
-							<p:commandLink type="button" onclick="PF('lugarEntrega').show();" styleClass="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored button-bottom_right toggleSubForm">
-								<i class="material-icons">add</i>
-							</p:commandLink>
 						</h:panelGroup>
 						<h:panelGroup layout="block" class="mdl-tabs__panel" id="descuentoVolumen-panel">
 							<h:form id="formDes">
@@ -115,9 +106,9 @@
 										</h:panelGroup>
 									</h:column>
 								</h:dataTable>
-							<p:commandLink type="button" onclick="PF('descuentoVol').show();" styleClass="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored button-bottom_right toggleSubForm">
-								<i class="material-icons">add</i>
-							</p:commandLink>
+								<p:commandLink type="button" onclick="PF('descuentoVol').show();" styleClass="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored button-bottom_right toggleSubForm">
+									<i class="material-icons">add</i>
+								</p:commandLink>
 							</h:form>
 						</h:panelGroup>
 						<h:panelGroup layout="block" class="mdl-tabs__panel" id="tiempoEntrega-panel">
@@ -148,9 +139,9 @@
 										</h:panelGroup>
 									</h:column>
 								</h:dataTable>
-							<p:commandLink type="button" onclick="PF('tiempoEntrega').show();" styleClass="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored button-bottom_right toggleSubForm">
-								<i class="material-icons">add</i>
-							</p:commandLink>
+								<p:commandLink type="button" onclick="PF('tiempoEntrega').show();" styleClass="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored button-bottom_right toggleSubForm">
+									<i class="material-icons">add</i>
+								</p:commandLink>
 							</h:form>
 						</h:panelGroup>
 						<h:panelGroup layout="block" class="mdl-tabs__panel" id="ofertaNoIncluye-panel">
@@ -181,9 +172,9 @@
 										</h:panelGroup>
 									</h:column>
 								</h:dataTable>
-							<p:commandLink type="button" onclick="PF('ofertaNoIncluye').show();" styleClass="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored button-bottom_right toggleSubForm">
-								<i class="material-icons">add</i>
-							</p:commandLink>
+								<p:commandLink type="button" onclick="PF('ofertaNoIncluye').show();" styleClass="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored button-bottom_right toggleSubForm">
+									<i class="material-icons">add</i>
+								</p:commandLink>
 							</h:form>
 						</h:panelGroup>
 					</h:panelGroup>

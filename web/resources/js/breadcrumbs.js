@@ -18,8 +18,6 @@ function breadcrums() {
 	var regexDefaultPages = new RegExp("^" + defaultPages.join("|^"), "i");
 	var home = "SEA"; // Texto que aparecerá en el enlace raíz
 	var URLArray = locacionActual.split("/"); // Separando la locación actual por el caracter "/"
-	URLArray[1]=URLArray[0]+URLArray[1];
-	URLArray.shift();
 	var breadcrumbs = document.getElementById("breadcrumbs"); // Aquí se agregará la lista de enlaces
 
 	// Si la página actual está vacía, es index.* o default.*, se remueve del arreglo
@@ -30,7 +28,6 @@ function breadcrums() {
 		listItem = document.createElement("li"); // Se crea un elemento de lista
 		link = document.createElement("a"); // Se crea un elemento enlace
 		if (i === 0) {
-			path=path+"SEA/";
 			link.innerHTML = home; // Se agrega el texto del enlace
 		} else {
 			path += URLArray[i] + "/"; // Al path se le suma la carpeta que sigue

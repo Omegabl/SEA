@@ -24,6 +24,7 @@
 package com.sea.backend.model;
 
 import com.sea.backend.entities.DisenoProducto;
+import com.sea.backend.entities.ProductoEspecificacion;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -48,4 +49,5 @@ public interface DisenoProductoFacadeLocal {
 
 	int count();
 	
+	DisenoProducto datosTabla(ProductoEspecificacion op);
 }
