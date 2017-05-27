@@ -57,7 +57,7 @@ public class PropuestaNoIncluyeController implements Serializable {
 	public void registrar() {
 		try {
 			propuestoNoIncluyeEJB.create(propuestaNoI);
-
+			propuestaNoIncluye = propuestoNoIncluyeEJB.findAll();
 		} catch (Exception e) {
 
 		}

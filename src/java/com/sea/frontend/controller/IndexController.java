@@ -104,7 +104,7 @@ public class IndexController implements Serializable {
 
 	public void obtenerOpPorAprobar() throws Exception {
 		try {
-			listaOpPorAprobar = cotizacionEJB.IndexOpPorEstado(idUsuario(), "Pendiente");
+			listaOpPorAprobar = cotizacionEJB.IndexOpPorEstado(idUsuario(), "1");
 		} catch (Exception e) {
 			dialogTittle = "Error no controlado";
 			dialogContent = e.getMessage();

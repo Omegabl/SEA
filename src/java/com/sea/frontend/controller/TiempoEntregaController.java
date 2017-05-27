@@ -55,7 +55,7 @@ public class TiempoEntregaController implements Serializable {
 	public void registrar() {
 		try {
 			tiempoEntregaEJB.create(tiempoE);
-
+			tiempoEntregas = tiempoEntregaEJB.findAll();
 		} catch (Exception e) {
 
 		}

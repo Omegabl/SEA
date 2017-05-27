@@ -53,8 +53,8 @@ public class LugaresEntregaController implements Serializable {
 
 	public void registrar() {
 		try {
-
 			lugaresEntregaEJB.create(lugaresE);
+			entregas = lugaresEntregaEJB.findAll();
 		} catch (Exception e) {
 
 		}

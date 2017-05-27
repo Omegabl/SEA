@@ -42,7 +42,9 @@ import com.sea.backend.model.TiempoEntregaFacadeLocal;
 import com.sea.backend.model.UsuarioFacadeLocal;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -51,17 +53,20 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Objects;
 import java.util.Properties;
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
+import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 
 /**
@@ -82,7 +87,6 @@ public class OrdenProduccionController implements Serializable {
 	private List<Cotizacion> listaCotizacionesOrdenProduccion;
 	private Object datosCotizacion;
 
-
 //EJB Producto Especificación
 	@EJB
 	private ProductoEspecificacionFacadeLocal productoEsEJB;
@@ -95,8 +99,8 @@ public class OrdenProduccionController implements Serializable {
 	private CotizacionProductoFacadeLocal cotizacionProductoEJB;
 	private CotizacionProducto cotizacionProducto;
 	private List<CotizacionProducto> listaCotizacionP;
-	private List<CotizacionProductoAuxiliar> datosCotizacionProducto;
-	private List<CotizacionProductoAuxiliar> listaDatosCotizacionProducto;
+	private List<Object[]> datosCotizacionProducto;
+	private List<Object[]> listaDatosCotizacionProducto;
 
 	// EJB de tallas
 	@EJB
@@ -182,7 +186,8 @@ public class OrdenProduccionController implements Serializable {
 	@EJB
 	private DisenoProductoFacadeLocal diseñoEJB;
 	private DisenoProducto disenoProducto;
-	private List<DisenoProducto> listaDiseñoProducto;
+	private DisenoProducto disenoProducto3;
+	private List<ProductoDiseñoAuxiliar> listaDiseñoProducto;
 
 	// EJB de la tabla especiidcaciónDiseño
 	@EJB
@@ -192,35 +197,20 @@ public class OrdenProduccionController implements Serializable {
 	@EJB
 	private TallaDisenoProductoFacadeLocal tallaDPEJB;
 	private TallaDisenoProducto tallaDisenoProducto;
-	private List<TallaDisenoProducto> listaTallaDisenoProductos;
+	private List<ProductoDiseñoAuxiliar> listaTallaDisenoProductos;
 
 	private UsuarioFacadeLocal EJBUsuario;
 	private Usuario usuario;
 
-	private UploadedFile file;
-	private UploadedFile file2;
-	
-	private String idUi;
-	private int valueId;
-	
-	private List<List<DisenoProducto>> listaTablaProductoDiseño= new  ArrayList<>();
-	
+	private Part file;
+	private Part file2;
+	private String nombre;
 
-	public UploadedFile getFile() {
-		return file;
-	}
+	private String destination;
 
-	public UploadedFile getFile2() {
-		return file2;
-	}
+	private ProductoDiseñoAuxiliar productoDisenoTallas;
 
-	public void setFile2(UploadedFile file2) {
-		this.file2 = file2;
-	}
-
-	public void setFile(UploadedFile file) {
-		this.file = file;
-	}
+	private List<List<DisenoProducto>> listaTablaProductoDiseño = new ArrayList<>();
 
 	@PostConstruct
 	public void init() {
@@ -249,13 +239,12 @@ public class OrdenProduccionController implements Serializable {
 		ordenProduccion.setFechaExpedicion(new Date());
 
 		disenoProducto = new DisenoProducto();
-		listaDiseñoProducto = new ArrayList<>();			
+		listaDiseñoProducto = new ArrayList<>();
 		especificacionDiseno = new EspecificacionDiseno();
 		tallaDisenoProducto = new TallaDisenoProducto();
 		listaTallaDisenoProductos = new ArrayList<>();
 		tallaDisenoProducto = new TallaDisenoProducto();
-		idUi = "id";
-		valueId = 0;
+		productoDisenoTallas = new ProductoDiseñoAuxiliar();
 	}
 
 	public void agregarCotizacionProducto() {
@@ -269,12 +258,153 @@ public class OrdenProduccionController implements Serializable {
 		listaCotizacionP.add(cot);
 
 	}
+
+	//Metodo para agragar diseño del producto
+	public void diseñoProducto() {
+		upload();
+		ProductoDiseñoAuxiliar diseñoP = new ProductoDiseñoAuxiliar();
+		producto = productoEJB.find(producto.getIdProducto());
+		diseñoP.setIdProducto(producto.getIdProducto());
+		diseñoP.setReferencia(producto.getReferencia());
+		diseñoP.setDescripcion(producto.getDescripcion());
+		diseñoP.setLogotipo(disenoProducto.getLogotipo());
+		diseñoP.setDiagramaDiseno(disenoProducto.getDiagramaDiseno());
+		diseñoP.setNecesitaBordado(disenoProducto.getNecesitaBordado());
+		diseñoP.setDiseno(disenoProducto.getDiseno());
+		diseñoP.setDescripcionDiseno(disenoProducto.getDescripcionDiseno());
+		listaDiseñoProducto.add(diseñoP);
+
+	}
+
+	public String upload() {
+		String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("Archivos");
+		path = path.substring(0, path.indexOf("\\build"));
+		path = path + "\\web\\FILES\\";
+		try {
+			this.nombre = file.getSubmittedFileName();
+			pathReal = "/UploadFile/Archivos/" + nombre;
+			path = path + this.nombre;
+			disenoProducto.setDiagramaDiseno(path);
+			InputStream in = file.getInputStream();
+
+			byte[] data = new byte[in.available()];
+			in.read(data);
+			FileOutputStream out = new FileOutputStream(new File(path));
+			out.write(data);
+			in.close();
+			out.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "Cargado";
+	}
+
+	public String upload2() {
+		String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("Archivos");
+		path = path.substring(0, path.indexOf("\\build"));
+		path = path + "\\web\\FILES\\";
+		try {
+			this.nombre = file2.getSubmittedFileName();
+			pathReal = "/UploadFile/Archivos/" + file2;
+			path = path + this.file2;
+			disenoProducto.setLogotipo(path);
+			InputStream in = file.getInputStream();
+
+			byte[] data = new byte[in.available()];
+			in.read(data);
+			FileOutputStream out = new FileOutputStream(new File(path));
+			out.write(data);
+			in.close();
+			out.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "Cargado";
+	}
+
+	//Metodo para agregar tallas de los articulos
+	public void agregarTallas() {
+		try {
+			ProductoDiseñoAuxiliar tallaP = new ProductoDiseñoAuxiliar();
+			producto = productoEJB.find(producto.getIdProducto());
+			tallaP.setIdProducto(producto.getIdProducto());
+			tallaP.setReferencia(producto.getReferencia());
+			tallaP.setDescripcion(producto.getDescripcion());
+			talla = tallaEJB.find(productoDisenoTallas.getIdTalla());
+			tallaP.setIdTalla(talla.getIdTalla());
+			tallaP.setTalla(talla.getTalla());
+			tallaP.setCantidad(productoDisenoTallas.getCantidad());
+			listaTallaDisenoProductos.add(tallaP);
+		} catch (Exception e) {
+		}
+
+	}
+
+	public void registrarOrdenProduccion() throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
+
+		try {
+
+			this.cotizacion = cotizacionEJB.find(numeroCotizacion);
+			ordenProduccion.setCiudadExpedicion(cotizacion.getLugarEmision());
+			ordenProduccion.setFechaExpedicion(ordenProduccion.getFechaExpedicion());
+			ordenProduccion.setEstado("Pendiente");
+			ordenProduccion.setTblCotizacionNumeroCotizacion(cotizacion);
+			ordenPEJB.create(ordenProduccion);
+
+			productoEspecificacion.setTblOrdenProduccionIdOrdenProduccion(ordenProduccion);
+			registrarProductoEspecificacion();
+
+		} catch (Exception e) {
+		}
+
+	}
+
+	public void registrarProductoEspecificacion() {
+		for (Object[] cantProduct : listaDatosCotizacionProducto) {
+			producto = productoEJB.find(cantProduct[4]);
+			productoEspecificacion.setTblProductoIdProducto(producto);
+			productoEsEJB.create(productoEspecificacion);
+			registrarDisenoProducto();
+		}
+	}
+
+	public void registrarDisenoProducto() {
+		for (ProductoDiseñoAuxiliar item1 : listaDiseñoProducto) {
+			Producto pro = new Producto();
+			
+			pro.setIdProducto(item1.getIdProducto());
+
+			if (producto.getIdProducto() == pro.getIdProducto()) {
+				disenoProducto.setTblProductoEspecificacionIdProductoEspecificacion(productoEspecificacion);
+				disenoProducto.setLogotipo(item1.getLogotipo());
+				disenoProducto.setDiagramaDiseno(item1.getDiagramaDiseno());
+				disenoProducto.setNecesitaBordado(item1.getNecesitaBordado());
+				disenoProducto.setDiseno(item1.getDiseno());
+				disenoProducto.setDescripcionDiseno(item1.getDescripcionDiseno());
+				diseñoEJB.create(disenoProducto);
+				registrarDisenoProductoTalla();
+			}
+			disenoProducto3 = diseñoEJB.find(disenoProducto.getIdDisenoProducto());
+		}
+	}
 	
+	public void registrarDisenoProductoTalla() {
+		for (ProductoDiseñoAuxiliar item1 : listaTallaDisenoProductos) {
+			Producto pro = new Producto();
+			
+			pro.setIdProducto(item1.getIdProducto());
 
-	//Metodo para calcular el precio del producto seleccionado
-	public Double calcularPrecioProductoDescuento() {
-		return this.listaProductoPrecio.get(0).getPrecio() - (this.listaProductoPrecio.get(0).getPrecio() * this.descuentoCotizacion);
-
+			if (producto.getIdProducto() == pro.getIdProducto()) {
+				tallaDisenoProducto.setTblDisenoProductoIdDisenoProducto(disenoProducto);
+				talla = tallaEJB.find(item1.getIdTalla());
+				tallaDisenoProducto.setTblTallaIdTalla(talla);
+				tallaDisenoProducto.setCantidad(item1.getCantidad());
+				tallaDPEJB.create(tallaDisenoProducto);
+			}
+			disenoProducto3 = diseñoEJB.find(disenoProducto.getIdDisenoProducto());
+		}
 	}
 
 	// Metodo para traer los productos registrados en una cotización
@@ -301,8 +431,8 @@ public class OrdenProduccionController implements Serializable {
 			datosCotizacion = cotizacionEJB.datosCotizacion(numeroCotizacion);
 			objetosCotizacionProducto();
 			for (int i = 0; i < listaDatosCotizacionProducto.size(); i++) {
-			listaTablaProductoDiseño.add(new ArrayList<>(i));
-		}
+				listaTablaProductoDiseño.add(new ArrayList<>(i));
+			}
 		} catch (Exception e) {
 		}
 	}
@@ -327,6 +457,41 @@ public class OrdenProduccionController implements Serializable {
 
 	}
 
+	public void upload(FileUploadEvent event) {
+		FacesMessage msg = new FacesMessage("Success! ", event.getFile().getFileName() + " is uploaded.");
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+		// Do what you want with the file        
+		try {
+			copyFile(event.getFile().getFileName(), event.getFile().getInputstream());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public void copyFile(String fileName, InputStream in) {
+		destination = "C:\\Users\\EdisonArturo\\Documents\\NetBeansProjects\\SEA\\web\\FILES";
+		try {
+
+			// write the inputStream to a FileOutputStream
+			OutputStream out = new FileOutputStream(new File(destination + fileName));
+
+			int read = 0;
+			byte[] bytes = new byte[1024];
+
+			while ((read = in.read(bytes)) != -1) {
+				out.write(bytes, 0, read);
+			}
+
+			in.close();
+			out.flush();
+			out.close();
+
+			System.out.println("New file created!");
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		}
+	}
 
 	public PropuestaNoIncluye getPropuestaNoIncluye() {
 		return propuestaNoIncluye;
@@ -560,11 +725,11 @@ public class OrdenProduccionController implements Serializable {
 		this.mensaje = mensaje;
 	}
 
-	public List<CotizacionProductoAuxiliar> getDatosCotizacionProducto() {
+	public List<Object[]> getDatosCotizacionProducto() {
 		return datosCotizacionProducto;
 	}
 
-	public void setDatosCotizacionProducto(List<CotizacionProductoAuxiliar> datosCotizacionProducto) {
+	public void setDatosCotizacionProducto(List<Object[]> datosCotizacionProducto) {
 		this.datosCotizacionProducto = datosCotizacionProducto;
 	}
 
@@ -714,40 +879,13 @@ public class OrdenProduccionController implements Serializable {
 
 	}
 
-	//Metodo para agragar diseño del producto
-	public void diseñoProducto() {
-		DisenoProducto diseñoP = new DisenoProducto();
-		diseñoP.setIdDisenoProducto(producto.getIdProducto());
-		diseñoP.setLogotipo(disenoProducto.getLogotipo());
-		diseñoP.setDiagramaDiseno(disenoProducto.getDiagramaDiseno());
-		diseñoP.setNecesitaBordado(disenoProducto.getNecesitaBordado());
-		diseñoP.setDiseno(disenoProducto.getDiseno());
-		diseñoP.setDescripcionDiseno(disenoProducto.getDescripcionDiseno());
-		diseñoP.setTblProductoEspecificacionIdProductoEspecificacion(productoEspecificacion);
-		listaDiseñoProducto.add(diseñoP);
-		listaTablaProductoDiseño.get(0).add(diseñoP);
-
-	}
-	
-	//Metodo para agregar tallas de los articulos
-	public void agregarTallas(){
-		TallaDisenoProducto tallaP = new TallaDisenoProducto();
-		tallaP.setCantidad(tallaDisenoProducto.getCantidad());
-		tallaP.setTblDisenoProductoIdDisenoProducto(disenoProducto);
-		tallaP.setTblTallaIdTalla(talla);
-		listaTallaDisenoProductos.add(tallaP);
-		System.out.println("asd");
-				
-	}
-
-	public List<TallaDisenoProducto> getListaTallaDisenoProductos() {
+	public List<ProductoDiseñoAuxiliar> getListaTallaDisenoProductos() {
 		return listaTallaDisenoProductos;
 	}
 
-	public void setListaTallaDisenoProductos(List<TallaDisenoProducto> listaTallaDisenoProductos) {
+	public void setListaTallaDisenoProductos(List<ProductoDiseñoAuxiliar> listaTallaDisenoProductos) {
 		this.listaTallaDisenoProductos = listaTallaDisenoProductos;
 	}
-	
 
 	public List<Cotizacion> getListaLugarEmision() {
 		return listaLugarEmision;
@@ -775,110 +913,20 @@ public class OrdenProduccionController implements Serializable {
 	public void obtenerLugarEmicionCotizacion() throws Exception {
 
 		System.out.println("Prueba Lugar Emicion = " + numeroCotizacion);
-		
 
 	}
 
-	public void registrarOrdenProduccion() throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
-		try {
-
-			/*
-			String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("Archivos");
-			path = path.substring(0, path.indexOf("\\build"));
-			path = path + "\\web\\Archivos\\";
-
-			try {
-				
-				this.diagramaDiseño = diagrama_diseño.getSubmittedFileName();
-				pathReal = "/UploadFile/Archivos/" + diagramaDiseño;
-				path = path + this.diagramaDiseño;
-				InputStream in = diagrama_diseño.getInputStream();
-				
-
-				byte[] data = new byte[in.available()];
-				in.read(data);
-				FileOutputStream out = new FileOutputStream(new File(path));
-				out.write(data);
-				in.close();
-				out.close();
-				disenoProducto.setDiagramaDiseno(pathReal);
-
-			} catch (Exception e) {
-				e.printStackTrace();
-				System.out.println(e.getMessage());
-			}
-
-			try {
-				this.logotipoP = logotipo.getSubmittedFileName();
-				pathReal = "/UploadFile/Archivos/" + logotipoP;
-				path = path + this.logotipoP;
-				InputStream in2 = logotipo.getInputStream();
-
-				byte[] data2 = new byte[in2.available()];
-				in2.read(data2);
-				FileOutputStream out2 = new FileOutputStream(new File(path));
-				out2.write(data2);
-				in2.close();
-				out2.close();
-				disenoProducto.setLogotipo(pathReal);
-
-			} catch (Exception e) {
-				e.printStackTrace();
-				System.out.println(e.getMessage());
-			}
-			 */
-			this.cotizacion = cotizacionEJB.find(numeroCotizacion);
-			ordenProduccion.setCiudadExpedicion(cotizacion.getLugarEmision());
-			ordenProduccion.setFechaExpedicion(ordenProduccion.getFechaExpedicion());
-			ordenProduccion.setObservaciones(ordenProduccion.getObservaciones());
-			ordenProduccion.setTotalPrendas(ordenProduccion.getTotalPrendas());
-			ordenProduccion.setEstado("Pendiente");
-			ordenProduccion.setTblCotizacionNumeroCotizacion(cotizacionEJB.find(numeroCotizacion));
-			ordenPEJB.create(ordenProduccion);
-
-			
-			productoEspecificacion.setObservaqciones(productoEspecificacion.getObservaqciones());
-			productoEspecificacion.setTblOrdenProduccionIdOrdenProduccion(ordenPEJB.find(idOrdenProduccion));
-			for (CotizacionProductoAuxiliar listaCPA : listaDatosCotizacionProducto) {
-			productoEspecificacion.setTblProductoIdProducto(productoEJB.find(listaCPA.getIdProducto()));
-			}
-			
-
-			for (DisenoProducto item1 : listaDiseñoProducto) {
-				disenoProducto.setTblProductoEspecificacionIdProductoEspecificacion(productoEspecificacion);
-				disenoProducto.setLogotipo(item1.getLogotipo());
-				disenoProducto.setDiagramaDiseno(item1.getDiagramaDiseno());
-				disenoProducto.setNecesitaBordado(item1.getNecesitaBordado());
-				disenoProducto.setDiseno(item1.getDiseno());
-				disenoProducto.setDescripcionDiseno(item1.getDescripcionDiseno());
-
-				String diagramaD = this.cargarArchivos(file);
-				disenoProducto.setDiagramaDiseno(diagramaD);
-				System.out.println("Diagrama Diseño " + diagramaD);
-				String logo = this.cargarArchivos(file2);
-				disenoProducto.setLogotipo(logo);
-				diseñoEJB.create(disenoProducto);
-
-			}
-		} catch (Exception e) {
-		}
-
-	}
-
-	public List<CotizacionProductoAuxiliar> getListaDatosCotizacionProducto() throws Exception {
+	public List<Object[]> getListaDatosCotizacionProducto() {
 		return listaDatosCotizacionProducto;
-
 	}
 
-	public void setListaDatosCotizacionProducto(List<CotizacionProductoAuxiliar> listaDatosCotizacionProducto) {
+	public void setListaDatosCotizacionProducto(List<Object[]> listaDatosCotizacionProducto) {
 		this.listaDatosCotizacionProducto = listaDatosCotizacionProducto;
 	}
 
 	public List<ProductoAuxiliar> getListaDatosEspecificacionProducto() throws Exception {
 		return listaDatosEspecificacionProducto;
 	}
-
-
 
 	public void setListaDatosEspecificacionProducto(List<ProductoAuxiliar> listaDatosEspecificacionProducto) {
 		this.listaDatosEspecificacionProducto = listaDatosEspecificacionProducto;
@@ -916,11 +964,11 @@ public class OrdenProduccionController implements Serializable {
 		this.tallaDisenoProducto = tallaDisenoProducto;
 	}
 
-	public List<DisenoProducto> getListaDiseñoProducto() {
+	public List<ProductoDiseñoAuxiliar> getListaDiseñoProducto() {
 		return listaDiseñoProducto;
 	}
 
-	public void setListaDiseñoProducto(List<DisenoProducto> listaDiseñoProducto) {
+	public void setListaDiseñoProducto(List<ProductoDiseñoAuxiliar> listaDiseñoProducto) {
 		this.listaDiseñoProducto = listaDiseñoProducto;
 	}
 
@@ -931,7 +979,6 @@ public class OrdenProduccionController implements Serializable {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-
 
 	public int getIdOrdenProduccion() {
 		return idOrdenProduccion;
@@ -964,26 +1011,15 @@ public class OrdenProduccionController implements Serializable {
 			System.out.println(e.getMessage());
 		}
 		return pathReal1;
-		
-		
 
 	}
 
-	public String getIdUi() {
-		idUi = idUi + valueId;
-		return idUi;
+	public String getDestination() {
+		return destination;
 	}
 
-	public void setIdUi(String idUi) {
-		this.idUi = idUi;
-	}
-
-	public int getValueId() {
-		return valueId ++ ;
-	}
-
-	public void setValueId(int valueId) {
-		this.valueId = valueId;
+	public void setDestination(String destination) {
+		this.destination = destination;
 	}
 
 	public List<List<DisenoProducto>> getListaTablaProductoDiseño() {
@@ -994,8 +1030,52 @@ public class OrdenProduccionController implements Serializable {
 		this.listaTablaProductoDiseño = listaTablaProductoDiseño;
 	}
 
-	
-	
-	
+	public String getPath() {
+		return pathReal;
+	}
+
+	public void setPath(String path) {
+		this.pathReal = path;
+	}
+
+	public Part getFile() {
+		return file;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public void setFile(Part file) {
+		this.file = file;
+	}
+
+	public ProductoDiseñoAuxiliar getProductoDisenoTallas() {
+		return productoDisenoTallas;
+	}
+
+	public void setProductoDisenoTallas(ProductoDiseñoAuxiliar productoDisenoTallas) {
+		this.productoDisenoTallas = productoDisenoTallas;
+	}
+
+	public Part getFile2() {
+		return file2;
+	}
+
+	public void setFile2(Part file2) {
+		this.file2 = file2;
+	}
+
+	public DisenoProducto getDisenoProducto3() {
+		return disenoProducto3;
+	}
+
+	public void setDisenoProducto3(DisenoProducto disenoProducto3) {
+		this.disenoProducto3 = disenoProducto3;
+	}
 
 }

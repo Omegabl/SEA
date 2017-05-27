@@ -52,8 +52,8 @@ public class CotizacionProductoFacade extends AbstractFacade<CotizacionProducto>
 	}
 
 	@Override
-	public List<CotizacionProductoAuxiliar> datosCotizacionProducto(String numeroCotizacion) throws Exception {
-		List<CotizacionProductoAuxiliar> listaDatosCotizacionProductoAuxiliar;
+	public List<Object[]> datosCotizacionProducto(String numeroCotizacion) throws Exception {
+		List<Object[]> listaDatosCotizacionProductoAuxiliar;
 		listaDatosCotizacionProductoAuxiliar = new ArrayList<>();
 		String consulta1 = "SELECT pr.referencia, pr.descripcion, ma.nombre, fa.nombre, pr.id_producto\n"
 				+ "FROM tbl_cotizacion_producto AS cp\n"

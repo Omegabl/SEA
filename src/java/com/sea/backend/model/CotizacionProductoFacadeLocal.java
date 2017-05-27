@@ -49,5 +49,5 @@ public interface CotizacionProductoFacadeLocal {
 
 	int count();
 
-	List<CotizacionProductoAuxiliar> datosCotizacionProducto(String numeroCotizacion) throws Exception;
+	List<Object[]> datosCotizacionProducto(String numeroCotizacion) throws Exception;
 }
