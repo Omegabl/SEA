@@ -9,23 +9,23 @@
 		<ui:composition template="/templates/loginResources.xhtml" />
     </h:head>
 	<h:body>
-	<main class="mdl-shadow--4dp">
+		<main class="mdl-shadow--4dp">
 			<h:graphicImage library="img" name="LogoSEA.svg" id="logoSEA" />
-		<h1 class="mdl-typography--display-1">Recuperar contraseña</h1>
-		<h:form>
-			<div class="mdl-textfield mdl-textfield--floating-label mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-				<h:inputText class="mdl-textfield__input" id="userName" pt:required="required" pt:maxlength="45" />
-				<h:outputLabel class="mdl-textfield__label" for="userName">Nombre de usuario</h:outputLabel>
-			</div>
-			<div class="mdl-textfield mdl-textfield--floating-label mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-				<h:inputText class="mdl-textfield__input" id="IDInterno" pt:required="required" pt:maxlength="32" />
-				<h:outputLabel class="mdl-textfield__label" for="IDInterno">ID interno</h:outputLabel>
-			</div>
-			<div>
-				<h:outputLink  value="/SEA/auth/">Autenticarme</h:outputLink>
-			</div>
-			<button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">Recuperar contraseña</button>
-		</h:form>
-	</main>
-</h:body>
+			<h1 class="mdl-typography--display-1">Recuperar contraseña</h1>
+			<h:form>
+				<div class="mdl-textfield mdl-textfield--floating-label mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<h:inputText class="mdl-textfield__input" id="userName" pt:required="required" pt:maxlength="45" />
+					<h:outputLabel class="mdl-textfield__label" for="userName">Nombre de usuario</h:outputLabel>
+				</div>
+				<div class="mdl-textfield mdl-textfield--floating-label mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<h:inputText class="mdl-textfield__input" id="IDInterno" pt:required="required" pt:maxlength="32" />
+					<h:outputLabel class="mdl-textfield__label" for="IDInterno">ID interno</h:outputLabel>
+				</div>
+				<div>
+					<h:outputLink  value="/SEA/auth/">Autenticarme</h:outputLink>
+				</div>
+				<button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">Recuperar contraseña</button>
+			</h:form>
+		</main>
+	</h:body>
 </html>

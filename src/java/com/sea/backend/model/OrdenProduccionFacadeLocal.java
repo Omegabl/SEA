@@ -51,4 +51,6 @@ public interface OrdenProduccionFacadeLocal {
 	
 	List<ObservacionesOrdenProduccion> observacionesOP(OrdenProduccion op);
 	
+	List<OrdenProduccion> OPPorEstado(String estado);
+	
 }

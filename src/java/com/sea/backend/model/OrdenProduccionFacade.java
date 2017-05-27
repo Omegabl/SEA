@@ -58,4 +58,12 @@ public class OrdenProduccionFacade extends AbstractFacade<OrdenProduccion> imple
 		return observacionesOP;
 	}
 
+	@Override
+	public List<OrdenProduccion> OPPorEstado(String estado){
+		List<OrdenProduccion> opPorEstado;
+		opPorEstado=em.createNamedQuery("OrdenProduccion.findByEstado")
+            .setParameter("estado", estado)
+            .getResultList();
+		return opPorEstado;
+	}
 }
