@@ -26,6 +26,7 @@ package com.sea.backend.entities;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -38,6 +39,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -100,6 +102,8 @@ public class Pagina implements Serializable {
     	@JoinColumn(name = "TBL_PERFIL_ID_PERFIL", referencedColumnName = "ID_PERFIL")})
     @ManyToMany
 	private List<Perfil> perfilList;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblPaginaIdPagina")
+	private List<Subpagina> subpaginaList;
 	@JoinColumn(name = "TBL_MENU_ID_MENU", referencedColumnName = "ID_MENU")
     @ManyToOne(optional = false)
 	private Menu tblMenuIdMenu;
@@ -183,6 +187,15 @@ public class Pagina implements Serializable {
 
 	public void setPerfilList(List<Perfil> perfilList) {
 		this.perfilList = perfilList;
+	}
+
+	@XmlTransient
+	public List<Subpagina> getSubpaginaList() {
+		return subpaginaList;
+	}
+
+	public void setSubpaginaList(List<Subpagina> subpaginaList) {
+		this.subpaginaList = subpaginaList;
 	}
 
 	public Menu getTblMenuIdMenu() {

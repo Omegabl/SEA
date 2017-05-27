@@ -78,5 +78,11 @@ public interface CotizacionFacadeLocal {
 	
 	Object datosCotizacion(String numeroCotizacion) throws Exception;
 	
+
 	Object datosOrden(int idOrden) throws Exception;
+
+    Object ModificacionCotizacion(String numeroCotizacion) throws Exception;
+	
+	List<Cotizacion> datosRegistradosCotizacion(String numeroCotizacion);
+
 }

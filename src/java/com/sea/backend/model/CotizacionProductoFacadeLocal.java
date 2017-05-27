@@ -52,5 +52,6 @@ public interface CotizacionProductoFacadeLocal {
 	List<Object[]> datosCotizacionProducto(String numeroCotizacion) throws Exception;
 	
 	List<Object[]> datosOrdenProducto(int idOrden) throws Exception;
-	
+
+	List<CotizacionProducto> productosCotizados(String numeroCotizacion) throws Exception;
 }

@@ -5,9 +5,24 @@
  */
 package com.sea.frontend.controller;
 
+import com.sea.backend.entities.Cotizacion;
 import com.sea.backend.entities.RegistroSeguimiento;
+import com.sea.backend.entities.CotizacionProducto;
+import com.sea.backend.entities.DescuentoVolumen;
+import com.sea.backend.entities.LugaresEntrega;
+import com.sea.backend.entities.ModalidadDePago;
+import com.sea.backend.entities.PropuestaNoIncluye;
+import com.sea.backend.entities.TiempoEntrega;
+import com.sea.backend.model.CotizacionFacadeLocal;
 import com.sea.backend.model.RegistroSeguimientoFacadeLocal;
+import com.sea.backend.model.CotizacionProductoFacadeLocal;
+import com.sea.backend.model.DescuentoVolumenFacadeLocal;
+import com.sea.backend.model.LugaresEntregaFacadeLocal;
+import com.sea.backend.model.ModalidadDePagoFacadeLocal;
+import com.sea.backend.model.PropuestaNoIncluyeFacadeLocal;
+import com.sea.backend.model.TiempoEntregaFacadeLocal;
 import java.io.Serializable;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
@@ -23,29 +38,202 @@ public class RegistroSeguimientoController implements Serializable {
 
 	@EJB
 	private RegistroSeguimientoFacadeLocal registroSeguimientoEJB;
+	private CotizacionFacadeLocal cotizacionEJB;
+	
+	//variables
+	private RegistroSeguimiento registroSeguimiento;
+	private Cotizacion cotizacion;
+	private String numeroCotizacion;
 
-	private RegistroSeguimiento registroS;
+	
+	//EJB Propuesta no incluye
+	@EJB
+	private PropuestaNoIncluyeFacadeLocal propuestaEJB;
+	//private int propuestaNoIncluye;
+	private List<PropuestaNoIncluye> ListapropuestaNoIncluye;
+	private int idPropuestaNoIncluye;
+	private PropuestaNoIncluye propuestaNoIncluye;
 
-	public RegistroSeguimiento getRegistroS() {
-		return registroS;
+	public List<PropuestaNoIncluye> getListapropuestaNoIncluye() {
+		return ListapropuestaNoIncluye;
 	}
 
-	public void setRegistroS(RegistroSeguimiento registroS) {
-		this.registroS = registroS;
+	public void setListapropuestaNoIncluye(List<PropuestaNoIncluye> ListapropuestaNoIncluye) {
+		this.ListapropuestaNoIncluye = ListapropuestaNoIncluye;
 	}
+
+	//Ejb de la foranea TiempoEntrega
+	@EJB
+	private TiempoEntregaFacadeLocal tiempoEJB;
+	private int idTiempoEntrega;
+	private TiempoEntrega tiempoEntrega;
+	private List<TiempoEntrega> listaTiempoEntrega;
+
+	//Ejb de la foranea DescuentoVolen
+	@EJB
+	private DescuentoVolumenFacadeLocal descuentoVEJB;
+	private int idDescuentoVolumen;
+	private DescuentoVolumen descuentoVolumen;
+	private List<DescuentoVolumen> listaDescuentoVolumen;
+
+	//EJB Modalidades de pago
+	@EJB
+	private ModalidadDePagoFacadeLocal modalidadPEJB;
+	private int idModalidadDePago;
+	private List<ModalidadDePago> listaModalidadDePago;
+	private ModalidadDePago modalidadDePago;
+
+	//EJB Lugares de entrega
+	@EJB
+	private LugaresEntregaFacadeLocal lugaresEEJB;
+	private int idLugaresEntrega;
+	private LugaresEntrega lugaresEntrega;
+	private List<LugaresEntrega> listaLugaresEntrega;
 
 	@PostConstruct
 	public void init() {
-		registroS = new RegistroSeguimiento();
 	}
 
-	public void registrar() {
-		try {
-			registroSeguimientoEJB.create(registroS);
-
-		} catch (Exception e) {
-
-		}
-
+	public void obtenerCotizacion(){
+		cotizacionEJB.find(numeroCotizacion);
 	}
+	
+	//Getter & Setter
+
+	public RegistroSeguimiento getRegistroSeguimiento() {
+		return registroSeguimiento;
+	}
+
+	public void setRegistroSeguimiento(RegistroSeguimiento registroSeguimiento) {
+		this.registroSeguimiento = registroSeguimiento;
+	}
+
+	public Cotizacion getCotizacion() {
+		return cotizacion;
+	}
+
+	public void setCotizacion(Cotizacion cotizacion) {
+		this.cotizacion = cotizacion;
+	}
+
+	public String getNumeroCotizacion() {
+		return numeroCotizacion;
+	}
+
+	public void setNumeroCotizacion(String numeroCotizacion) {
+		this.numeroCotizacion = numeroCotizacion;
+	}
+
+	public int getIdPropuestaNoIncluye() {
+		return idPropuestaNoIncluye;
+	}
+
+	public void setIdPropuestaNoIncluye(int idPropuestaNoIncluye) {
+		this.idPropuestaNoIncluye = idPropuestaNoIncluye;
+	}
+
+	public PropuestaNoIncluye getPropuestaNoIncluye() {
+		return propuestaNoIncluye;
+	}
+
+	public void setPropuestaNoIncluye(PropuestaNoIncluye propuestaNoIncluye) {
+		this.propuestaNoIncluye = propuestaNoIncluye;
+	}
+
+	public int getIdTiempoEntrega() {
+		return idTiempoEntrega;
+	}
+
+	public void setIdTiempoEntrega(int idTiempoEntrega) {
+		this.idTiempoEntrega = idTiempoEntrega;
+	}
+
+	public TiempoEntrega getTiempoEntrega() {
+		return tiempoEntrega;
+	}
+
+	public void setTiempoEntrega(TiempoEntrega tiempoEntrega) {
+		this.tiempoEntrega = tiempoEntrega;
+	}
+
+	public List<TiempoEntrega> getListaTiempoEntrega() {
+		return listaTiempoEntrega;
+	}
+
+	public void setListaTiempoEntrega(List<TiempoEntrega> listaTiempoEntrega) {
+		this.listaTiempoEntrega = listaTiempoEntrega;
+	}
+
+	public int getIdDescuentoVolumen() {
+		return idDescuentoVolumen;
+	}
+
+	public void setIdDescuentoVolumen(int idDescuentoVolumen) {
+		this.idDescuentoVolumen = idDescuentoVolumen;
+	}
+
+	public DescuentoVolumen getDescuentoVolumen() {
+		return descuentoVolumen;
+	}
+
+	public void setDescuentoVolumen(DescuentoVolumen descuentoVolumen) {
+		this.descuentoVolumen = descuentoVolumen;
+	}
+
+	public List<DescuentoVolumen> getListaDescuentoVolumen() {
+		return listaDescuentoVolumen;
+	}
+
+	public void setListaDescuentoVolumen(List<DescuentoVolumen> listaDescuentoVolumen) {
+		this.listaDescuentoVolumen = listaDescuentoVolumen;
+	}
+
+	public int getIdModalidadDePago() {
+		return idModalidadDePago;
+	}
+
+	public void setIdModalidadDePago(int idModalidadDePago) {
+		this.idModalidadDePago = idModalidadDePago;
+	}
+
+	public List<ModalidadDePago> getListaModalidadDePago() {
+		return listaModalidadDePago;
+	}
+
+	public void setListaModalidadDePago(List<ModalidadDePago> listaModalidadDePago) {
+		this.listaModalidadDePago = listaModalidadDePago;
+	}
+
+	public ModalidadDePago getModalidadDePago() {
+		return modalidadDePago;
+	}
+
+	public void setModalidadDePago(ModalidadDePago modalidadDePago) {
+		this.modalidadDePago = modalidadDePago;
+	}
+
+	public int getIdLugaresEntrega() {
+		return idLugaresEntrega;
+	}
+
+	public void setIdLugaresEntrega(int idLugaresEntrega) {
+		this.idLugaresEntrega = idLugaresEntrega;
+	}
+
+	public LugaresEntrega getLugaresEntrega() {
+		return lugaresEntrega;
+	}
+
+	public void setLugaresEntrega(LugaresEntrega lugaresEntrega) {
+		this.lugaresEntrega = lugaresEntrega;
+	}
+
+	public List<LugaresEntrega> getListaLugaresEntrega() {
+		return listaLugaresEntrega;
+	}
+
+	public void setListaLugaresEntrega(List<LugaresEntrega> listaLugaresEntrega) {
+		this.listaLugaresEntrega = listaLugaresEntrega;
+	}
+	
 }

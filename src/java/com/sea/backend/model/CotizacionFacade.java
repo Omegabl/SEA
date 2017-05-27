@@ -89,50 +89,50 @@ public class CotizacionFacade extends AbstractFacade<Cotizacion> implements Coti
 		listaSeguimientoCotizacions = query.getResultList();
 		return listaSeguimientoCotizacions;
 	}
-	
+
 	@Override
 	public List<ViewArticulosPorActualizar> IndexArticulosPorActualizar() {
-		List<ViewArticulosPorActualizar> listaArticulosPorActualizar=em.createNamedQuery("ViewArticulosPorActualizar.findAll")
-            .getResultList();
+		List<ViewArticulosPorActualizar> listaArticulosPorActualizar = em.createNamedQuery("ViewArticulosPorActualizar.findAll")
+				.getResultList();
 		return listaArticulosPorActualizar;
 	}
-	
+
 	@Override
 	public List<ViewIndexCotizacionesActivas> IndexSeguimientoCotizacion(int idUsuario) {
-		List<ViewIndexCotizacionesActivas> listaIndexSeguimientoCotizacion=em.createNamedQuery("ViewIndexCotizacionesActivas.findByUsuario")
-            .setParameter("usuario", idUsuario)
-            .getResultList();
+		List<ViewIndexCotizacionesActivas> listaIndexSeguimientoCotizacion = em.createNamedQuery("ViewIndexCotizacionesActivas.findByUsuario")
+				.setParameter("usuario", idUsuario)
+				.getResultList();
 		return listaIndexSeguimientoCotizacion;
 	}
-	
+
 	@Override
 	public List<ViewIndexOpPorGenerar> IndexOpPorGenerar(int idUsuario) {
-		List<ViewIndexOpPorGenerar> listaIndexOpPorGenerar=em.createNamedQuery("ViewIndexOpPorGenerar.findByUsuario")
-            .setParameter("usuario", idUsuario)
-            .getResultList();
+		List<ViewIndexOpPorGenerar> listaIndexOpPorGenerar = em.createNamedQuery("ViewIndexOpPorGenerar.findByUsuario")
+				.setParameter("usuario", idUsuario)
+				.getResultList();
 		return listaIndexOpPorGenerar;
 	}
-	
+
 	@Override
 	public List<ViewOpEnSeguimiento> IndexOpEnSeguimiento(int idUsuario) {
-		List<ViewOpEnSeguimiento> listaOpEnSeguimiento=em.createNamedQuery("ViewOpEnSeguimiento.findByUsuario")
-            .setParameter("usuario", idUsuario)
-            .getResultList();
+		List<ViewOpEnSeguimiento> listaOpEnSeguimiento = em.createNamedQuery("ViewOpEnSeguimiento.findByUsuario")
+				.setParameter("usuario", idUsuario)
+				.getResultList();
 		return listaOpEnSeguimiento;
 	}
-	
+
 	@Override
 	public List<ViewOpPorEstado> IndexOpPorEstado(int idUsuario, String estado) {
-		List<ViewOpPorEstado> listaIndexOpPorEstado=em.createNamedQuery("ViewOpPorEstado.findByUsuarioAndEstado")
-            .setParameter("usuario", idUsuario)
-            .setParameter("estado", estado)
-            .getResultList();
+		List<ViewOpPorEstado> listaIndexOpPorEstado = em.createNamedQuery("ViewOpPorEstado.findByUsuarioAndEstado")
+				.setParameter("usuario", idUsuario)
+				.setParameter("estado", estado)
+				.getResultList();
 		return listaIndexOpPorEstado;
 	}
-	
+
 	@Override
 	public String correoCliente(int cliente) {
-		Object email=null;
+		Object email = null;
 		String correo;
 		String consulta = "SELECT e.email\n"
 				+ "FROM tbl_email AS e\n"
@@ -145,10 +145,10 @@ public class CotizacionFacade extends AbstractFacade<Cotizacion> implements Coti
 		correo = email.toString();
 		return correo;
 	}
-	
+
 	@Override
 	public String correoUsuario(int usuario) {
-		Object email=null;
+		Object email = null;
 		String correo;
 		String consulta = "SELECT e.email\n"
 				+ "FROM tbl_email AS e\n"
@@ -161,89 +161,84 @@ public class CotizacionFacade extends AbstractFacade<Cotizacion> implements Coti
 		correo = email.toString();
 		return correo;
 	}
-	
-	@Override
-    public void getReportePDF(String ruta, String numero_cotizacion) throws  ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
-        Connection conexion;
-        Class.forName("com.mysql.jdbc.Driver").newInstance();
-        conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/fulldotaciones", "root", "");
 
-        //Se definen los parametros si es que el reporte necesita
-        Map parameter = new HashMap();
+	@Override
+	public void getReportePDF(String ruta, String numero_cotizacion) throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
+		Connection conexion;
+		Class.forName("com.mysql.jdbc.Driver").newInstance();
+		conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/fulldotaciones", "root", "");
+
+		//Se definen los parametros si es que el reporte necesita
+		Map parameter = new HashMap();
 		parameter.put("numero_cotizacion", numero_cotizacion);
 
-
-        try {
-            File file = new File(ruta);
+		try {
+			File file = new File(ruta);
 			String destino = "C:\\Users\\EdisonArturo\\Documents\\NetBeansProjects\\SEA\\web\\PDF/cotizacion_N_" + numero_cotizacion + ".pdf";
 
+			JasperReport jasperReport = (JasperReport) JRLoader.loadObjectFromFile(file.getPath());
 
+			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameter, conexion);
 
-            JasperReport jasperReport = (JasperReport) JRLoader.loadObjectFromFile(file.getPath());
+			JasperExportManager.exportReportToPdfFile(jasperPrint, destino);
 
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameter, conexion);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (conexion != null) {
+				try {
+					conexion.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
 
-            JasperExportManager.exportReportToPdfFile( jasperPrint, destino);
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (conexion != null) {
-                try {
-                    conexion.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-	
 	@Override
-    public void getReporteXLSX(String ruta, String numero_cotizacion) throws  ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
-        Connection conexion;
-        Class.forName("com.mysql.jdbc.Driver").newInstance();
-        conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/fulldotaciones", "root", "");
+	public void getReporteXLSX(String ruta, String numero_cotizacion) throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
+		Connection conexion;
+		Class.forName("com.mysql.jdbc.Driver").newInstance();
+		conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/fulldotaciones", "root", "");
 
-        //Se definen los parametros si es que el reporte necesita
-        Map parameter = new HashMap();
+		//Se definen los parametros si es que el reporte necesita
+		Map parameter = new HashMap();
 		parameter.put("numero_cotizacion", numero_cotizacion);
 		String destino = "C:\\Users\\EdisonArturo\\Documents\\NetBeansProjects\\SEA\\web\\EXCEL/cotizacion_N_" + numero_cotizacion + ".xlsx";
 
-        try {
-            File file = new File(ruta);
+		try {
+			File file = new File(ruta);
 
+			JasperReport jasperReport = (JasperReport) JRLoader.loadObjectFromFile(file.getPath());
 
-            JasperReport jasperReport = (JasperReport) JRLoader.loadObjectFromFile(file.getPath());
+			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameter, conexion);
 
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameter, conexion);
-
-            JRExporter jrExporter = null;                      
-            jrExporter = new JRXlsxExporter();
-            jrExporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
+			JRExporter jrExporter = null;
+			jrExporter = new JRXlsxExporter();
+			jrExporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
 			jrExporter.setParameter(JRExporterParameter.OUTPUT_FILE, new File(destino));
 
-            if (jrExporter != null) {
-                try {
-                    jrExporter.exportReport();
-                } catch (JRException e) {
-                    e.printStackTrace();
-                }
-            }
+			if (jrExporter != null) {
+				try {
+					jrExporter.exportReport();
+				} catch (JRException e) {
+					e.printStackTrace();
+				}
+			}
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (conexion != null) {
-                try {
-                    conexion.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-	
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (conexion != null) {
+				try {
+					conexion.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
 	@Override
 	public Object datosCotizacion(String numeroCotizacion) throws Exception {
 
@@ -273,7 +268,7 @@ public class CotizacionFacade extends AbstractFacade<Cotizacion> implements Coti
 
 		return datosCotizacion;
 	}
-	
+  
 	@Override
 	public Object datosOrden(int idOrden) throws Exception {
 
@@ -304,5 +299,63 @@ public class CotizacionFacade extends AbstractFacade<Cotizacion> implements Coti
 		Object datosCotizacion = query.getSingleResult();
 
 		return datosCotizacion;
+
+	@Override
+	public Object ModificacionCotizacion(String numeroCotizacion) throws Exception {
+		String consulta5 = "SELECT co.numero_cotizacion, co.lugar_emision, co.fecha_emision, \n"
+				+ "                c.nombre_o_razon_social, ci.nombre, de.nombre, e.email, t.numero_telefono \n"
+				+ "				FROM tbl_cotizacion AS co\n"
+				+ "				INNER JOIN tbl_cliente AS c\n"
+				+ "				ON co.TBL_CLIENTE_ID_CLIENTE = c.ID_CLIENTE\n"
+				+ "				INNER JOIN\n"
+				+ "				TBL_EMAIL e ON c.ID_CLIENTE = e.TBL_CLIENTE_ID_CLIENTE\n"
+				+ "				INNER JOIN\n"
+				+ "				TBL_TIPO_EMAIL te ON e.TBL_TIPO_EMAIL_ID_TIPO_EMAIL = te.ID_TIPO_EMAIL\n"
+				+ "				INNER JOIN\n"
+				+ "				TBL_TELEFONO t ON c.ID_CLIENTE = t.TBL_CLIENTE_ID_CLIENTE\n"
+				+ "				INNER JOIN\n"
+				+ "				TBL_TIPO_TELEFONO tt ON t.TBL_TIPO_TELEFONO_ID_TIPO_TELEFONO = tt.ID_TIPO_TELEFONO\n"
+				+ "                INNER JOIN\n"
+				+ "                TBL_DIRECCION d ON d.TBL_CLIENTE_ID_CLIENTE = c.ID_CLIENTE\n"
+				+ "                INNER JOIN\n"
+				+ "                TBL_TIPO_DIRECCION tdi ON d.TBL_TIPO_DIRECCION_ID_TIPO_DIRECCION = tdi.ID_TIPO_DIRECCION\n"
+				+ "                INNER JOIN\n"
+				+ "                TBL_CIUDAD ci ON d.TBL_CIUDAD_ID_CIUDAD = ci.ID_CIUDAD\n"
+				+ "                INNER JOIN\n"
+				+ "                TBL_DEPARTAMENTO de ON ci.TBL_DEPARTAMENTO_ID_DEPARTAMENTO = de.ID_DEPARTAMENTO\n"
+				+ "				WHERE numero_cotizacion = ?1 limit 1";
+
+		Query query = em.createNativeQuery(consulta5);
+		query.setParameter(1, numeroCotizacion);
+
+		//datosCliente = query.getResultList();
+		Object ModificacionCotizacion = query.getSingleResult();
+
+		return ModificacionCotizacion;
+	}
+
+	@Override
+	public List<Cotizacion> datosRegistradosCotizacion(String numeroCotizacion) {
+
+		List<Cotizacion> listaDatosRegistradosCotizacion;
+		String consulta6 = "SELECT  co.lugar_emision, co.fecha_emision, co.numero_remision, co.visita, co.prestamo_muestra, co.descuento, co.iva,co.validez_oferta,\n"
+				+ " mp.descripcion, le.descripcion, dv.descripcion, te.descripcion, pn.descripcion\n"
+				+ "FROM tbl_cotizacion AS co\n"
+				+ "INNER JOIN tbl_modalidad_de_pago AS mp\n"
+				+ "ON co.tbl_modalidad_de_pago_id_modalidad_de_pago = mp.id_modalidad_de_pago\n"
+				+ "INNER JOIN tbl_lugares_entrega AS le\n"
+				+ "ON co.tbl_lugares_entrega_id_lugares_entrega = le.id_lugares_entrega\n"
+				+ "INNER JOIN tbl_descuento_volumen AS dv\n"
+				+ "ON co.tbl_descuento_volumen_id_descuento_volumen = dv.id_descuento_volumen\n"
+				+ "INNER JOIN tbl_tiempo_entrega AS te\n"
+				+ "ON co.tbl_tiempo_entrega_id_tiempo_entrega = te.id_tiempo_entrega\n"
+				+ "INNER JOIN tbl_propuesta_no_incluye AS pn\n"
+				+ "ON co.tbl_propuesta_no_incluye_id_propuesta_no_incluye = pn.id_propuesta_no_incluye\n"
+				+ "WHERE numero_cotizacion = ?1";
+		Query query = em.createNativeQuery(consulta6);
+		query.setParameter(1, numeroCotizacion);
+		listaDatosRegistradosCotizacion = query.getResultList();
+		return listaDatosRegistradosCotizacion;
+
 	}
 }

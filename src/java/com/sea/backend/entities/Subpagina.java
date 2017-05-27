@@ -24,115 +24,98 @@
 package com.sea.backend.entities;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author Depurador
  */
 @Entity
-@Table(name = "tbl_ciudad")
+@Table(name = "tbl_subpagina")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "Ciudad.findAll", query = "SELECT c FROM Ciudad c")
-	, @NamedQuery(name = "Ciudad.findByIdCiudad", query = "SELECT c FROM Ciudad c WHERE c.idCiudad = :idCiudad")
-	, @NamedQuery(name = "Ciudad.findByNombre", query = "SELECT c FROM Ciudad c WHERE c.nombre = :nombre")})
-public class Ciudad implements Serializable {
+	@NamedQuery(name = "Subpagina.findAll", query = "SELECT s FROM Subpagina s")
+	, @NamedQuery(name = "Subpagina.findByIdSubpagina", query = "SELECT s FROM Subpagina s WHERE s.idSubpagina = :idSubpagina")
+	, @NamedQuery(name = "Subpagina.findByUrl", query = "SELECT s FROM Subpagina s WHERE s.url = :url")})
+public class Subpagina implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "ID_CIUDAD")
-	private Integer idCiudad;
+    @NotNull
+    @Column(name = "ID_SUBPAGINA")
+	private Integer idSubpagina;
 	@Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 50)
-    @Column(name = "NOMBRE")
-	private String nombre;
-	@JoinColumn(name = "TBL_DEPARTAMENTO_ID_DEPARTAMENTO", referencedColumnName = "ID_DEPARTAMENTO")
+    @Size(min = 1, max = 64)
+    @Column(name = "URL")
+	private String url;
+	@JoinColumn(name = "TBL_PAGINA_ID_PAGINA", referencedColumnName = "ID_PAGINA")
     @ManyToOne(optional = false)
-	private Departamento tblDepartamentoIdDepartamento;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblCiudadIdCiudad")
-	private List<Direccion> direccionList;
+	private Pagina tblPaginaIdPagina;
 
-	public Ciudad() {
+	public Subpagina() {
 	}
 
-	public Ciudad(Integer idCiudad) {
-		this.idCiudad = idCiudad;
+	public Subpagina(Integer idSubpagina) {
+		this.idSubpagina = idSubpagina;
 	}
 
-	public Ciudad(Integer idCiudad, String nombre) {
-		this.idCiudad = idCiudad;
-		this.nombre = nombre;
+	public Subpagina(Integer idSubpagina, String url) {
+		this.idSubpagina = idSubpagina;
+		this.url = url;
 	}
 
-	public Integer getIdCiudad() {
-		return idCiudad;
+	public Integer getIdSubpagina() {
+		return idSubpagina;
 	}
 
-	public void setIdCiudad(Integer idCiudad) {
-		this.idCiudad = idCiudad;
+	public void setIdSubpagina(Integer idSubpagina) {
+		this.idSubpagina = idSubpagina;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getUrl() {
+		return url;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
-	public Departamento getTblDepartamentoIdDepartamento() {
-		return tblDepartamentoIdDepartamento;
+	public Pagina getTblPaginaIdPagina() {
+		return tblPaginaIdPagina;
 	}
 
-	public void setTblDepartamentoIdDepartamento(Departamento tblDepartamentoIdDepartamento) {
-		this.tblDepartamentoIdDepartamento = tblDepartamentoIdDepartamento;
-	}
-
-	@XmlTransient
-	public List<Direccion> getDireccionList() {
-		return direccionList;
-	}
-
-	public void setDireccionList(List<Direccion> direccionList) {
-		this.direccionList = direccionList;
+	public void setTblPaginaIdPagina(Pagina tblPaginaIdPagina) {
+		this.tblPaginaIdPagina = tblPaginaIdPagina;
 	}
 
 	@Override
 	public int hashCode() {
 		int hash = 0;
-		hash += (idCiudad != null ? idCiudad.hashCode() : 0);
+		hash += (idSubpagina != null ? idSubpagina.hashCode() : 0);
 		return hash;
 	}
 
 	@Override
 	public boolean equals(Object object) {
 		// TODO: Warning - this method won't work in the case the id fields are not set
-		if (!(object instanceof Ciudad)) {
+		if (!(object instanceof Subpagina)) {
 			return false;
 		}
-		Ciudad other = (Ciudad) object;
-		if ((this.idCiudad == null && other.idCiudad != null) || (this.idCiudad != null && !this.idCiudad.equals(other.idCiudad))) {
+		Subpagina other = (Subpagina) object;
+		if ((this.idSubpagina == null && other.idSubpagina != null) || (this.idSubpagina != null && !this.idSubpagina.equals(other.idSubpagina))) {
 			return false;
 		}
 		return true;
@@ -140,7 +123,7 @@ public class Ciudad implements Serializable {
 
 	@Override
 	public String toString() {
-		return "com.sea.backend.entities.Ciudad[ idCiudad=" + idCiudad + " ]";
+		return "com.sea.backend.entities.Subpagina[ idSubpagina=" + idSubpagina + " ]";
 	}
 	
 }

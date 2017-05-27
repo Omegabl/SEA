@@ -15,38 +15,30 @@
 			<ui:composition template="/templates/header.xhtml" />
 			<main class="mdl-layout__content">
 				<div class="page-content">
-					<p:dataTable id="tablaC" var="cotS" emptyMessage="No se encontraron registros"
-								 value="#{cotizacionController.listaSeguimientoCotizacions}" 
-								 styleClass="mdl-data-table mdl-js-data-table  mdl-shadow--2dp" rowStyleClass="mdl-data-table__cell--non-numeric">
-						<p:column headerText="# Cotización">
-							<h:outputText value="#{cotS[0]}"/>
-
-						</p:column>
-
-
-						<p:column headerText="Cliente">
-							<h:outputText value="#{cotS[1]}"/>
-						</p:column>
-
-						<p:column headerText="Contacto">
-							<h:outputText value="#{cotS[2]}"/>
-						</p:column>
-						<p:column headerText="Teléfono contacto">
-							<h:outputText value="#{cotS[3]}"/>
-						</p:column>
-						<p:column>
-							<h:panelGroup layout="block">
-								<p:commandButton action="#{cotizacionController.leerId(cotS[0])}" ajax="true" immediate="true" styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" value="ACTUALIZAR" oncomplete="PF('dlg1').show();" update=""/>
-
-							</h:panelGroup>
-						</p:column>
-
-					</p:dataTable>
+					<div class="mdl-grid">
+						<p:dataTable id="tablaC" var="cotS" emptyMessage="No se encontraron registros" value="#{cotizacionController.listaCotizacionesPorEstados}" styleClass="mdl-data-table mdl-js-data-table  mdl-shadow--2dp">
+							<p:column headerText="# Cotización" styleClass="mdl-data-table__cell--non-numeric">
+								<h:outputText value="#{cotS.numeroCotizacion}"/>
+							</p:column>
+							<p:column headerText="Cliente" styleClass="mdl-data-table__cell--non-numeric">
+								<h:outputText value="#{cotS.cliente}"/>
+							</p:column>
+							<p:column headerText="Contacto" styleClass="mdl-data-table__cell--non-numeric">
+								<h:outputText value="#{cotS.contacto}"/>
+							</p:column>
+							<p:column headerText="Teléfono contacto" styleClass="mdl-data-table__cell--non-numeric">
+								<h:outputText value="#{cotS.telefonoContacto}"/>
+							</p:column>
+							<p:column>
+									<h:link outcome="actualizarCotizacion.xhtml">
+										<f:param name="numeroCotizacion" value="#{cotS.numeroCotizacion}"/>
+										<h:commandButton  actionListener="#{cotizacionController.leerId(cotS.numeroCotizacion)}" styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" value="ACTUALIZAR"/>
+									</h:link>
+							</p:column>
+						</p:dataTable>
+					</div>
 				</div>
 			</main>
 		</div>
     </h:body>
 </html>
-
-
-

@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 EdisonArturo.
+ * Copyright 2017 Depurador.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -46,23 +46,20 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author EdisonArturo
+ * @author Depurador
  */
 @Entity
 @Table(name = "tbl_diseno_producto")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "DisenoProducto.findAll", query = "SELECT d FROM DisenoProducto d"),
-	@NamedQuery(name = "DisenoProducto.findByIdDisenoProducto", query = "SELECT d FROM DisenoProducto d WHERE d.idDisenoProducto = :idDisenoProducto"),
-	@NamedQuery(name = "DisenoProducto.findByLogotipo", query = "SELECT d FROM DisenoProducto d WHERE d.logotipo = :logotipo"),
-	@NamedQuery(name = "DisenoProducto.findByTblProductoEspecificacionIdProductoEspecificacion", query = "SELECT d FROM DisenoProducto d WHERE d.tblProductoEspecificacionIdProductoEspecificacion = :tblProductoEspecificacionIdProductoEspecificacion"),
-	@NamedQuery(name = "DisenoProducto.findByDiagramaDiseno", query = "SELECT d FROM DisenoProducto d WHERE d.diagramaDiseno = :diagramaDiseno"),
-	@NamedQuery(name = "DisenoProducto.findByNecesitaBordado", query = "SELECT d FROM DisenoProducto d WHERE d.necesitaBordado = :necesitaBordado"),
-	@NamedQuery(name = "DisenoProducto.findByDiseno", query = "SELECT d FROM DisenoProducto d WHERE d.diseno = :diseno")})
-public class DisenoProducto implements Serializable {
+	@NamedQuery(name = "DisenoProducto.findAll", query = "SELECT d FROM DisenoProducto d")
+	, @NamedQuery(name = "DisenoProducto.findByIdDisenoProducto", query = "SELECT d FROM DisenoProducto d WHERE d.idDisenoProducto = :idDisenoProducto")
+	, @NamedQuery(name = "DisenoProducto.findByLogotipo", query = "SELECT d FROM DisenoProducto d WHERE d.logotipo = :logotipo")
+	, @NamedQuery(name = "DisenoProducto.findByDiagramaDiseno", query = "SELECT d FROM DisenoProducto d WHERE d.diagramaDiseno = :diagramaDiseno")
+	, @NamedQuery(name = "DisenoProducto.findByNecesitaBordado", query = "SELECT d FROM DisenoProducto d WHERE d.necesitaBordado = :necesitaBordado")
+	, @NamedQuery(name = "DisenoProducto.findByDiseno", query = "SELECT d FROM DisenoProducto d WHERE d.diseno = :diseno")})
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblDisenoProductoIdDisenoProducto")
-	private List<TallaDisenoProducto> tallaDisenoProductoList;
+public class DisenoProducto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -90,6 +87,10 @@ public class DisenoProducto implements Serializable {
 	@JoinColumn(name = "TBL_PRODUCTO_ESPECIFICACION_ID_PRODUCTO_ESPECIFICACION", referencedColumnName = "ID_PRODUCTO_ESPECIFICACION")
     @ManyToOne(optional = false)
 	private ProductoEspecificacion tblProductoEspecificacionIdProductoEspecificacion;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblDisenoProductoIdDisenoProducto")
+	private List<EspecificacionDiseno> especificacionDisenoList;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblDisenoProductoIdDisenoProducto")
+	private List<TallaDisenoProducto> tallaDisenoProductoList;
 
 	public DisenoProducto() {
 	}
@@ -159,6 +160,24 @@ public class DisenoProducto implements Serializable {
 		this.tblProductoEspecificacionIdProductoEspecificacion = tblProductoEspecificacionIdProductoEspecificacion;
 	}
 
+	@XmlTransient
+	public List<EspecificacionDiseno> getEspecificacionDisenoList() {
+		return especificacionDisenoList;
+	}
+
+	public void setEspecificacionDisenoList(List<EspecificacionDiseno> especificacionDisenoList) {
+		this.especificacionDisenoList = especificacionDisenoList;
+	}
+
+	@XmlTransient
+	public List<TallaDisenoProducto> getTallaDisenoProductoList() {
+		return tallaDisenoProductoList;
+	}
+
+	public void setTallaDisenoProductoList(List<TallaDisenoProducto> tallaDisenoProductoList) {
+		this.tallaDisenoProductoList = tallaDisenoProductoList;
+	}
+
 	@Override
 	public int hashCode() {
 		int hash = 0;
@@ -182,15 +201,6 @@ public class DisenoProducto implements Serializable {
 	@Override
 	public String toString() {
 		return "com.sea.backend.entities.DisenoProducto[ idDisenoProducto=" + idDisenoProducto + " ]";
-	}
-
-	@XmlTransient
-	public List<TallaDisenoProducto> getTallaDisenoProductoList() {
-		return tallaDisenoProductoList;
-	}
-
-	public void setTallaDisenoProductoList(List<TallaDisenoProducto> tallaDisenoProductoList) {
-		this.tallaDisenoProductoList = tallaDisenoProductoList;
 	}
 	
 }
