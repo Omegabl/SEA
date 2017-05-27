@@ -75,5 +75,34 @@ public class CotizacionProductoFacade extends AbstractFacade<CotizacionProducto>
 		return listaDatosCotizacionProductoAuxiliar;
 		//List<Object[]> miLista = query.getResultList();
 	}
+	
+	@Override
+	public List<Object[]> datosOrdenProducto(int idOrden) throws Exception {
+		List<Object[]> listaDatosCotizacionProductoAuxiliar;
+		listaDatosCotizacionProductoAuxiliar = new ArrayList<>();
+		String consulta1 = "SELECT pr.referencia, pr.descripcion, ma.nombre, fa.nombre, pr.id_producto\n"
+				+ "FROM tbl_orden_produccion as op\n"
+				+ "INNER JOIN tbl_cotizacion AS co\n"
+				+ "ON op.TBL_COTIZACION_NUMERO_COTIZACION = co.numero_cotizacion \n"
+				+ "INNER JOIN tbl_cotizacion_producto AS cp\n"
+				+ "ON co.numero_cotizacion = cp.tbl_cotizacion_numero_cotizacion\n"
+				+ "INNER JOIN tbl_producto AS pr\n"
+				+ "ON cp.tbl_producto_id_producto = pr.id_producto\n"
+				+ "INNER JOIN tbl_producto_material AS pm \n"
+				+ "ON pr.id_producto = pm.tbl_producto_id_producto\n"
+				+ "INNER JOIN tbl_material AS ma \n"
+				+ "ON pm.tbl_material_id_material = ma.id_material\n"
+				+ "INNER JOIN tbl_fabricante AS fa\n"
+				+ "ON pr.tbl_fabricante_id_fabricante = fa.id_fabricante\n"
+				+ "WHERE op.id_orden_produccion = ?1";
+
+		Query query = em.createNativeQuery(consulta1);
+		query.setParameter(1, idOrden);
+
+		listaDatosCotizacionProductoAuxiliar = query.getResultList();
+
+		return listaDatosCotizacionProductoAuxiliar;
+		//List<Object[]> miLista = query.getResultList();
+	}
 
 }

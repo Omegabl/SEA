@@ -273,4 +273,36 @@ public class CotizacionFacade extends AbstractFacade<Cotizacion> implements Coti
 
 		return datosCotizacion;
 	}
+	
+	@Override
+	public Object datosOrden(int idOrden) throws Exception {
+
+		String consulta2 = "SELECT co.numero_cotizacion, c.nombre_o_razon_social, ci.nombre, e.email, d.direccion, co.lugar_emision\n"
+				+ "FROM tbl_orden_produccion as op\n"
+				+ "INNER JOIN tbl_cotizacion AS co\n"
+				+ "ON op.TBL_COTIZACION_NUMERO_COTIZACION = co.numero_cotizacion \n"
+				+ "INNER JOIN tbl_cliente as c \n"
+				+ "ON co.TBL_CLIENTE_ID_CLIENTE = c.ID_CLIENTE \n"
+				+ "INNER JOIN tbl_usuario AS u \n"
+				+ "ON c.TBL_USUARIO_ID_USUARIO = u.ID_USUARIO\n"
+				+ "INNER JOIN\n"
+				+ "TBL_EMAIL e ON c.ID_CLIENTE = e.TBL_CLIENTE_ID_CLIENTE\n"
+				+ "INNER JOIN\n"
+				+ "TBL_TIPO_EMAIL te ON e.TBL_TIPO_EMAIL_ID_TIPO_EMAIL = te.ID_TIPO_EMAIL\n"
+				+ "INNER JOIN\n"
+				+ "TBL_DIRECCION d ON d.TBL_CLIENTE_ID_CLIENTE = c.ID_CLIENTE\n"
+				+ "INNER JOIN\n"
+				+ "TBL_TIPO_DIRECCION tdi ON d.TBL_TIPO_DIRECCION_ID_TIPO_DIRECCION = tdi.ID_TIPO_DIRECCION\n"
+				+ "INNER JOIN\n"
+				+ "TBL_CIUDAD ci ON d.TBL_CIUDAD_ID_CIUDAD = ci.ID_CIUDAD\n"
+				+ "WHERE id_orden_produccion = ?1";
+
+		Query query = em.createNativeQuery(consulta2);
+		query.setParameter(1, idOrden);
+
+		//datosCliente = query.getResultList();
+		Object datosCotizacion = query.getSingleResult();
+
+		return datosCotizacion;
+	}
 }

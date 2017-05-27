@@ -23,6 +23,7 @@
  */
 package com.sea.backend.model;
 
+import com.sea.backend.entities.DisenoProducto;
 import com.sea.backend.entities.TallaDisenoProducto;
 import java.util.List;
 import javax.ejb.Local;
@@ -47,5 +48,7 @@ public interface TallaDisenoProductoFacadeLocal {
 	List<TallaDisenoProducto> findRange(int[] range);
 
 	int count();
+	
+	List<TallaDisenoProducto> datosTablaTalla(DisenoProducto op);
 	
 }

@@ -51,27 +51,28 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "tbl_producto_especificacion")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "ProductoEspecificacion.findAll", query = "SELECT p FROM ProductoEspecificacion p")
-	, @NamedQuery(name = "ProductoEspecificacion.findByIdProductoEspecificacion", query = "SELECT p FROM ProductoEspecificacion p WHERE p.idProductoEspecificacion = :idProductoEspecificacion")})
+	@NamedQuery(name = "ProductoEspecificacion.findAll", query = "SELECT p FROM ProductoEspecificacion p"),
+	@NamedQuery(name = "ProductoEspecificacion.findByIdProductoEspecificacion", query = "SELECT p FROM ProductoEspecificacion p WHERE p.idProductoEspecificacion = :idProductoEspecificacion"),
+	@NamedQuery(name = "ProductoEspecificacion.findByTblOrdenProduccionIdOrdenProduccion", query = "SELECT p FROM ProductoEspecificacion p WHERE p.tblOrdenProduccionIdOrdenProduccion = :tblOrdenProduccionIdOrdenProduccion")})
 public class ProductoEspecificacion implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "ID_PRODUCTO_ESPECIFICACION")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Basic(optional = false)
+	@Column(name = "ID_PRODUCTO_ESPECIFICACION")
 	private Integer idProductoEspecificacion;
 	@Lob
-    @Size(max = 65535)
-    @Column(name = "OBSERVAQCIONES")
+	@Size(max = 65535)
+	@Column(name = "OBSERVAQCIONES")
 	private String observaqciones;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tblProductoEspecificacionIdProductoEspecificacion")
 	private List<DisenoProducto> disenoProductoList;
 	@JoinColumn(name = "TBL_ORDEN_PRODUCCION_ID_ORDEN_PRODUCCION", referencedColumnName = "ID_ORDEN_PRODUCCION")
-    @ManyToOne(optional = false)
+	@ManyToOne(optional = false)
 	private OrdenProduccion tblOrdenProduccionIdOrdenProduccion;
 	@JoinColumn(name = "TBL_PRODUCTO_ID_PRODUCTO", referencedColumnName = "ID_PRODUCTO")
-    @ManyToOne(optional = false)
+	@ManyToOne(optional = false)
 	private Producto tblProductoIdProducto;
 
 	public ProductoEspecificacion() {
@@ -146,5 +147,5 @@ public class ProductoEspecificacion implements Serializable {
 	public String toString() {
 		return "com.sea.backend.entities.ProductoEspecificacion[ idProductoEspecificacion=" + idProductoEspecificacion + " ]";
 	}
-	
+
 }
