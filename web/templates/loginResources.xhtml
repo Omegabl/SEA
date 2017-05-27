@@ -11,13 +11,24 @@
         <h:outputStylesheet library="css" name="material.min.css" />
 		<h:outputStylesheet library="css" name="dialog-polyfill.css" />
         <h:outputStylesheet library="css" name="login.css" />
-        <h:outputStylesheet library="css" name="material-icons.css" />
-		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
         <h:outputScript library="js" name="checkBrowser.js"></h:outputScript>
         <h:outputScript library="js" name="material.min.js"></h:outputScript>
         <h:outputScript library="js" name="dialog-polyfill.js"></h:outputScript>
         <h:outputScript library="js" name="dialogAndSnackbars.js"></h:outputScript>
         <h:outputScript library="js" name="criptoJS.js"></h:outputScript>
+		<h:outputScript>
+			document.addEventListener("DOMContentLoaded", function(){
+				document.querySelector("input[id$='contrasena']").addEventListener("change", encrypt);
+				document.querySelector("input[id$='contrasena']").addEventListener("keyup", encrypt);
+				function encrypt(){
+					console.log("Contraseña en texto plano: "+document.querySelector("input[id$='contrasena']").value);
+					var hash=CryptoJS.SHA3(document.querySelector("input[id$='contrasena']").value);
+					document.querySelector("input[id$='password']").value=hash;
+					console.log("Contraseña en SHA-3: "+document.querySelector("input[id$='password']").value);
+				}
+			});
+		</h:outputScript>
         <f:event type="preRenderView" listener="#{loginController.verificarSesionLogin()}" />
     </head>
 </html>
