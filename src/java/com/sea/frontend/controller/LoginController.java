@@ -9,15 +9,18 @@ import com.sea.backend.entities.Usuario;
 import com.sea.backend.entities.ViewPaginasUsuario;
 import com.sea.backend.model.PaginaFacadeLocal;
 import com.sea.backend.model.UsuarioFacadeLocal;
+import com.sun.faces.context.FacesFileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.primefaces.context.RequestContext;
 import org.primefaces.json.JSONObject;
@@ -56,7 +59,7 @@ public class LoginController implements Serializable {
 					//Almacenar la sesión de JSF
 					FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", us);
 					FacesContext contex = FacesContext.getCurrentInstance();
-					contex.getExternalContext().redirect("/SEA/index.xhtml");
+					contex.getExternalContext().redirect("/SEA/");
 				} else {
 					dialogData.put("titulo", "Error al iniciar sesión.");
 					dialogData.put("mensaje", "Usted no se encuentra activo en el sistema.<br />Por favor, comuníquese con el administrador del sistema.");
@@ -93,10 +96,9 @@ public class LoginController implements Serializable {
 			Usuario us = (Usuario) context.getExternalContext().getSessionMap().get("usuario");
 			String paginaActual = ((HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest()).getRequestURI();
 			if (us == null) {
-				context.getExternalContext().redirect("/SEA/auth");
-			}
-			else if (!verificarPermisos(us, paginaActual)) {
-				context.getExternalContext().redirect("/SEA/");
+				context.getExternalContext().redirect("/SEA/auth/");
+			} else if (!verificarPermisos(us, paginaActual)) {
+				//context.getExternalContext().redirect("/SEA/");
 			}
 		} catch (Exception e) {
 			// log para guardar un registro de error

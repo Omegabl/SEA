@@ -18,18 +18,6 @@
         <h:outputScript library="js" name="dialog-polyfill.js"></h:outputScript>
         <h:outputScript library="js" name="dialogAndSnackbars.js"></h:outputScript>
         <h:outputScript library="js" name="criptoJS.js"></h:outputScript>
-		<h:outputScript>
-			document.addEventListener("DOMContentLoaded", function(){
-				document.querySelector("input[id$='contrasena']").addEventListener("change", encrypt);
-				document.querySelector("input[id$='contrasena']").addEventListener("keyup", encrypt);
-				function encrypt(){
-					console.log("Contraseña en texto plano: "+document.querySelector("input[id$='contrasena']").value);
-					var hash=CryptoJS.SHA3(document.querySelector("input[id$='contrasena']").value);
-					document.querySelector("input[id$='password']").value=hash;
-					console.log("Contraseña en SHA-3: "+document.querySelector("input[id$='password']").value);
-				}
-			});
-		</h:outputScript>
         <f:event type="preRenderView" listener="#{loginController.verificarSesionLogin()}" />
     </head>
 </html>

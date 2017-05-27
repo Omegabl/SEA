@@ -292,6 +292,12 @@ fieldset[disabled] .mdl-textfield .mdl-textfield__input, .mdl-textfield.is-disab
 .ui-selectonemenu-item.ui-selectonemenu-list-item.ui-state-hover{
 	background-color: #f8f8f8;
 }
+/***********************************************************
+CommandLinks
+***********************************************************/
+form a.mdl-button{
+	margin: 0 5px;
+}
 /**********************************************************************
 Formularios complejos
 **********************************************************************/
