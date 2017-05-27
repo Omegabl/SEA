@@ -24,6 +24,8 @@
 package com.sea.backend.model;
 
 import com.sea.backend.entities.Producto;
+import com.sea.frontend.controller.ProductoAuxiliar;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -92,5 +94,34 @@ public class ProductoFacade extends AbstractFacade<Producto> implements Producto
 		listaProductoPrecio = query.getResultList();
 		return listaProductoPrecio;
 
+	}
+	
+	@Override
+	public List<ProductoAuxiliar> datosEspecificacionProducto(String referencia) throws Exception {
+
+		List<Object[]> listaDatos;
+		List<ProductoAuxiliar> listaDatosEspecificacionProducto;
+		listaDatosEspecificacionProducto = new ArrayList<>();
+		String consulta2 = "SELECT es.descripcion\n"
+				+ "FROM tbl_producto AS pr \n"
+				+ "INNER JOIN tbl_especificacion_producto AS ep\n"
+				+ "ON pr.ID_PRODUCTO = ep.TBL_PRODUCTO_ID_PRODUCTO\n"
+				+ "INNER JOIN tbl_especificacion AS es \n"
+				+ "on ep.TBL_ESPECIFICACION_ID_ESPECIFICACION = es.ID_ESPECIFICACION\n"
+				+ "WHERE pr.REFERENCIA = ?1";
+		Query query = em.createNativeQuery(consulta2);
+		query.setParameter(1, referencia);
+
+		listaDatos = query.getResultList();
+
+		for (Object[] ProductoAuxiliar : listaDatos) {
+			ProductoAuxiliar PA = new ProductoAuxiliar();
+			PA.setDescripcion(ProductoAuxiliar[0].toString());
+
+			listaDatosEspecificacionProducto.add(PA);
+
+		}
+
+		return listaDatosEspecificacionProducto;
 	}
 }

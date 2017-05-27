@@ -29,6 +29,22 @@ public class ModalidadDePagoController implements Serializable {
 	private ModalidadDePago modalidadP;
 
 	private List<ModalidadDePago> modalidad;
+	
+		@PostConstruct
+	public void init() {
+		modalidadP = new ModalidadDePago();
+		modalidad = modalidadPagoEJB.findAll();
+	}
+
+	public void registrar() {
+		try {
+			modalidadPagoEJB.create(modalidadP);
+			modalidad = modalidadPagoEJB.findAll();
+		} catch (Exception e) {
+
+		}
+
+	}
 
 	public List<ModalidadDePago> getModalidad() {
 		return modalidad;
@@ -44,21 +60,6 @@ public class ModalidadDePagoController implements Serializable {
 
 	public void setModalidadP(ModalidadDePago modalidadP) {
 		this.modalidadP = modalidadP;
-	}
-
-	@PostConstruct
-	public void init() {
-		modalidadP = new ModalidadDePago();
-		modalidad = modalidadPagoEJB.findAll();
-	}
-
-	public void registrar() {
-		try {
-			modalidadPagoEJB.create(modalidadP);
-		} catch (Exception e) {
-
-		}
-
 	}
 
 }

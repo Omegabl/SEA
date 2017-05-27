@@ -55,7 +55,7 @@ public class DescuentoVolumenController implements Serializable {
 	public void registrar() {
 		try {
 			descuentoVolumenEJB.create(descuentoV);
-
+			descuentoVolumen = descuentoVolumenEJB.findAll();
 		} catch (Exception e) {
 
 		}

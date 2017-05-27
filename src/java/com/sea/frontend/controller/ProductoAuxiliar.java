@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 Depurador.
+ * Copyright 2017 homero.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,32 +21,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.sea.backend.model;
-
-import com.sea.backend.entities.Talla;
-import java.util.List;
-import javax.ejb.Local;
+package com.sea.frontend.controller;
 
 /**
  *
- * @author Depurador
+ * @author homero
  */
-@Local
-public interface TallaFacadeLocal {
+public class ProductoAuxiliar {
 
-	void create(Talla talla);
+	private String descripcion;
 
-	void edit(Talla talla);
+	public String getDescripcion() {
+		return descripcion;
+	}
 
-	void remove(Talla talla);
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
 
-	Talla find(Object id);
+	public ProductoAuxiliar(String descripcion) {
+		this.descripcion = descripcion;
+	}
 
-	List<Talla> findAll();
+	public ProductoAuxiliar() {
 
-	List<Talla> findRange(int[] range);
-
-	int count();
-		Talla tallaDescripcion(int idTalla) throws Exception;
+	}
 
 }

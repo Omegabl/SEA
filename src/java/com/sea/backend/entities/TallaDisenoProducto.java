@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 Depurador.
+ * Copyright 2017 EdisonArturo.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,36 +27,36 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Depurador
+ * @author EdisonArturo
  */
 @Entity
 @Table(name = "tbl_talla_diseno_producto")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "TallaDisenoProducto.findAll", query = "SELECT t FROM TallaDisenoProducto t")
-	, @NamedQuery(name = "TallaDisenoProducto.findByIdTallaDisenoProducto", query = "SELECT t FROM TallaDisenoProducto t WHERE t.idTallaDisenoProducto = :idTallaDisenoProducto")
-	, @NamedQuery(name = "TallaDisenoProducto.findByCantidad", query = "SELECT t FROM TallaDisenoProducto t WHERE t.cantidad = :cantidad")})
+	@NamedQuery(name = "TallaDisenoProducto.findAll", query = "SELECT t FROM TallaDisenoProducto t"),
+	@NamedQuery(name = "TallaDisenoProducto.findByIdTallaDisenoProducto", query = "SELECT t FROM TallaDisenoProducto t WHERE t.idTallaDisenoProducto = :idTallaDisenoProducto"),
+	@NamedQuery(name = "TallaDisenoProducto.findByCantidad", query = "SELECT t FROM TallaDisenoProducto t WHERE t.cantidad = :cantidad")})
 public class TallaDisenoProducto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
     @Column(name = "ID_TALLA_DISENO_PRODUCTO")
-	private String idTallaDisenoProducto;
+	private Integer idTallaDisenoProducto;
 	@Size(max = 45)
     @Column(name = "CANTIDAD")
 	private String cantidad;
@@ -70,15 +70,15 @@ public class TallaDisenoProducto implements Serializable {
 	public TallaDisenoProducto() {
 	}
 
-	public TallaDisenoProducto(String idTallaDisenoProducto) {
+	public TallaDisenoProducto(Integer idTallaDisenoProducto) {
 		this.idTallaDisenoProducto = idTallaDisenoProducto;
 	}
 
-	public String getIdTallaDisenoProducto() {
+	public Integer getIdTallaDisenoProducto() {
 		return idTallaDisenoProducto;
 	}
 
-	public void setIdTallaDisenoProducto(String idTallaDisenoProducto) {
+	public void setIdTallaDisenoProducto(Integer idTallaDisenoProducto) {
 		this.idTallaDisenoProducto = idTallaDisenoProducto;
 	}
 

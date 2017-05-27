@@ -393,6 +393,7 @@ Loadings
 	transition: opacity .2s cubic-bezier(.4,0,.2,1);
 	pointer-events: none;
 }
+/*
 #loading-content{
 	margin: auto;
 	display: flex;
@@ -413,6 +414,7 @@ Loadings
 	visibility: visible;
 	pointer-events: auto;
 }
+*/
 .mdl-spinner{
 	--dimentions: 50px;
 	height: var(--dimentions);

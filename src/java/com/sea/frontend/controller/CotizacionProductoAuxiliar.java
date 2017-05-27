@@ -31,7 +31,7 @@ package com.sea.frontend.controller;
 
 // Esta clase se creo para cargar los productos cotizados y poder pasarlos a la lista de DatoscotizaciónProducto
 public class CotizacionProductoAuxiliar {
-	
+	private Integer idProducto;
 	private String referencia;
 	private String descripcion;
 	private String nombreMaterial;
@@ -69,13 +69,22 @@ public class CotizacionProductoAuxiliar {
 		this.nombreFabricante = nombreFabricante;
 	}
 
-	public CotizacionProductoAuxiliar(String referencia, String descripcion, String nombreMaterial, String nombreFabricante) {
+	public Integer getIdProducto() {
+		return idProducto;
+	}
+
+	public void setIdProducto(Integer idProducto) {
+		this.idProducto = idProducto;
+	}
+
+	public CotizacionProductoAuxiliar(Integer idProducto, String referencia, String descripcion, String nombreMaterial, String nombreFabricante) {
+		this.idProducto = idProducto;
 		this.referencia = referencia;
 		this.descripcion = descripcion;
 		this.nombreMaterial = nombreMaterial;
 		this.nombreFabricante = nombreFabricante;
 	}
-	
+
 	
         public CotizacionProductoAuxiliar(){
 		
