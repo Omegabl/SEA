@@ -14,4 +14,7 @@
     <jdbc-resource enabled="true" jndi-name="java:app/SEA" object-type="user" pool-name="mysql_fulldotaciones_rootPool"/>
     <jdbc-resource enabled="true" jndi-name="java:app/SEA" object-type="user" pool-name="mysql_fulldotaciones_rootPool"/>
     <jdbc-resource enabled="true" jndi-name="java:app/sea" object-type="user" pool-name="mysql_fulldotaciones_rootPool"/>
+    <jdbc-resource enabled="true" jndi-name="java:app/sea" object-type="user" pool-name="mysql_fulldotaciones_rootPool"/>
+    <jdbc-resource enabled="true" jndi-name="java:app/SEA" object-type="user" pool-name="mysql_fulldotaciones_rootPool"/>
+    <jdbc-resource enabled="true" jndi-name="java:app/sea" object-type="user" pool-name="mysql_fulldotaciones_rootPool"/>
 </resources>

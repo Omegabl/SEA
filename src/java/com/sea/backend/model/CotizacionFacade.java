@@ -299,7 +299,8 @@ public class CotizacionFacade extends AbstractFacade<Cotizacion> implements Coti
 		Object datosCotizacion = query.getSingleResult();
 
 		return datosCotizacion;
-
+	}
+	
 	@Override
 	public Object ModificacionCotizacion(String numeroCotizacion) throws Exception {
 		String consulta5 = "SELECT co.numero_cotizacion, co.lugar_emision, co.fecha_emision, \n"

@@ -42,6 +42,7 @@ import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -219,7 +220,7 @@ public class CotizacionController implements Serializable {
 		cotizacion.setDescuento(15);
 		cotizacion.setIva(19);
 		cotizacionP = new CotizacionProducto();
-//		clientes = clienteEJB.listaClienteCotizacion(setUsuarioLogueado());
+		clientes = clienteEJB.listaClienteCotizacion(setUsuarioLogueado());
 		cliente = new Cliente();
 		producto = new Producto();
 		listaCotizacionP = new ArrayList<>();

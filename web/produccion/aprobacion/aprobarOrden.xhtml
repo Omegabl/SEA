@@ -174,15 +174,20 @@
 							<section class="step">
 								<h3 class="mdl-typography--headline">Aprobar orden de producción</h3>
 								<h:outputLabel class="mdl-switch mdl-js-switch" for="aprobarOrden">
-									<h:selectBooleanCheckbox id="aprobarOrden" class="mdl-switch__input" />
+									<h:selectBooleanCheckbox id="aprobarOrden" class="mdl-switch__input" value="#{ordenProduccionController.aprobarOr}">
+										<f:ajax render="button"/>
+										<p:ajax update="button"/>
+									</h:selectBooleanCheckbox>
 									<h:panelGroup class="mdl-switch__label">Aprobar orden de producción</h:panelGroup>
 								</h:outputLabel>
 								<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
 									<h:inputTextarea class="mdl-textfield__input" id="observacionesAlAsesor" p:maxlength="1024" required="required" value="#{ordenProduccionController.ordenProduccion.observaciones}" />
 									<h:outputLabel class="mdl-textfield__label" for="observacionesAlAsesor">Observaciones a enviar al asesor</h:outputLabel>
 								</h:panelGroup>
-								<p:commandButton actionListener="#{ordenProduccionController.aprobarOrden()}" styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit" value="probar orden de producción"/>
-								<p:commandButton actionListener="#{ordenProduccionController.rechazarOrden()}" styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit" value="Rechazar orden de producción"/>
+								<h:panelGroup id="button" >
+									<p:commandButton actionListener="#{ordenProduccionController.aprobarOrden()}" styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit" value="Aprobar orden de producción" rendered="#{ordenProduccionController.aprobarOr == true}"/>
+									<p:commandButton actionListener="#{ordenProduccionController.rechazarOrden()}" styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit" value="Rechazar orden de producción" rendered="#{ordenProduccionController.aprobarOr == false}"/>
+								</h:panelGroup>
 							</section>
 						</h:panelGroup>
 

@@ -158,7 +158,7 @@ Botón ir arriba
 tablas
 *********************************************************************/
 table{
-	width: 100%;
+	width: auto;
 	margin: auto;
 }
 .mdl-data-table{
@@ -431,4 +431,17 @@ Sobreescritura de estilos de primefaces
 	background: 0 0;
 	text-align: left;
 	color: inherit;
+}
+.dateTimeField input {
+	border:none;
+	border-bottom:1px solid rgba(0,0,0,.12);
+	display:block;
+	font-size:16px;
+	font-family:"Helvetica","Arial",sans-serif;
+	margin:0;
+	padding:4px 0;
+	width:100%;
+	background:0 0;
+	text-align:left;
+	color:inhe
 }

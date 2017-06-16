@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="83d182a3-8210-40cc-859f-1c28afb025dc">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="170"/>
+	<style name="table">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#000000"/>
+			<bottomPen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#000000"/>
+			<bottomPen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#000000"/>
+			<bottomPen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#000000"/>
+			<bottomPen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="tablaReporte" uuid="9a3e9323-d263-4ae7-b049-6ef0dc5b193e">
+		<parameter name="tabla_fecha1" class="java.lang.String" />
+		<parameter name="tabla_fecha2" class="java.lang.String" />
+		<queryString language="SQL">
+			<![CDATA[SELECT
+     view_reporte_seguimiento_gestion_comercial.`fecha_emision` AS view_reporte_seguimiento_gestion_comercial_fecha_emision,
+     view_reporte_seguimiento_gestion_comercial.`ejecutivo` AS view_reporte_seguimiento_gestion_comercial_ejecutivo,
+     view_reporte_seguimiento_gestion_comercial.`numero_cotizacion` AS view_reporte_seguimiento_gestion_comercial_numero_cotizacion,
+     view_reporte_seguimiento_gestion_comercial.`origen` AS view_reporte_seguimiento_gestion_comercial_origen,
+     view_reporte_seguimiento_gestion_comercial.`empresa` AS view_reporte_seguimiento_gestion_comercial_empresa,
+     view_reporte_seguimiento_gestion_comercial.`documento` AS view_reporte_seguimiento_gestion_comercial_documento,
+     view_reporte_seguimiento_gestion_comercial.`telefono_contacto` AS view_reporte_seguimiento_gestion_comercial_telefono_contacto,
+     view_reporte_seguimiento_gestion_comercial.`nombre_contacto` AS view_reporte_seguimiento_gestion_comercial_nombre_contacto,
+     view_reporte_seguimiento_gestion_comercial.`email_contacto` AS view_reporte_seguimiento_gestion_comercial_email_contacto,
+     view_reporte_seguimiento_gestion_comercial.`direccion` AS view_reporte_seguimiento_gestion_comercial_direccion,
+     view_reporte_seguimiento_gestion_comercial.`visita` AS view_reporte_seguimiento_gestion_comercial_visita,
+     view_reporte_seguimiento_gestion_comercial.`prestamo_muestra` AS view_reporte_seguimiento_gestion_comercial_prestamo_muestra,
+     view_reporte_seguimiento_gestion_comercial.`numero_remision` AS view_reporte_seguimiento_gestion_comercial_numero_remision,
+     view_reporte_seguimiento_gestion_comercial.`fecha_cierre_efectivo` AS view_reporte_seguimiento_gestion_comercial_fecha_cierre_efectivo
+FROM
+     `view_reporte_seguimiento_gestion_comercial` view_reporte_seguimiento_gestion_comercial
+WHERE
+     fecha_emision BETWEEN $P{tabla_fecha1} and $P{tabla_fecha2}]]>
+		</queryString>
+		<field name="view_reporte_seguimiento_gestion_comercial_fecha_emision" class="java.sql.Date"/>
+		<field name="view_reporte_seguimiento_gestion_comercial_ejecutivo" class="java.lang.String"/>
+		<field name="view_reporte_seguimiento_gestion_comercial_numero_cotizacion" class="java.lang.String"/>
+		<field name="view_reporte_seguimiento_gestion_comercial_origen" class="java.lang.String"/>
+		<field name="view_reporte_seguimiento_gestion_comercial_empresa" class="java.lang.String"/>
+		<field name="view_reporte_seguimiento_gestion_comercial_documento" class="java.lang.String"/>
+		<field name="view_reporte_seguimiento_gestion_comercial_telefono_contacto" class="java.lang.String"/>
+		<field name="view_reporte_seguimiento_gestion_comercial_nombre_contacto" class="java.lang.String"/>
+		<field name="view_reporte_seguimiento_gestion_comercial_email_contacto" class="java.lang.String"/>
+		<field name="view_reporte_seguimiento_gestion_comercial_direccion" class="java.lang.String"/>
+		<field name="view_reporte_seguimiento_gestion_comercial_visita" class="java.lang.Boolean"/>
+		<field name="view_reporte_seguimiento_gestion_comercial_prestamo_muestra" class="java.lang.Boolean"/>
+		<field name="view_reporte_seguimiento_gestion_comercial_numero_remision" class="java.lang.String"/>
+		<field name="view_reporte_seguimiento_gestion_comercial_fecha_cierre_efectivo" class="java.sql.Timestamp"/>
+	</subDataset>
+	<parameter name="fecha1" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fecha2" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     view_reporte_seguimiento_gestion_comercial.`fecha_emision` AS view_reporte_seguimiento_gestion_comercial_fecha_emision,
+     view_reporte_seguimiento_gestion_comercial.`ejecutivo` AS view_reporte_seguimiento_gestion_comercial_ejecutivo,
+     view_reporte_seguimiento_gestion_comercial.`numero_cotizacion` AS view_reporte_seguimiento_gestion_comercial_numero_cotizacion,
+     view_reporte_seguimiento_gestion_comercial.`origen` AS view_reporte_seguimiento_gestion_comercial_origen,
+     view_reporte_seguimiento_gestion_comercial.`empresa` AS view_reporte_seguimiento_gestion_comercial_empresa,
+     view_reporte_seguimiento_gestion_comercial.`documento` AS view_reporte_seguimiento_gestion_comercial_documento,
+     view_reporte_seguimiento_gestion_comercial.`telefono_contacto` AS view_reporte_seguimiento_gestion_comercial_telefono_contacto,
+     view_reporte_seguimiento_gestion_comercial.`nombre_contacto` AS view_reporte_seguimiento_gestion_comercial_nombre_contacto,
+     view_reporte_seguimiento_gestion_comercial.`email_contacto` AS view_reporte_seguimiento_gestion_comercial_email_contacto,
+     view_reporte_seguimiento_gestion_comercial.`direccion` AS view_reporte_seguimiento_gestion_comercial_direccion,
+     view_reporte_seguimiento_gestion_comercial.`visita` AS view_reporte_seguimiento_gestion_comercial_visita,
+     view_reporte_seguimiento_gestion_comercial.`prestamo_muestra` AS view_reporte_seguimiento_gestion_comercial_prestamo_muestra,
+     view_reporte_seguimiento_gestion_comercial.`numero_remision` AS view_reporte_seguimiento_gestion_comercial_numero_remision,
+     view_reporte_seguimiento_gestion_comercial.`fecha_cierre_efectivo` AS view_reporte_seguimiento_gestion_comercial_fecha_cierre_efectivo
+FROM
+     `view_reporte_seguimiento_gestion_comercial` view_reporte_seguimiento_gestion_comercial
+WHERE
+     fecha_emision BETWEEN $P{fecha1} and $P{fecha2}
+GROUP BY
+     fecha_emision]]>
+	</queryString>
+	<field name="view_reporte_seguimiento_gestion_comercial_fecha_emision" class="java.sql.Date"/>
+	<field name="view_reporte_seguimiento_gestion_comercial_ejecutivo" class="java.lang.String"/>
+	<field name="view_reporte_seguimiento_gestion_comercial_numero_cotizacion" class="java.lang.String"/>
+	<field name="view_reporte_seguimiento_gestion_comercial_origen" class="java.lang.String"/>
+	<field name="view_reporte_seguimiento_gestion_comercial_empresa" class="java.lang.String"/>
+	<field name="view_reporte_seguimiento_gestion_comercial_documento" class="java.lang.String"/>
+	<field name="view_reporte_seguimiento_gestion_comercial_telefono_contacto" class="java.lang.String"/>
+	<field name="view_reporte_seguimiento_gestion_comercial_nombre_contacto" class="java.lang.String"/>
+	<field name="view_reporte_seguimiento_gestion_comercial_email_contacto" class="java.lang.String"/>
+	<field name="view_reporte_seguimiento_gestion_comercial_direccion" class="java.lang.String"/>
+	<field name="view_reporte_seguimiento_gestion_comercial_visita" class="java.lang.Boolean"/>
+	<field name="view_reporte_seguimiento_gestion_comercial_prestamo_muestra" class="java.lang.Boolean"/>
+	<field name="view_reporte_seguimiento_gestion_comercial_numero_remision" class="java.lang.String"/>
+	<field name="view_reporte_seguimiento_gestion_comercial_fecha_cierre_efectivo" class="java.sql.Timestamp"/>
+	<variable name="valor" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{view_reporte_seguimiento_gestion_comercial_numero_cotizacion}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="45" y="18" width="452" height="44" uuid="9aee65b0-facc-477d-940e-76289c11cc3a"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial Black" size="20"/>
+				</textElement>
+				<text><![CDATA[REPORTE SEGUIMIENTO COMERCIAL]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="557" splitType="Stretch">
+			<bar3DChart>
+				<chart>
+					<reportElement x="21" y="13" width="523" height="240" uuid="fec56ae8-97d9-479a-b031-aaffa178a268"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["Cotizaciones totales"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{view_reporte_seguimiento_gestion_comercial_fecha_emision}.getMonth() == 0 ?
+    "Enero" : $F{view_reporte_seguimiento_gestion_comercial_fecha_emision}.getMonth() == 1 ?
+    "Febrero" : $F{view_reporte_seguimiento_gestion_comercial_fecha_emision}.getMonth() == 2 ?
+    "Marzo" : $F{view_reporte_seguimiento_gestion_comercial_fecha_emision}.getMonth() == 3 ?
+    "Abril" : $F{view_reporte_seguimiento_gestion_comercial_fecha_emision}.getMonth() == 4 ?
+    "Mayo" : $F{view_reporte_seguimiento_gestion_comercial_fecha_emision}.getMonth() == 5 ?
+    "Junio" : $F{view_reporte_seguimiento_gestion_comercial_fecha_emision}.getMonth() == 6 ?
+    "Julio" : $F{view_reporte_seguimiento_gestion_comercial_fecha_emision}.getMonth() == 7 ?
+    "Agosto" : $F{view_reporte_seguimiento_gestion_comercial_fecha_emision}.getMonth() == 8 ?
+    "Septiembre" : $F{view_reporte_seguimiento_gestion_comercial_fecha_emision}.getMonth() == 9 ?
+    "Octubre"  : $F{view_reporte_seguimiento_gestion_comercial_fecha_emision}.getMonth() == 10 ?
+    "Noviembre"  : $F{view_reporte_seguimiento_gestion_comercial_fecha_emision}.getMonth() == 11 ?
+    "Diciembre" : "Unknown"]]></categoryExpression>
+						<valueExpression><![CDATA[$V{valor}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<bar3DPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</bar3DPlot>
+			</bar3DChart>
+			<componentElement>
+				<reportElement key="table 2" style="table 2" positionType="Float" x="21" y="272" width="523" height="80" uuid="25e1d92c-c96b-4ebb-a123-4ff331aec492"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="tablaReporte" uuid="197aca57-f446-4ccc-aa1f-84a01e820082">
+						<datasetParameter name="tabla_fecha1" >
+							<datasetParameterExpression><![CDATA[$P{fecha1}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="tabla_fecha2" >
+							<datasetParameterExpression><![CDATA[$P{fecha2}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="90" uuid="cedf46a5-19cd-4786-ab00-45fd88a89830">
+						<jr:tableHeader style="table 2_TH" height="30" rowSpan="1"/>
+						<jr:columnHeader style="table 2_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="495c2ba1-1490-4e44-9558-6130f791f55f"/>
+								<text><![CDATA[Fecha de emision]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 2_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="d38f2d0b-5214-4b2f-b25f-2dab4c135dc8"/>
+								<textFieldExpression><![CDATA[$F{view_reporte_seguimiento_gestion_comercial_fecha_emision}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="fc339e9f-1049-478f-9403-dd4bf4284d95">
+						<jr:tableHeader style="table 2_TH" height="30" rowSpan="1"/>
+						<jr:columnHeader style="table 2_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="f2a41777-1f81-4e56-9547-ebbdc0e57bc5"/>
+								<text><![CDATA[Ejecutivo]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 2_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="ad76420f-7e3c-4391-ad64-c56498feb941"/>
+								<textFieldExpression><![CDATA[$F{view_reporte_seguimiento_gestion_comercial_ejecutivo}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="60569cc0-1139-4cb1-aca2-96078f292e43">
+						<jr:tableHeader style="table 2_TH" height="30" rowSpan="1"/>
+						<jr:columnHeader style="table 2_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="7c8202be-175a-4a68-b73d-53b0e86cce2c"/>
+								<text><![CDATA[Numero de cotizacion]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 2_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="49cc760b-7358-4574-bc04-4e07cb3ea9db"/>
+								<textFieldExpression><![CDATA[$F{view_reporte_seguimiento_gestion_comercial_numero_cotizacion}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="119" uuid="95efac66-d518-4741-8f21-5e51e552ebc3">
+						<jr:tableHeader style="table 2_TH" height="30" rowSpan="1"/>
+						<jr:columnHeader style="table 2_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="119" height="30" uuid="aca694aa-3e9c-4c34-a256-65d6da40bd98"/>
+								<text><![CDATA[Origen]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 2_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="119" height="20" uuid="b9aba156-34a1-4141-9c4a-2e267b330364"/>
+								<textFieldExpression><![CDATA[$F{view_reporte_seguimiento_gestion_comercial_origen}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="140" uuid="7e3e8cbd-556e-42c6-9cf6-9be3b9d06865">
+						<jr:tableHeader style="table 2_TH" height="30" rowSpan="1"/>
+						<jr:columnHeader style="table 2_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="140" height="30" uuid="6420745d-0e1b-4f2f-b23d-61ff775b7fb8"/>
+								<text><![CDATA[Empresa]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 2_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="140" height="20" uuid="8180e59c-fc57-499e-a098-5058abaaf597"/>
+								<textFieldExpression><![CDATA[$F{view_reporte_seguimiento_gestion_comercial_empresa}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<componentElement>
+				<reportElement key="table 3" style="table 3" positionType="Float" x="21" y="376" width="523" height="80" uuid="e1e5321f-c0e0-4ac9-96d0-e0df108acb2d"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="tablaReporte" uuid="5db67baf-88e3-49ff-b56a-26014517bc63">
+						<datasetParameter name="tabla_fecha1" >
+							<datasetParameterExpression><![CDATA[$P{fecha1}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="tabla_fecha2" >
+							<datasetParameterExpression><![CDATA[$P{fecha2}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="90" uuid="e9ea2ca6-9203-43eb-969e-cbd6e3808336">
+						<jr:tableHeader style="table 3_TH" height="30" rowSpan="1"/>
+						<jr:columnHeader style="table 3_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="ecb63d15-85af-4a1b-8748-1bf01b5b37fe"/>
+								<text><![CDATA[Documento]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 3_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="164af239-a842-44d8-abaa-434c3b467107"/>
+								<textFieldExpression><![CDATA[$F{view_reporte_seguimiento_gestion_comercial_documento}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="366e2c5e-a565-49d4-8d83-774547d20849">
+						<jr:tableHeader style="table 3_TH" height="30" rowSpan="1"/>
+						<jr:columnHeader style="table 3_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="fcf03ca1-9dfe-4d87-a4fa-51569890f2e6"/>
+								<text><![CDATA[Telefono de contacto]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 3_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="ccb62ae4-ba99-4281-b3dc-372fd5ea5a89"/>
+								<textFieldExpression><![CDATA[$F{view_reporte_seguimiento_gestion_comercial_telefono_contacto}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="3736a6dc-39d8-491f-be47-c9cfd1ed43d9">
+						<jr:tableHeader style="table 3_TH" height="30" rowSpan="1"/>
+						<jr:columnHeader style="table 3_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="8758e678-6a3b-44f3-9e13-a19f405c0657"/>
+								<text><![CDATA[Nombre de contacto]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 3_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="a42661d7-c190-4653-9110-5b12c7d296ba"/>
+								<textFieldExpression><![CDATA[$F{view_reporte_seguimiento_gestion_comercial_nombre_contacto}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="117" uuid="77116fef-7043-4acd-9e22-b686ea599693">
+						<jr:tableHeader style="table 3_TH" height="30" rowSpan="1"/>
+						<jr:columnHeader style="table 3_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="117" height="30" uuid="34fe011b-b587-4939-98cb-29b0aff9419e"/>
+								<text><![CDATA[Email de contacto]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 3_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="117" height="20" uuid="11e507cb-593b-492b-9cdf-f1034eb8bfd0"/>
+								<textFieldExpression><![CDATA[$F{view_reporte_seguimiento_gestion_comercial_email_contacto}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="136" uuid="8dee951b-62cc-4fc1-9308-08097e45d7b5">
+						<jr:tableHeader style="table 3_TH" height="30" rowSpan="1"/>
+						<jr:columnHeader style="table 3_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="136" height="30" uuid="01deb14f-0001-4b2f-ba46-52d850d73b9a"/>
+								<text><![CDATA[Direccion]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 3_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="136" height="20" uuid="7c5764e3-bf20-4ad6-8969-fc52e72fda7d"/>
+								<textFieldExpression><![CDATA[$F{view_reporte_seguimiento_gestion_comercial_direccion}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<componentElement>
+				<reportElement key="table 5" style="table 5" positionType="Float" x="21" y="477" width="523" height="80" uuid="b406a500-0522-4d02-8bd2-306bd7ca4f21"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="tablaReporte" uuid="926df643-41cf-45c3-b5a6-3174f5bfa99a">
+						<datasetParameter name="tabla_fecha1" >
+							<datasetParameterExpression><![CDATA[$P{fecha1}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="tabla_fecha2" >
+							<datasetParameterExpression><![CDATA[$P{fecha2}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="90" uuid="335dfc89-5f9a-4445-9cfb-361a7732c3b0">
+						<jr:tableHeader style="table 5_TH" height="30" rowSpan="1"/>
+						<jr:columnHeader style="table 5_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="5d942e2c-7469-4596-ac48-d61e33c2a8cb"/>
+								<text><![CDATA[Visita]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 5_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="67b8da0b-6f72-479b-b4f2-ad08fddf5bdf"/>
+								<textFieldExpression><![CDATA[$F{view_reporte_seguimiento_gestion_comercial_visita}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="120" uuid="58901a44-b450-4b49-b77e-2ed527f05732">
+						<jr:tableHeader style="table 5_TH" height="30" rowSpan="1"/>
+						<jr:columnHeader style="table 5_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="120" height="30" uuid="1221ec21-36c1-4648-8753-1ca4f1e8ce32"/>
+								<text><![CDATA[Prestamo de muestra]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 5_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="120" height="20" uuid="15b65ea7-f6ad-4473-8207-ca8592f8664e"/>
+								<textFieldExpression><![CDATA[$F{view_reporte_seguimiento_gestion_comercial_prestamo_muestra}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="171" uuid="66c9b0e3-18be-4c1e-9922-440efb60ff23">
+						<jr:tableHeader style="table 5_TH" height="30" rowSpan="1"/>
+						<jr:columnHeader style="table 5_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="171" height="30" uuid="93c18d0b-7cba-4970-8d77-f2ca4f1b293e"/>
+								<text><![CDATA[Numero de remision]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 5_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="171" height="20" uuid="c2dacf90-17cc-406a-9bbf-caf15f8ea938"/>
+								<textFieldExpression><![CDATA[$F{view_reporte_seguimiento_gestion_comercial_numero_remision}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="146" uuid="50521236-ba4b-4712-9c8e-1824b2a19f5c">
+						<jr:tableHeader style="table 5_TH" height="30" rowSpan="1"/>
+						<jr:columnHeader style="table 5_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="146" height="30" uuid="12c417e6-a0d2-4198-884f-9ea0b4aab5bf"/>
+								<text><![CDATA[view_reporte_seguimiento_gestion_comercial_fecha_cierre_efectivo]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 5_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="146" height="20" uuid="c707b5e2-3311-4793-90fa-66074eb05d86"/>
+								<textFieldExpression><![CDATA[$F{view_reporte_seguimiento_gestion_comercial_fecha_cierre_efectivo}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="429" y="26" width="80" height="20" uuid="d9d08449-e1d7-4319-85e1-7b9a5311dd44"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="509" y="26" width="40" height="20" uuid="1f07a546-62ee-4535-9ddf-f66848718bd0"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

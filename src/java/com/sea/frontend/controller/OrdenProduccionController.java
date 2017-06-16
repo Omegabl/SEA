@@ -214,7 +214,7 @@ public class OrdenProduccionController implements Serializable {
 	private ProductoDiseñoAuxiliar productoDisenoTallas;
 	private List<TallaDisenoProducto> listaTallaDiseño;
 	private List<TallaDisenoProducto> listaTD;
-
+	private boolean aprobarOr;
 
 	@PostConstruct
 	public void init() {
@@ -1141,4 +1141,11 @@ public class OrdenProduccionController implements Serializable {
 		this.listaTD = listaTD;
 	}
 
+	public boolean isAprobarOr() {
+		return aprobarOr;
+	}
+
+	public void setAprobarOr(boolean aprobarOr) {
+		this.aprobarOr = aprobarOr;
+	}
 }
