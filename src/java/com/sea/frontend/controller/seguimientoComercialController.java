@@ -26,13 +26,18 @@ package com.sea.frontend.controller;
 import com.sea.backend.entities.ViewReporteSeguimientoGestionComercial;
 import com.sea.backend.model.ViewReporteSeguimientoGestionComercialFacadeLocal;
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import javax.servlet.ServletContext;
 import org.primefaces.model.chart.Axis;
 import org.primefaces.model.chart.AxisType;
 import org.primefaces.model.chart.BarChartModel;
@@ -69,6 +74,24 @@ public class seguimientoComercialController implements Serializable {
 		listaReporte2 = seguimientoEJB.filtroListaReporte2(dateFormat.format(fecha1), dateFormat.format(fecha2));
 		createCombinedModel();
 		listaSeguimiento =  seguimientoEJB.observacionesOP(dateFormat.format(fecha1), dateFormat.format(fecha2));
+	}
+	
+	public void descargarReporte(){
+		try {
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/mm/dd");
+			FacesContext facesContext = FacesContext.getCurrentInstance();
+			ServletContext servletContext = (ServletContext) facesContext.getExternalContext().getContext();
+			String ruta = servletContext.getRealPath("/reportes/SeguimientoComercial.jasper");
+			seguimientoEJB.getReporteSeguimiento(ruta, dateFormat.format(fecha1), dateFormat.format(fecha2));
+		} catch (ClassNotFoundException ex) {
+			Logger.getLogger(seguimientoComercialController.class.getName()).log(Level.SEVERE, null, ex);
+		} catch (InstantiationException ex) {
+			Logger.getLogger(seguimientoComercialController.class.getName()).log(Level.SEVERE, null, ex);
+		} catch (IllegalAccessException ex) {
+			Logger.getLogger(seguimientoComercialController.class.getName()).log(Level.SEVERE, null, ex);
+		} catch (SQLException ex) {
+			Logger.getLogger(seguimientoComercialController.class.getName()).log(Level.SEVERE, null, ex);
+		}
 	}
 
 	private void createCombinedModel() {

@@ -24,12 +24,23 @@
 package com.sea.backend.model;
 
 import com.sea.backend.entities.ViewReporteSeguimientoGestionComercial;
+import java.io.File;
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
 
 /**
  *
@@ -121,6 +132,40 @@ public class ViewReporteSeguimientoGestionComercialFacade extends AbstractFacade
             .setParameter("fecha1", fecha1).setParameter("fecha2", fecha2)
             .getResultList();
 		return observacionesOP;
+	}
+	
+	@Override
+	public void getReporteSeguimiento(String ruta, String fecha1, String fecha2) throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
+		Connection conexion;
+		Class.forName("com.mysql.jdbc.Driver").newInstance();
+		conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/fulldotaciones", "root", "");
+
+		//Se definen los parametros si es que el reporte necesita
+		Map parameter = new HashMap();
+		parameter.put("fecha1", fecha1);
+		parameter.put("fecha2", fecha2);
+
+		try {
+			File file = new File(ruta);
+			String destino = "C:\\Users\\EdisonArturo\\Documents\\NetBeansProjects\\SEA\\web\\PDF/ReporteDeSeguimiento.pdf";
+
+			JasperReport jasperReport = (JasperReport) JRLoader.loadObjectFromFile(file.getPath());
+
+			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameter, conexion);
+
+			JasperExportManager.exportReportToPdfFile(jasperPrint, destino);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (conexion != null) {
+				try {
+					conexion.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 
 }

@@ -48,6 +48,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
 	@NamedQuery(name = "ViewReporteControlOp.findAll", query = "SELECT v FROM ViewReporteControlOp v"),
+	@NamedQuery(name = "ViewReporteControlOp.findFilter", query = "SELECT v FROM ViewReporteControlOp v WHERE v.asesor = :asesor AND v.cliente = :cliente AND v.estado = :estado"),
 	@NamedQuery(name = "ViewReporteControlOp.findByCliente", query = "SELECT v FROM ViewReporteControlOp v WHERE v.cliente = :cliente"),
 	@NamedQuery(name = "ViewReporteControlOp.findByFechaOc", query = "SELECT v FROM ViewReporteControlOp v WHERE v.fechaOc = :fechaOc"),
 	@NamedQuery(name = "ViewReporteControlOp.findByNumeroOp", query = "SELECT v FROM ViewReporteControlOp v WHERE v.numeroOp = :numeroOp"),

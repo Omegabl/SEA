@@ -24,6 +24,7 @@
 package com.sea.backend.model;
 
 import com.sea.backend.entities.ViewReporteControlOp;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -47,4 +48,12 @@ public class ViewReporteControlOpFacade extends AbstractFacade<ViewReporteContro
 		super(ViewReporteControlOp.class);
 	}
 	
+	@Override
+	public List<ViewReporteControlOp> filtroOP(String asesor, String cliente, String estado) {
+		List<ViewReporteControlOp> observacionesOP;
+		observacionesOP=em.createNamedQuery("ViewReporteControlOp.findFilter")
+            .setParameter("asesor", asesor).setParameter("cliente", cliente).setParameter("estado", estado)
+            .getResultList();
+		return observacionesOP;
+	}
 }

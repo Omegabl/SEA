@@ -50,6 +50,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 	@NamedQuery(name = "ViewReporteHistoricoVentas.findByIdUsuario", query = "SELECT v FROM ViewReporteHistoricoVentas v WHERE v.idUsuario = :idUsuario"),
 	@NamedQuery(name = "ViewReporteHistoricoVentas.findByCliente", query = "SELECT v FROM ViewReporteHistoricoVentas v WHERE v.cliente = :cliente"),
 	@NamedQuery(name = "ViewReporteHistoricoVentas.findByDocumento", query = "SELECT v FROM ViewReporteHistoricoVentas v WHERE v.documento = :documento"),
+	@NamedQuery(name = "ViewReporteHistoricoVentas.findByFilter", query = "SELECT v FROM ViewReporteHistoricoVentas v WHERE v.cliente = :cliente AND v.idUsuario = :idUsuario AND v.fechaEnvioOc BETWEEN :fecha1 AND :fecha2"),
 	@NamedQuery(name = "ViewReporteHistoricoVentas.findByFechaEnvioOc", query = "SELECT v FROM ViewReporteHistoricoVentas v WHERE v.fechaEnvioOc = :fechaEnvioOc"),
 	@NamedQuery(name = "ViewReporteHistoricoVentas.findByNumeroOp", query = "SELECT v FROM ViewReporteHistoricoVentas v WHERE v.numeroOp = :numeroOp"),
 	@NamedQuery(name = "ViewReporteHistoricoVentas.findByFechaEntregaFinal", query = "SELECT v FROM ViewReporteHistoricoVentas v WHERE v.fechaEntregaFinal = :fechaEntregaFinal")})
