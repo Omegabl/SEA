@@ -48,4 +48,5 @@ public interface ViewReporteControlOpFacadeLocal {
 
 	int count();
 	
+	List<ViewReporteControlOp> filtroOP(String asesor, String cliente, String estado);
 }

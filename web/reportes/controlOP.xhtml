@@ -16,55 +16,85 @@
 			<ui:composition template="/templates/header.xhtml" />
 			<main class="mdl-layout__content" id="controlOP">
 				<div class="page-content">
-					<div class="mdl-grid">
-						<p:dataTable var="controlOP" emptyMessage="No existen órdenes de producción en proceso de producción o terminadas" value="#{reportsController.reporteControlOP}" styleClass="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-							<p:column headerText="Cliente" styleClass="mdl-data-table__cell--non-numeric">
-								<h:outputText value="#{controlOP.cliente}"/>
-							</p:column>
-							<p:column headerText="Asesor" styleClass="mdl-data-table__cell--non-numeric">
-								<h:outputText value="#{controlOP.asesor}"/>
-							</p:column>
-							<p:column headerText="Fecha cotización" styleClass="mdl-data-table__cell--non-numeric">
-								<h:outputText value="#{controlOP.fechaOc}">
-									<f:convertDateTime pattern="dd/MM/yyyy" />
-								</h:outputText>
-							</p:column>
-							<p:column headerText="No. OP" styleClass="mdl-data-table__cell--non-numeric">
-								<h:outputText value="#{controlOP.numeroOp}"/>
-							</p:column>
-							<p:column headerText="Fecha de envío OP" styleClass="mdl-data-table__cell--non-numeric">
-								<h:outputText value="#{controlOP.fechaEnvioOp}">
-									<f:convertDateTime pattern="dd/MM/yyyy" />
-								</h:outputText>
-							</p:column>
-							<p:column headerText="F. Entrega 1">
-								<h:outputText value="#{controlOP.fechaEntrega1}" styleClass="mdl-data-table__cell--non-numeric">
-									<f:convertDateTime pattern="dd/MM/yyyy" />
-								</h:outputText>
-							</p:column>
-							<p:column headerText="F. Entrega 2">
-								<h:outputText value="#{controlOP.fechaEntrega2}" styleClass="mdl-data-table__cell--non-numeric">
-									<f:convertDateTime pattern="dd/MM/yyyy" />
-								</h:outputText>
-							</p:column>
-							<p:column headerText="Facturado">
-								<h:outputText value="#{controlOP.fechaFacturacion}" styleClass="mdl-data-table__cell--non-numeric">
-									<f:convertDateTime pattern="dd/MM/yyyy" />
-								</h:outputText>
-							</p:column>
-							<p:column headerText="Detalle OP" styleClass="mdl-data-table__cell--non-numeric">
-								<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Detalle OP</button>
-							</p:column>
-							<p:column headerText="Estado" styleClass="mdl-data-table__cell--non-numeric">
-								<h:outputText value="#{controlOP.estado}"/>
-							</p:column>
-							<p:column headerText="Fecha de Entrega" styleClass="mdl-data-table__cell--non-numeric">
-								<h:outputText value="#{controlOP.fechaEntregaFinal}">
-									<f:convertDateTime pattern="dd/MM/yyyy" />
-								</h:outputText>
-							</p:column>
-						</p:dataTable>
-					</div>
+					<h:form>
+						<h3 class="mdl-typography--title fullWidth">Filtros</h3>
+						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+							<h:inputText class="mdl-textfield__input" id="cliente" required="required" p:maxlength="256" value="#{controOPController.reporteOP.cliente}"/>
+							<h:outputLabel class="mdl-textfield__label" for="cliente">Cliente</h:outputLabel>
+						</h:panelGroup>
+						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+							<h:inputText class="mdl-textfield__input" id="asesor" required="required" p:maxlength="256" value="#{controOPController.reporteOP.asesor}"/>
+							<h:outputLabel class="mdl-textfield__label" for="asesor">Asesor</h:outputLabel>
+						</h:panelGroup>
+						<h:panelGroup layout="block" class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
+							<p:selectOneMenu value="#{controOPController.reporteOP.estado}">
+								<f:selectItem itemValue="Pendiente" itemLabel="Pendiente" />
+								<f:selectItem itemValue="En seguimiento" itemLabel="En seguimiento" />
+								<f:selectItem itemValue="Necesita corrección" itemLabel="Necesita corrección" />
+								<f:selectItem itemValue="Finalizada" itemLabel="Finalizada" />
+							</p:selectOneMenu>
+							<h:outputLabel class="mdl-selectfield__label" for="estado">Estado</h:outputLabel>
+						</h:panelGroup>
+						<p:commandButton styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit" value="Filtrar" actionListener="#{controOPController.filtroOP()}" update=":tablaReport"/>
+					</h:form>
+					<h:panelGroup layout="block" class="fullWidth" id="tablaReport">
+						<h:dataTable value="#{controOPController.listaReporteOP}" var="conOp" cellpadding="1" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="width: 98%;">
+							<h:column>
+								<f:facet name="header">
+									<h:outputLabel value="asesor"/>
+								</f:facet>
+								<h:outputText value="#{conOp.asesor}"/>
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputLabel value="cliente"/>
+								</f:facet>
+								<h:outputText value="#{conOp.cliente}"/>
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputLabel value="fecha emision de cotizacion"/>
+								</f:facet>
+								<h:outputText value="#{conOp.fechaOc}"/>
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputLabel value="fecha envio a produccion"/>
+								</f:facet>
+								<h:outputText value="#{conOp.fechaEnvioOp}"/>
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputLabel value="fecha entrega 1"/>
+								</f:facet>
+								<h:outputText value="#{conOp.fechaEntrega1}"/>
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputLabel value="fecha entrega 2"/>
+								</f:facet>
+								<h:outputText value="#{conOp.fechaEntrega2}"/>
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputLabel value="fecha entrega final"/>
+								</f:facet>
+								<h:outputText value="#{conOp.fechaEntregaFinal}"/>
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputLabel value="fecha facturacion"/>
+								</f:facet>
+								<h:outputText value="#{conOp.fechaFacturacion}"/>
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputLabel value="estado"/>
+								</f:facet>
+								<h:outputText value="#{conOp.estado}"/>
+							</h:column>
+						</h:dataTable>
+					</h:panelGroup>
 				</div>
 			</main>
 		</div>

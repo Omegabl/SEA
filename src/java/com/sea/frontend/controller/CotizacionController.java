@@ -291,7 +291,7 @@ public class CotizacionController implements Serializable {
 			cotizacion.setVisita(cotizacion.getVisita());
 			cotizacion.setPrestamoMuestra(cotizacion.getPrestamoMuestra());
 			cotizacion.setRelacionMuestra(cotizacion.getRelacionMuestra());
-			cotizacion.setEstado("En seguimiento");
+			cotizacion.setEstado("Cierre efectivo");
 			//Se carga los objetos de las clases correspondientes a las llaves foraneas
 			cotizacion.setTblClienteIdCliente(clienteEJB.find(idCliente));
 			cotizacion.setTblModalidadDePagoIdModalidadDePago(modalidadPEJB.find(idModalidadDePago));

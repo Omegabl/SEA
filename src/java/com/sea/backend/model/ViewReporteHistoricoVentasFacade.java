@@ -24,6 +24,9 @@
 package com.sea.backend.model;
 
 import com.sea.backend.entities.ViewReporteHistoricoVentas;
+import com.sea.backend.entities.ViewReporteSeguimientoGestionComercial;
+import java.util.Date;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -45,6 +48,15 @@ public class ViewReporteHistoricoVentasFacade extends AbstractFacade<ViewReporte
 
 	public ViewReporteHistoricoVentasFacade() {
 		super(ViewReporteHistoricoVentas.class);
+	}
+	
+	@Override
+	public List<ViewReporteHistoricoVentas> filterVentas(Date fecha1, Date fecha2, int idUsuario, String Cliente) {
+		List<ViewReporteHistoricoVentas> observacionesOP;
+		observacionesOP=em.createNamedQuery("ViewReporteHistoricoVentas.findByFilter")
+            .setParameter("fecha1", fecha1).setParameter("fecha2", fecha2).setParameter("cliente", Cliente).setParameter("idUsuario", idUsuario)
+            .getResultList();
+		return observacionesOP;
 	}
 	
 }

@@ -24,6 +24,7 @@
 package com.sea.backend.model;
 
 import com.sea.backend.entities.ViewReporteSeguimientoGestionComercial;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
@@ -60,4 +61,6 @@ public interface ViewReporteSeguimientoGestionComercialFacadeLocal {
 	List<Object[]> filtroListaReporte2(String fechaRango1, String fechaRango2);
 	
 	List<ViewReporteSeguimientoGestionComercial> observacionesOP(String fecha1, String fecha2);
+	
+	void getReporteSeguimiento(String ruta, String fecha1, String fecha2) throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException;
 }

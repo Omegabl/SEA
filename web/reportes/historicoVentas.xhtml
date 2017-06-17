@@ -17,30 +17,71 @@
 			<main class="mdl-layout__content" id="historco">
 				<div class="page-content">
 					<div class="mdl-grid">
-						<p:dataTable var="historicoVentas" emptyMessage="No existen órdenes de producción finalizadas" value="#{reportsController.reporteHistoricoVentas}" styleClass="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-							<p:column headerText="Cliente" styleClass="mdl-data-table__cell--non-numeric">
-								<h:outputText value="#{historicoVentas.cliente}"/>
-							</p:column>
-							<p:column headerText="No. Documento" styleClass="mdl-data-table__cell--non-numeric">
-								<h:outputText value="#{historicoVentas.documento}"/>
-							</p:column>
-							<p:column headerText="Asesor" styleClass="mdl-data-table__cell--non-numeric">
-								<h:outputText value="#{historicoVentas.asesor}"/>
-							</p:column>
-							<p:column headerText="Fecha envío OC" styleClass="mdl-data-table__cell--non-numeric">
-								<h:outputText value="#{historicoVentas.fechaEnvioOc}">
-									<f:convertDateTime pattern="dd/MM/yyyy" />
-								</h:outputText>
-							</p:column>
-							<p:column headerText="No. OP" styleClass="mdl-data-table__cell--non-numeric">
-								<h:outputText value="#{historicoVentas.numeroOp}"/>
-							</p:column>
-							<p:column headerText="Fecha de Entrega" styleClass="mdl-data-table__cell--non-numeric">
-								<h:outputText value="#{historicoVentas.fechaEntregaFinal}">
-									<f:convertDateTime pattern="dd/MM/yyyy" />
-								</h:outputText>
-							</p:column>
-						</p:dataTable>
+					<h:form>
+						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+							<p:calendar id="calendar1" styleClass="ui-calendar mdl-textfield__input dateTimeField" value="#{historicoVentasController.fecha1}" locale="es" pattern="yyyy-mm-dd">
+							</p:calendar>
+							<h:outputLabel class="mdl-textfield__label" for="fechaInicial">Fecha inicial</h:outputLabel>
+						</h:panelGroup>
+						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+							<p:calendar id="calendar2" styleClass="ui-calendar mdl-textfield__input dateTimeField" value="#{historicoVentasController.fecha2}" locale="es" pattern="yyyy-mm-dd">
+							</p:calendar>
+							<h:outputLabel class="mdl-textfield__label" for="fechaFinal">Fecha final</h:outputLabel>
+						</h:panelGroup>
+						<h:panelGroup layout="block" class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
+							<p:selectOneMenu value="#{historicoVentasController.usuario.idUsuario}" >
+								<f:selectItems value="#{historicoVentasController.listaUsuario}" var="usu" itemLabel="#{usu.nombreUsuario}" itemValue="#{usu.idUsuario}" />
+							</p:selectOneMenu>
+							<h:outputLabel class="mdl-selectfield__label" for="asesor">Asesor</h:outputLabel>
+						</h:panelGroup>
+						<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+							<p:selectOneMenu value="#{historicoVentasController.cliente.nombreORazonSocial}" >
+								<f:selectItems value="#{cotizacionController.clientes}" var="cli" itemLabel="#{cli[1]}" itemValue="#{cli[1]}" />
+							</p:selectOneMenu>
+								<h:outputLabel class="mdl-textfield__label" for="cliente">Cliente</h:outputLabel>
+						</h:panelGroup>
+						<h:panelGroup layout="block" class="buttons fullWidth">
+							<p:commandButton styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit" value="filtrar" actionListener="#{historicoVentasController.filtrar()}" update=":tablaVentas"/>
+						</h:panelGroup>
+					</h:form>
+					<h:dataTable value="#{historicoVentasController.listaVentas}" var="lisVen" cellpadding="1" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="width: 98%;" id="tablaVentas">
+							<h:column>
+								<f:facet name="header">
+									<h:outputLabel value="cliente"/>
+								</f:facet>
+								<h:outputText value="#{lisVen.cliente}"/>
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputLabel value="documento"/>
+								</f:facet>
+								<h:outputText value="#{lisVen.documento}"/>
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputLabel value="usuario"/>
+								</f:facet>
+								<h:outputText value="#{lisVen.idUsuario}"/>
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputLabel value="fecha envio"/>
+								</f:facet>
+								<h:outputText value="#{lisVen.fechaEnvioOc}"/>
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputLabel value="Numero de orden de produccion"/>
+								</f:facet>
+								<h:outputText value="#{lisVen.numeroOp}"/>
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputLabel value="fecha entrega final"/>
+								</f:facet>
+								<h:outputText value="#{lisVen.fechaEntregaFinal}"/>
+							</h:column>
+						</h:dataTable>
 					</div>
 				</div>
 			</main>

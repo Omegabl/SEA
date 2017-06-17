@@ -84,5 +84,7 @@ public interface CotizacionFacadeLocal {
     Object ModificacionCotizacion(String numeroCotizacion) throws Exception;
 	
 	List<Cotizacion> datosRegistradosCotizacion(String numeroCotizacion);
+	
+	void getCotizacion(String ruta, String numero_cotizacion) throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException;
 
 }

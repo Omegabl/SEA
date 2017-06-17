@@ -109,38 +109,7 @@
 							</h:column>
 						</h:dataTable>
 					</h:panelGroup>
-					<p:dialog>
-						<h:form class="mdl-dialog" id="viewReport">
-							<h:panelGroup layout="block" class="mdl-dialog__title">Seguimiento de la cotización XX-XXXX</h:panelGroup>
-							<h:panelGroup layout="block" class="mdl-dialog__content">
-								<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp fullWidth">
-									<thead>
-										<tr>
-											<th class="mdl-data-table__cell--non-numeric">Fecha</th>
-											<th class="mdl-data-table__cell--non-numeric">Observación</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td class="mdl-data-table__cell--non-numeric">16/03/2016</td>
-											<td class="mdl-data-table__cell--non-numeric">Se envía correo con diseños</td>
-										</tr>
-										<tr>
-											<td class="mdl-data-table__cell--non-numeric">22/03/2016</td>
-											<td class="mdl-data-table__cell--non-numeric">se envia cotizacion con precios reales por el material de fabricacion y diseño</td>
-										</tr>
-										<tr>
-											<td class="mdl-data-table__cell--non-numeric">28/03/2016</td>
-											<td class="mdl-data-table__cell--non-numeric">Se confirman precios</td>
-										</tr>
-									</tbody>
-								</table>
-							</h:panelGroup>
-							<h:panelGroup layout="block" class="mdl-dialog__actions">
-								<button type="button" class="mdl-button toggleSubForm close">Cerrar</button>
-							</h:panelGroup>
-						</h:form>
-					</p:dialog>
+					<p:commandButton type="submit" styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" value="Descargar Reporte" actionListener="#{seguimientoComercialController.descargarReporte()}"/>
 				</div>
 			</main>
 		</div>
