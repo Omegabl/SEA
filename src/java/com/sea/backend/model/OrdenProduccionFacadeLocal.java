@@ -25,6 +25,10 @@ package com.sea.backend.model;
 
 import com.sea.backend.entities.OrdenProduccion;
 import com.sea.backend.entities.ObservacionesOrdenProduccion;
+import com.sea.backend.entities.ViewReporteControlOp;
+import com.sea.backend.entities.ViewReporteHistoricoVentas;
+import com.sea.backend.entities.ViewReporteControlOp;
+import com.sea.backend.entities.ViewReporteControlOp;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -52,5 +56,9 @@ public interface OrdenProduccionFacadeLocal {
 	List<ObservacionesOrdenProduccion> observacionesOP(OrdenProduccion op);
 	
 	List<OrdenProduccion> OPPorEstado(String estado);
+	
+	List<ViewReporteControlOp> ReporteControlOP();
+	
+	List<ViewReporteHistoricoVentas> ReporteHistoricoVentas();
 	
 }

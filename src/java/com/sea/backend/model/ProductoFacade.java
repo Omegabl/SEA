@@ -25,6 +25,7 @@ package com.sea.backend.model;
 
 import com.sea.backend.entities.Producto;
 import com.sea.frontend.controller.ProductoAuxiliar;
+import com.sea.backend.entities.ViewReporteListaPrecios;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -123,5 +124,12 @@ public class ProductoFacade extends AbstractFacade<Producto> implements Producto
 		}
 
 		return listaDatosEspecificacionProducto;
+	}
+	@Override
+	public List<ViewReporteListaPrecios> ReporteListaPrecios(){
+		List<ViewReporteListaPrecios> listaPrecios;
+		listaPrecios=em.createNamedQuery("ViewReporteListaPrecios.findAll")
+            .getResultList();
+		return listaPrecios;
 	}
 }
