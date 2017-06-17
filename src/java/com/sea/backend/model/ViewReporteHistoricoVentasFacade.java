@@ -23,32 +23,28 @@
  */
 package com.sea.backend.model;
 
-import com.sea.backend.entities.DisenoProducto;
-import com.sea.backend.entities.TallaDisenoProducto;
-import java.util.List;
-import javax.ejb.Local;
+import com.sea.backend.entities.ViewReporteHistoricoVentas;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  *
  * @author EdisonArturo
  */
-@Local
-public interface TallaDisenoProductoFacadeLocal {
+@Stateless
+public class ViewReporteHistoricoVentasFacade extends AbstractFacade<ViewReporteHistoricoVentas> implements ViewReporteHistoricoVentasFacadeLocal {
 
-	void create(TallaDisenoProducto tallaDisenoProducto);
+	@PersistenceContext(unitName = "SEAPU")
+	private EntityManager em;
 
-	void edit(TallaDisenoProducto tallaDisenoProducto);
+	@Override
+	protected EntityManager getEntityManager() {
+		return em;
+	}
 
-	void remove(TallaDisenoProducto tallaDisenoProducto);
-
-	TallaDisenoProducto find(Object id);
-
-	List<TallaDisenoProducto> findAll();
-
-	List<TallaDisenoProducto> findRange(int[] range);
-
-	int count();
-	
-	List<TallaDisenoProducto> datosTablaTalla(DisenoProducto op);
+	public ViewReporteHistoricoVentasFacade() {
+		super(ViewReporteHistoricoVentas.class);
+	}
 	
 }

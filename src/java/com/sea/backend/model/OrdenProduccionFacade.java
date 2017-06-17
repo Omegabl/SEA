@@ -31,6 +31,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -59,14 +60,14 @@ public class OrdenProduccionFacade extends AbstractFacade<OrdenProduccion> imple
             .getResultList();
 		return observacionesOP;
 	}
-
+	
 	@Override
-	public List<OrdenProduccion> OPPorEstado(String estado){
-		List<OrdenProduccion> opPorEstado;
-		opPorEstado=em.createNamedQuery("OrdenProduccion.findByEstado")
-            .setParameter("estado", estado)
+	public List<ProductoEspecificacion> datosTabla(OrdenProduccion op) {
+		List<ProductoEspecificacion> observacionesOP;
+		observacionesOP=em.createNamedQuery("ProductoEspecificacion.findByTblOrdenProduccionIdOrdenProduccion")
+            .setParameter("tblOrdenProduccionIdOrdenProduccion", op)
             .getResultList();
-		return opPorEstado;
+		return observacionesOP;
 	}
 	
 	@Override
@@ -84,4 +85,19 @@ public class OrdenProduccionFacade extends AbstractFacade<OrdenProduccion> imple
             .getResultList();
 		return historicoVentas;
 	}
+	public void rechazarOrden(int op) {
+		String actualizacion ="UPDATE tbl_orden_produccion SET ESTADO ='Necesita corrección' WHERE ID_ORDEN_PRODUCCION=?1";
+		Query query = em.createNativeQuery(actualizacion);
+		query.setParameter(1, op);
+		query.executeUpdate();
+	}
+	
+	@Override
+	public void aprobarOrden(int op) {
+		String actualizacion ="UPDATE tbl_orden_produccion SET ESTADO ='En seguimiento' WHERE ID_ORDEN_PRODUCCION=?1";
+		Query query = em.createNativeQuery(actualizacion);
+		query.setParameter(1, op);
+		query.executeUpdate();
+	}
+
 }

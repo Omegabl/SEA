@@ -56,7 +56,7 @@ public class OrigenController implements Serializable {
 	public void registrar() {
 		try {
 			origenEJB.create(origen);
-
+			listaOrigen = origenEJB.findAll();
 		} catch (Exception e) {
 
 		}

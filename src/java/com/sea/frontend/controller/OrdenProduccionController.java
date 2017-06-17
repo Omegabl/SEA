@@ -179,6 +179,8 @@ public class OrdenProduccionController implements Serializable {
 	@EJB
 	private OrdenProduccionFacadeLocal ordenPEJB;
 	private OrdenProduccion ordenProduccion;
+	private List<OrdenProduccion> listaOrdenProduccion;
+	
 	private List<Cotizacion> listaLugarEmision;
 	private int idOrdenProduccion;
 
@@ -198,6 +200,7 @@ public class OrdenProduccionController implements Serializable {
 	private TallaDisenoProductoFacadeLocal tallaDPEJB;
 	private TallaDisenoProducto tallaDisenoProducto;
 	private List<ProductoDiseñoAuxiliar> listaTallaDisenoProductos;
+	private  List<DisenoProducto> listaDisenoProducto;
 
 	private UsuarioFacadeLocal EJBUsuario;
 	private Usuario usuario;
@@ -209,8 +212,9 @@ public class OrdenProduccionController implements Serializable {
 	private String destination;
 
 	private ProductoDiseñoAuxiliar productoDisenoTallas;
-
-	private List<List<DisenoProducto>> listaTablaProductoDiseño = new ArrayList<>();
+	private List<TallaDisenoProducto> listaTallaDiseño;
+	private List<TallaDisenoProducto> listaTD;
+	private boolean aprobarOr;
 
 	@PostConstruct
 	public void init() {
@@ -245,6 +249,10 @@ public class OrdenProduccionController implements Serializable {
 		listaTallaDisenoProductos = new ArrayList<>();
 		tallaDisenoProducto = new TallaDisenoProducto();
 		productoDisenoTallas = new ProductoDiseñoAuxiliar();
+		listaOrdenProduccion = ordenPEJB.findAll();
+		listaDisenoProducto = new ArrayList<>();
+		listaTallaDiseño = new ArrayList<>();
+		listaTD = new ArrayList<>();
 	}
 
 	public void agregarCotizacionProducto() {
@@ -430,11 +438,36 @@ public class OrdenProduccionController implements Serializable {
 		try {
 			datosCotizacion = cotizacionEJB.datosCotizacion(numeroCotizacion);
 			objetosCotizacionProducto();
-			for (int i = 0; i < listaDatosCotizacionProducto.size(); i++) {
-				listaTablaProductoDiseño.add(new ArrayList<>(i));
-			}
 		} catch (Exception e) {
 		}
+	}
+	
+	public void obtenerDatosAprobarOrdenProduccion() throws Exception {
+		try {
+			datosCotizacion = cotizacionEJB.datosOrden(ordenProduccion.getIdOrdenProduccion());
+			objetosOrdenProducto();
+			listaProductoEspecificacion = ordenPEJB.datosTabla(ordenProduccion);
+			for (ProductoEspecificacion productoEspecificacion : listaProductoEspecificacion) {
+				disenoProducto = diseñoEJB.datosTabla(productoEspecificacion);
+				listaDisenoProducto.add(disenoProducto);
+			}
+			for (DisenoProducto tallaD : listaDisenoProducto) {
+				listaTallaDiseño = tallaDPEJB.datosTablaTalla(tallaD);
+				for (TallaDisenoProducto TDP : listaTallaDiseño) {
+					listaTD.add(TDP);
+				}
+			}
+			ordenProduccion = ordenPEJB.find(ordenProduccion.getIdOrdenProduccion());
+		} catch (Exception e) {
+		}
+	}
+	
+	public void rechazarOrden(){
+		ordenPEJB.rechazarOrden(ordenProduccion.getIdOrdenProduccion());
+	}
+	
+	public void aprobarOrden(){
+		ordenPEJB.aprobarOrden(ordenProduccion.getIdOrdenProduccion());
 	}
 
 	public int idUsuario() {
@@ -894,6 +927,12 @@ public class OrdenProduccionController implements Serializable {
 	public void setListaLugarEmision(List<Cotizacion> listaLugarEmision) {
 		this.listaLugarEmision = listaLugarEmision;
 	}
+	
+	public void objetosOrdenProducto() throws Exception {
+		listaDatosCotizacionProducto = cotizacionProductoEJB.datosOrdenProducto(ordenProduccion.getIdOrdenProduccion());
+		ordenProduccion.setTotalPrendas(listaDatosCotizacionProducto.size());
+		System.out.println("total de prendas: " + ordenProduccion.getTotalPrendas());
+	}
 
 	public void objetosCotizacionProducto() throws Exception {
 		System.out.println("(((((((((((((((((" + numeroCotizacion);
@@ -1022,14 +1061,6 @@ public class OrdenProduccionController implements Serializable {
 		this.destination = destination;
 	}
 
-	public List<List<DisenoProducto>> getListaTablaProductoDiseño() {
-		return listaTablaProductoDiseño;
-	}
-
-	public void setListaTablaProductoDiseño(List<List<DisenoProducto>> listaTablaProductoDiseño) {
-		this.listaTablaProductoDiseño = listaTablaProductoDiseño;
-	}
-
 	public String getPath() {
 		return pathReal;
 	}
@@ -1078,4 +1109,43 @@ public class OrdenProduccionController implements Serializable {
 		this.disenoProducto3 = disenoProducto3;
 	}
 
+	public List<OrdenProduccion> getListaOrdenProduccion() {
+		return listaOrdenProduccion;
+	}
+
+	public void setListaOrdenProduccion(List<OrdenProduccion> listaOrdenProduccion) {
+		this.listaOrdenProduccion = listaOrdenProduccion;
+	}
+
+	public List<DisenoProducto> getListaDisenoProducto() {
+		return listaDisenoProducto;
+	}
+
+	public void setListaDisenoProducto(List<DisenoProducto> listaDisenoProducto) {
+		this.listaDisenoProducto = listaDisenoProducto;
+	}
+
+	public List<TallaDisenoProducto> getListaTallaDiseño() {
+		return listaTallaDiseño;
+	}
+
+	public void setListaTallaDiseño(List<TallaDisenoProducto> listaTallaDiseño) {
+		this.listaTallaDiseño = listaTallaDiseño;
+	}
+
+	public List<TallaDisenoProducto> getListaTD() {
+		return listaTD;
+	}
+
+	public void setListaTD(List<TallaDisenoProducto> listaTD) {
+		this.listaTD = listaTD;
+	}
+
+	public boolean isAprobarOr() {
+		return aprobarOr;
+	}
+
+	public void setAprobarOr(boolean aprobarOr) {
+		this.aprobarOr = aprobarOr;
+	}
 }

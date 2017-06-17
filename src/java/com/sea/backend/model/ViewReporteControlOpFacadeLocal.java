@@ -23,8 +23,7 @@
  */
 package com.sea.backend.model;
 
-import com.sea.backend.entities.DisenoProducto;
-import com.sea.backend.entities.TallaDisenoProducto;
+import com.sea.backend.entities.ViewReporteControlOp;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -33,22 +32,20 @@ import javax.ejb.Local;
  * @author EdisonArturo
  */
 @Local
-public interface TallaDisenoProductoFacadeLocal {
+public interface ViewReporteControlOpFacadeLocal {
 
-	void create(TallaDisenoProducto tallaDisenoProducto);
+	void create(ViewReporteControlOp viewReporteControlOp);
 
-	void edit(TallaDisenoProducto tallaDisenoProducto);
+	void edit(ViewReporteControlOp viewReporteControlOp);
 
-	void remove(TallaDisenoProducto tallaDisenoProducto);
+	void remove(ViewReporteControlOp viewReporteControlOp);
 
-	TallaDisenoProducto find(Object id);
+	ViewReporteControlOp find(Object id);
 
-	List<TallaDisenoProducto> findAll();
+	List<ViewReporteControlOp> findAll();
 
-	List<TallaDisenoProducto> findRange(int[] range);
+	List<ViewReporteControlOp> findRange(int[] range);
 
 	int count();
-	
-	List<TallaDisenoProducto> datosTablaTalla(DisenoProducto op);
 	
 }

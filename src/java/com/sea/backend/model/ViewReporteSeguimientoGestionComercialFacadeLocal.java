@@ -23,8 +23,8 @@
  */
 package com.sea.backend.model;
 
-import com.sea.backend.entities.DisenoProducto;
-import com.sea.backend.entities.TallaDisenoProducto;
+import com.sea.backend.entities.ViewReporteSeguimientoGestionComercial;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -33,22 +33,31 @@ import javax.ejb.Local;
  * @author EdisonArturo
  */
 @Local
-public interface TallaDisenoProductoFacadeLocal {
+public interface ViewReporteSeguimientoGestionComercialFacadeLocal {
 
-	void create(TallaDisenoProducto tallaDisenoProducto);
+	void create(ViewReporteSeguimientoGestionComercial viewReporteSeguimientoGestionComercial);
 
-	void edit(TallaDisenoProducto tallaDisenoProducto);
+	void edit(ViewReporteSeguimientoGestionComercial viewReporteSeguimientoGestionComercial);
 
-	void remove(TallaDisenoProducto tallaDisenoProducto);
+	void remove(ViewReporteSeguimientoGestionComercial viewReporteSeguimientoGestionComercial);
 
-	TallaDisenoProducto find(Object id);
+	ViewReporteSeguimientoGestionComercial find(Object id);
 
-	List<TallaDisenoProducto> findAll();
+	List<ViewReporteSeguimientoGestionComercial> findAll();
 
-	List<TallaDisenoProducto> findRange(int[] range);
+	List<ViewReporteSeguimientoGestionComercial> findRange(int[] range);
 
 	int count();
 	
-	List<TallaDisenoProducto> datosTablaTalla(DisenoProducto op);
+	List<Object[]> listaReporte();
 	
+	void leguaje();
+	
+	List<Object[]> listaReporte2();
+	
+	List<Object[]> filtroListaReporte(String fechaRango1, String fechaRango2);
+	
+	List<Object[]> filtroListaReporte2(String fechaRango1, String fechaRango2);
+	
+	List<ViewReporteSeguimientoGestionComercial> observacionesOP(String fecha1, String fecha2);
 }

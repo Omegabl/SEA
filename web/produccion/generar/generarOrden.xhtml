@@ -156,10 +156,7 @@
 							<h:inputTextarea class="mdl-textfield__input" id="observacionAdicional" required="required" p:maxlength="512" />
 							<h:outputLabel class="mdl-textfield__label" for="observacionAdicional">Observaciones adicionales</h:outputLabel>
 						</h:panelGroup>
-												<p:commandButton ajax="false" styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent notificacion" value="Generar orden de producción" actionListener="#{ordenProduccionController.registrarOrdenProduccion()}" id="reporte"/>
-					</h:panelGroup>
-
-					<h:panelGroup id="espec" layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+						<h:panelGroup id="espec" layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 						<ui:repeat value="#{ordenProduccionController.listaDatosEspecificacionProducto}" var="especificacion">
 							<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 								<h:inputTextarea class="mdl-textfield__input" id="datosEspecificacion" value="#{especificacion.descripcion}" required="required" p:maxlength="512" />
@@ -183,6 +180,9 @@
 							<h:outputLabel class="mdl-textfield__label" for="observaciones">Observaciones</h:outputLabel>
 						</h:panelGroup>
 					</h:panelGroup>
+						<p:commandButton ajax="false" styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent notificacion" value="Generar orden de producción" actionListener="#{ordenProduccionController.registrarOrdenProduccion()}" id="reporte"/>
+					</h:panelGroup>
+
 				</h:form>
 				<p:dialog widgetVar="dlg2" id="cantidadTallas" >	
 					<h:form id="addCantidadTallas" class="mdl-dialog" enctype="multipart/form-data">
@@ -204,12 +204,7 @@
 						<h:panelGroup layout="block">
 							<h:inputFile value="#{ordenProduccionController.file}" />
 						</h:panelGroup>
-						
-						<h3 class="mdl-typography--headline">Logo</h3>
 
-						<h:panelGroup layout="block">
-							<h:inputFile value="#{ordenProduccionController.file2}" />
-						</h:panelGroup>
 						<p:commandLink styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" onclick="PF('dlg3').show();" actionListener="#{ordenProduccionController.producto.setIdProducto(item[4])}" value="Agregar tallas" />
 						<h:panelGroup class="fullWidth">
 							<p:dataTable id="tablaT" var="proT" emptyMessage="No se encontraron registros"

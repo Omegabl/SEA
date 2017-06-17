@@ -69,12 +69,8 @@
 								<h6 class="mdl-cell mdl-cell--12-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-typography--title">Detalles de la OP</h6>
 								<div class="mdl-grid mdl-cell mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone">
 									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+										<h:inputText class="mdl-textfield__input" id="NoOrden" pt:disabled="disabled" value="#{observacionesOrdenProduccionController.ordenProduccion.idOrdenProduccion}" />
 										<h:outputLabel class="mdl-textfield__label" for="NoOrden">Número de orden</h:outputLabel>
-										<p:selectOneMenu value="#{observacionesOrdenProduccionController.idOP}" filter="true" filterMatchMode="contains" id="NoOrden">
-											<p:ajax listener="#{observacionesOrdenProduccionController.obtenerDatosOP()}" update="cliente, ciudad, telefono, direccion, asesor, fechaEntrega, fechaEnvioOC, facturado, fechaEntrega1, fechaEntrega2, observaciones, procesos"/>
-											<f:selectItem itemValue="" itemLabel="Seleccione" />
-											<f:selectItems value="#{observacionesOrdenProduccionController.listaOrdenesProduccion}" var="op" itemLabel="#{op.idOrdenProduccion}" itemValue="#{op.idOrdenProduccion}"/>
-										</p:selectOneMenu>
 									</div>
 								</div>
 								<div class="mdl-grid mdl-cell mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone">
@@ -134,28 +130,22 @@
 												<p:commandLink type="button" onclick="PF('opprocess').show();" styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm">Agregar Proceso</p:commandLink>
 											</div>
 											<div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone">
-												<h:dataTable id="procesos" var="proceso" value="#{observacionesOrdenProduccionController.observacionesRegistradas}" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" headerClass="mdl-data-table__cell--non-numeric" columnClasses="mdl-data-table__cell--non-numeric, mdl-data-table__cell--non-numeric">
-													<h:column>
-														<f:facet name="header">
-															<h:outputLabel value="Fecha"/>
-														</f:facet>
+												<p:dataTable id="procesos" var="proceso" value="#{observacionesOrdenProduccionController.observacionesRegistradas}" emptyMessage="No existe registro de seguimiento para esta orden de producción" styleClass="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+													<p:column headerText="Fecha" styleClass="mdl-data-table__cell--non-numeric">
 														<h:outputText value="#{proceso.fechaObservacion}">
 															<f:convertDateTime pattern="dd/MM/yyyy" />
 														</h:outputText>
-													</h:column>
-													<h:column>
-														<f:facet name="header">
-															<h:outputLabel value="Proceso realizado"/>
-														</f:facet>
-														<h:outputText value="#{proceso.descripcion}" />
-													</h:column>
-												</h:dataTable>
+													</p:column>
+													<p:column headerText="Proceso realizado" styleClass="mdl-data-table__cell--non-numeric">
+														<h:outputText value="#{proceso.descripcion}"/>
+													</p:column>
+												</p:dataTable>
 											</div>
 										</div>
 									</div>
 									<div class="mdl-tabs__panel" id="listaProductos">
 										<div class="mdl-grid">
-											<table id="articulosOp" class="mdl-cell mdl-cell--12-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+											<table class="mdl-cell mdl-cell--12-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-data-table mdl-js-data-table mdl-shadow--2dp">
 												<thead>
 													<tr>
 														<th class="mdl-data-table__cell--non-numeric">Referencia</th>
@@ -181,7 +171,7 @@
 							</section>
 							<div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone buttons">
 								<p:commandButton styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent notificacion" value="Actualizar seguimiento" actionListener="#{observacionesOrdenProduccionController.actualizarOrden()}"/>
-								<p:commandButton styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent notificacion" value="Realizar entrega" actionListener="#{observacionesOrdenProduccionController.entregarOrden()}"/>
+								<p:commandButton styleClass="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent notificacion" value="Realizar entrega" actionListener="#{observacionesOrdenProduccionController.actualizarOrden()}"/>
 							</div>
 						</h:form>
 					</div>

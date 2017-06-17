@@ -20,7 +20,7 @@
 						<h:panelGroup layout="block" class="mdl-tabs__panel is-active" id="general-panel">
 							<h:form>
 								<h:outputLabel class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="notificaciones">
-									<h:selectBooleanCheckbox id="notificaciones" class="mdl-switch__input">
+									<h:selectBooleanCheckbox id="notificaciones" class="mdl-switch__input" />
 										<h:panelGroup class="mdl-switch__label">Notificaciones</h:panelGroup>
 								</h:outputLabel>
 							</h:form>
@@ -36,27 +36,27 @@
 									<h:outputLabel class="mdl-textfield__label" for="apellido">Apellido</h:outputLabel>
 								</h:panelGroup>
 								<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-									<h:inputText class="mdl-textfield__input" disabled="disabled" id="tipoDocumento" value="Cédula de ciudadanía">
+									<h:inputText class="mdl-textfield__input" disabled="disabled" id="tipoDocumento" value="Cédula de ciudadanía"/>
 										<h:outputLabel class="mdl-textfield__label" for="tipoDocumento">Tipo de documento</h:outputLabel>
 								</h:panelGroup>
 								<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-									<h:inputText class="mdl-textfield__input" disabled="disabled" id="numeroDocumento" value="1033781813">
+									<h:inputText class="mdl-textfield__input" disabled="disabled" id="numeroDocumento" value="1033781813" />
 										<h:outputLabel class="mdl-textfield__label" for="numeroDocumento">Número de documento</h:outputLabel>
 								</h:panelGroup>
 								<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-									<h:inputText class="mdl-textfield__input" disabled="disabled" id="DV" value="2">
+									<h:inputText class="mdl-textfield__input" disabled="disabled" id="DV" value="2" />
 										<h:outputLabel class="mdl-textfield__label" for="DV">Dígito de verificación</h:outputLabel>
 								</h:panelGroup>
 								<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
-									<h:inputText class="mdl-textfield__input" disabled="disabled" id="IDInterno" value="ABC123">
+									<h:inputText class="mdl-textfield__input" disabled="disabled" id="IDInterno" value="ABC123"/>
 										<h:outputLabel class="mdl-textfield__label" for="IDInterno">ID Interno</h:outputLabel>
 								</h:panelGroup>
 								<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
-									<h:inputText class="mdl-textfield__input" p:maxlength="64" id="telCorporativo" value="1234567890" required="required">
+									<h:inputText class="mdl-textfield__input" p:maxlength="64" id="telCorporativo" value="1234567890" required="required"/>
 										<h:outputLabel class="mdl-textfield__label" for="telCorporativo">Teléfono corporativo</h:outputLabel>
 								</h:panelGroup>
 								<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
-									<h:inputText class="mdl-textfield__input" p:maxlength="64" id="telPersonal" value="0987654321" required="required">
+									<h:inputText class="mdl-textfield__input" p:maxlength="64" id="telPersonal" value="0987654321" required="required"/>
 										<h:outputLabel class="mdl-textfield__label" for="telPersonal">Teléfono personal</h:outputLabel>
 								</h:panelGroup>
 								<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
@@ -69,27 +69,27 @@
 								</h:panelGroup>
 								<h:panelGroup layout="block" class="buttons fullWidth">
 									<h:commandButton id="mostrarInfoActualizada" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" value="Actualizar información personal" />
-									<h:commandButton value="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Cancelar</button>
+									<h:commandButton value="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Cancelar</h:commandButton>
 								</h:panelGroup>
 							</h:form>
 						</h:panelGroup>
 						<h:panelGroup layout="block" class="mdl-tabs__panel" id="contrasena-panel">
 							<h:form>
 								<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
-									<h:inputSecret class="mdl-textfield__input" p:maxlength="45" id="contrasenaAnterior">
+									<h:inputSecret class="mdl-textfield__input" p:maxlength="45" id="contrasenaAnterior"/>
 										<h:outputLabel class="mdl-textfield__label" for="contrasenaAnterior">Contraseña actual</h:outputLabel>
 								</h:panelGroup>
 								<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
-									<h:inputSecret class="mdl-textfield__input" p:maxlength="45" id="nuevaContrasena">
+									<h:inputSecret class="mdl-textfield__input" p:maxlength="45" id="nuevaContrasena"/>
 										<h:outputLabel class="mdl-textfield__label" for="nuevaContrasena">Nueva contraseña</h:outputLabel>
 								</h:panelGroup>
 								<h:panelGroup layout="block" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullWidth">
-									<h:inputSecret class="mdl-textfield__input" p:maxlength="45" id="confirmacionContrasena">
+									<h:inputSecret class="mdl-textfield__input" p:maxlength="45" id="confirmacionContrasena"/>
 										<h:outputLabel class="mdl-textfield__label" for="confirmacionContrasena">Confirme la nueva contraseña</h:outputLabel>
 								</h:panelGroup>
 								<h:panelGroup layout="block" class="buttons">
 									<h:commandButton id="mostrarCambioContrasena" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" value="Cambiar contraseña" />
-									<h:commandButton value="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Cancelar</button>
+									<h:commandButton value="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Cancelar</h:commandButton>
 								</h:panelGroup>
 							</h:form>
 						</h:panelGroup>

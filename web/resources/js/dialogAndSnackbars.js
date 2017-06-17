@@ -50,7 +50,7 @@ function crearDialogExceptions() {
 	var dialogButton = document.createElement('button');
 
 	agregarAtributos(dialogTag, atributos = {
-		"class": "mdl-dialog fixed",
+		"class": "mdl-dialog",
 		"id": "dialogExceptions"
 	});
 	agregarAtributos(dialogTitle, atributos = {

@@ -73,7 +73,7 @@
 								<h2 class="mdl-typography--display-2">Órdenes de producción pendientes por generar</h2>
 							</div>
 							<div class="mdl-cell mdl-cell--12-col">
-								<p>A continuación se listan todas las cotizaciones a las que debe generar la orden de producción. Diríjase al <h:outputLink value="/SEA/produccion/generar/">módulo de producción</h:outputLink> para poder generarlas.</p>
+								<p>A continuación se listan todas las cotizaciones a las que debe generar la orden de producción. Diríjase al <h:outputLink value="/SEA/cotizaciones/seguimiento/">módulo de producción</h:outputLink> para poder generarlas.</p>
 							</div>
 							<div class="mdl-cell mdl-cell--12-col">
 								<p:dataTable var="op" emptyMessage="Usted no tiene órdenes de producción pendientes por generar" value="#{indexController.listaOpPorGenerar}" styleClass="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
@@ -103,7 +103,7 @@
 								<h2 class="mdl-typography--display-2">Órdenes de producción pendientes por corregir</h2>
 							</div>
 							<div class="mdl-cell mdl-cell--12-col">
-								<p>A continuación se listan todas las órdenes de producción que requieren ser correjidas. Diríjase al <h:outputLink value="/SEA/produccion/correccion/">módulo de producción</h:outputLink> para realizar las correcciones solicitadas.</p>
+								<p>A continuación se listan todas las órdenes de producción que requieren ser correjidas. Diríjase al <h:outputLink value="/SEA/cotizaciones/seguimiento/">módulo de producción</h:outputLink> para realizar las correcciones solicitadas.</p>
 							</div>
 							<div class="mdl-cell mdl-cell--12-col">
 								<p:dataTable var="opc" emptyMessage="Usted no tiene órdenes de producción pendientes por corregir" value="#{indexController.listaOpPorCorregir}" styleClass="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
@@ -133,7 +133,7 @@
 								<h2 class="mdl-typography--display-2">Órdenes de producción pendientes por aprobar</h2>
 							</div>
 							<div class="mdl-cell mdl-cell--12-col">
-								<p>A continuación se listan todas las órdenes de producción que requieren ser aprobadas. Diríjase al <h:outputLink value="/SEA/produccion/aprobacion/">módulo de producción</h:outputLink> para realizar las revisiones y aprobar o rechazar las órdenes de producción.</p>
+								<p>A continuación se listan todas las órdenes de producción que requieren ser aprobadas. Diríjase al <h:outputLink value="/SEA/cotizaciones/seguimiento/">módulo de producción</h:outputLink> para realizar las revisiones y aprobar o rechazar las órdenes de producción.</p>
 							</div>
 							<div class="mdl-cell mdl-cell--12-col">
 								<p:dataTable var="opa" emptyMessage="Usted no tiene órdenes de producción pendientes por aprobar" value="#{indexController.listaOpPorAprobar}" styleClass="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
@@ -163,7 +163,7 @@
 								<h2 class="mdl-typography--display-2">Órdenes de producción en seguimiento</h2>
 							</div>
 							<div class="mdl-cell mdl-cell--12-col">
-								<p>A continuación se listan todas las órdenes de producción que están en proceso de producción. Diríjase al <h:outputLink value="/SEA/produccion/seguimiento/">módulo de producción</h:outputLink> para realizar las actualizaciones necesarias.</p>
+								<p>A continuación se listan todas las órdenes de producción que están en proceso de producción. Diríjase al <h:outputLink value="/SEA/cotizaciones/seguimiento/">módulo de producción</h:outputLink> para realizar las actualizaciones necesarias.</p>
 							</div>
 							<div class="mdl-cell mdl-cell--12-col">
 								<p:dataTable var="ops" emptyMessage="No existen órdenes de producción en seguimiento" value="#{indexController.listaOpEnSeguimiento}" styleClass="mdl-data-table mdl-js-data-table mdl-shadow--2dp">

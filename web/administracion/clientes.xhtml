@@ -59,15 +59,6 @@
                         </f:facet>
                         <h:outputText value="#{cl[6]}"/>
                     </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputLabel value="Acciones"/>
-                        </f:facet>
-                        <h:panelGroup layout="block">
-                            <h:commandButton  class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" value="Eliminar"/>
-                            <h:commandButton class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent toggleSubForm" value="Modificar"/>
-                        </h:panelGroup>
-                    </h:column>
                 </h:dataTable>
             </h:form>
             <p:commandLink type="button" onclick="PF('createClient').show();" styleClass="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored button-bottom_right toggleSubForm">
