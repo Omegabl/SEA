@@ -19,9 +19,8 @@
 					<h:outputLabel class="mdl-textfield__label" for="userName">Nombre de usuario</h:outputLabel>
 				</div>
 				<div class="mdl-textfield mdl-textfield--floating-label mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<h:inputSecret class="mdl-textfield__input" id="contrasena" pt:required="required" pt:maxlength="32" />
+					<h:inputSecret class="mdl-textfield__input" id="contrasena" value="#{loginController.usuario.contrasena}" pt:required="required" pt:maxlength="32" />
 					<h:outputLabel class="mdl-textfield__label" for="contrasena">Contraseña</h:outputLabel>
-					<h:inputHidden id="password" value="#{loginController.usuario.contrasena}" />
 				</div>
 				<div>
 					<h:outputLabel class="mdl-switch mdl-js-switch" for="recordarSesion" >

@@ -25,6 +25,7 @@ package com.sea.backend.model;
 
 import com.sea.backend.entities.ObservacionesOrdenProduccion;
 import com.sea.backend.entities.OrdenProduccion;
+import com.sea.backend.entities.ProductoEspecificacion;
 import com.sea.backend.entities.ViewReporteControlOp;
 import com.sea.backend.entities.ViewReporteHistoricoVentas;
 import java.util.List;
@@ -85,6 +86,8 @@ public class OrdenProduccionFacade extends AbstractFacade<OrdenProduccion> imple
             .getResultList();
 		return historicoVentas;
 	}
+	
+	@Override
 	public void rechazarOrden(int op) {
 		String actualizacion ="UPDATE tbl_orden_produccion SET ESTADO ='Necesita corrección' WHERE ID_ORDEN_PRODUCCION=?1";
 		Query query = em.createNativeQuery(actualizacion);
