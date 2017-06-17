@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 EdisonArturo.
+ * Copyright 2017 Depurador.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -41,35 +41,34 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author EdisonArturo
+ * @author Depurador
  */
 @Entity
 @Table(name = "view_reporte_seguimiento_gestion_comercial")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "ViewReporteSeguimientoGestionComercial.findAll", query = "SELECT v FROM ViewReporteSeguimientoGestionComercial v"),
-	@NamedQuery(name = "ViewReporteSeguimientoGestionComercial.findByFechaEmision", query = "SELECT v FROM ViewReporteSeguimientoGestionComercial v WHERE v.fechaEmision = :fechaEmision"),
-	@NamedQuery(name = "ViewReporteSeguimientoGestionComercial.findByFechas", query = "SELECT v FROM ViewReporteSeguimientoGestionComercial v WHERE v.fechaEmision BETWEEN :fecha1 AND :fecha2"),
-	@NamedQuery(name = "ViewReporteSeguimientoGestionComercial.findByNumeroCotizacion", query = "SELECT v FROM ViewReporteSeguimientoGestionComercial v WHERE v.numeroCotizacion = :numeroCotizacion"),
-	@NamedQuery(name = "ViewReporteSeguimientoGestionComercial.findByOrigen", query = "SELECT v FROM ViewReporteSeguimientoGestionComercial v WHERE v.origen = :origen"),
-	@NamedQuery(name = "ViewReporteSeguimientoGestionComercial.findByEmpresa", query = "SELECT v FROM ViewReporteSeguimientoGestionComercial v WHERE v.empresa = :empresa"),
-	@NamedQuery(name = "ViewReporteSeguimientoGestionComercial.findByDocumento", query = "SELECT v FROM ViewReporteSeguimientoGestionComercial v WHERE v.documento = :documento"),
-	@NamedQuery(name = "ViewReporteSeguimientoGestionComercial.findByTelefonoContacto", query = "SELECT v FROM ViewReporteSeguimientoGestionComercial v WHERE v.telefonoContacto = :telefonoContacto"),
-	@NamedQuery(name = "ViewReporteSeguimientoGestionComercial.findByNombreContacto", query = "SELECT v FROM ViewReporteSeguimientoGestionComercial v WHERE v.nombreContacto = :nombreContacto"),
-	@NamedQuery(name = "ViewReporteSeguimientoGestionComercial.findByEmailContacto", query = "SELECT v FROM ViewReporteSeguimientoGestionComercial v WHERE v.emailContacto = :emailContacto"),
-	@NamedQuery(name = "ViewReporteSeguimientoGestionComercial.findByDireccion", query = "SELECT v FROM ViewReporteSeguimientoGestionComercial v WHERE v.direccion = :direccion"),
-	@NamedQuery(name = "ViewReporteSeguimientoGestionComercial.findByVisita", query = "SELECT v FROM ViewReporteSeguimientoGestionComercial v WHERE v.visita = :visita"),
-	@NamedQuery(name = "ViewReporteSeguimientoGestionComercial.findByPrestamoMuestra", query = "SELECT v FROM ViewReporteSeguimientoGestionComercial v WHERE v.prestamoMuestra = :prestamoMuestra"),
-	@NamedQuery(name = "ViewReporteSeguimientoGestionComercial.findByNumeroRemision", query = "SELECT v FROM ViewReporteSeguimientoGestionComercial v WHERE v.numeroRemision = :numeroRemision"),
-	@NamedQuery(name = "ViewReporteSeguimientoGestionComercial.findByFechaCierreEfectivo", query = "SELECT v FROM ViewReporteSeguimientoGestionComercial v WHERE v.fechaCierreEfectivo = :fechaCierreEfectivo")})
+	@NamedQuery(name = "ViewReporteSeguimientoGestionComercial.findAll", query = "SELECT v FROM ViewReporteSeguimientoGestionComercial v")
+	, @NamedQuery(name = "ViewReporteSeguimientoGestionComercial.findByFechaEmision", query = "SELECT v FROM ViewReporteSeguimientoGestionComercial v WHERE v.fechaEmision = :fechaEmision")
+	, @NamedQuery(name = "ViewReporteSeguimientoGestionComercial.findByNumeroCotizacion", query = "SELECT v FROM ViewReporteSeguimientoGestionComercial v WHERE v.numeroCotizacion = :numeroCotizacion")
+	, @NamedQuery(name = "ViewReporteSeguimientoGestionComercial.findByOrigen", query = "SELECT v FROM ViewReporteSeguimientoGestionComercial v WHERE v.origen = :origen")
+	, @NamedQuery(name = "ViewReporteSeguimientoGestionComercial.findByEmpresa", query = "SELECT v FROM ViewReporteSeguimientoGestionComercial v WHERE v.empresa = :empresa")
+	, @NamedQuery(name = "ViewReporteSeguimientoGestionComercial.findByDocumento", query = "SELECT v FROM ViewReporteSeguimientoGestionComercial v WHERE v.documento = :documento")
+	, @NamedQuery(name = "ViewReporteSeguimientoGestionComercial.findByTelefonoContacto", query = "SELECT v FROM ViewReporteSeguimientoGestionComercial v WHERE v.telefonoContacto = :telefonoContacto")
+	, @NamedQuery(name = "ViewReporteSeguimientoGestionComercial.findByNombreContacto", query = "SELECT v FROM ViewReporteSeguimientoGestionComercial v WHERE v.nombreContacto = :nombreContacto")
+	, @NamedQuery(name = "ViewReporteSeguimientoGestionComercial.findByEmailContacto", query = "SELECT v FROM ViewReporteSeguimientoGestionComercial v WHERE v.emailContacto = :emailContacto")
+	, @NamedQuery(name = "ViewReporteSeguimientoGestionComercial.findByDireccion", query = "SELECT v FROM ViewReporteSeguimientoGestionComercial v WHERE v.direccion = :direccion")
+	, @NamedQuery(name = "ViewReporteSeguimientoGestionComercial.findByVisita", query = "SELECT v FROM ViewReporteSeguimientoGestionComercial v WHERE v.visita = :visita")
+	, @NamedQuery(name = "ViewReporteSeguimientoGestionComercial.findByPrestamoMuestra", query = "SELECT v FROM ViewReporteSeguimientoGestionComercial v WHERE v.prestamoMuestra = :prestamoMuestra")
+	, @NamedQuery(name = "ViewReporteSeguimientoGestionComercial.findByNumeroRemision", query = "SELECT v FROM ViewReporteSeguimientoGestionComercial v WHERE v.numeroRemision = :numeroRemision")
+	, @NamedQuery(name = "ViewReporteSeguimientoGestionComercial.findByFechaCierreEfectivo", query = "SELECT v FROM ViewReporteSeguimientoGestionComercial v WHERE v.fechaCierreEfectivo = :fechaCierreEfectivo")})
 public class ViewReporteSeguimientoGestionComercial implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 64)
     @Column(name = "fecha_emision")
-	private String fechaEmision;
+    @Temporal(TemporalType.DATE)
+	private Date fechaEmision;
 	@Lob
     @Size(max = 65535)
     @Column(name = "ejecutivo")
@@ -125,11 +124,11 @@ public class ViewReporteSeguimientoGestionComercial implements Serializable {
 	public ViewReporteSeguimientoGestionComercial() {
 	}
 
-	public String getFechaEmision() {
+	public Date getFechaEmision() {
 		return fechaEmision;
 	}
 
-	public void setFechaEmision(String fechaEmision) {
+	public void setFechaEmision(Date fechaEmision) {
 		this.fechaEmision = fechaEmision;
 	}
 

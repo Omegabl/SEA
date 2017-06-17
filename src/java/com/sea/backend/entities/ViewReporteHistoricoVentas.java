@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 EdisonArturo.
+ * Copyright 2017 Depurador.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,6 +29,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -40,27 +41,25 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author EdisonArturo
+ * @author Depurador
  */
 @Entity
 @Table(name = "view_reporte_historico_ventas")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "ViewReporteHistoricoVentas.findAll", query = "SELECT v FROM ViewReporteHistoricoVentas v"),
-	@NamedQuery(name = "ViewReporteHistoricoVentas.findByIdUsuario", query = "SELECT v FROM ViewReporteHistoricoVentas v WHERE v.idUsuario = :idUsuario"),
-	@NamedQuery(name = "ViewReporteHistoricoVentas.findByCliente", query = "SELECT v FROM ViewReporteHistoricoVentas v WHERE v.cliente = :cliente"),
-	@NamedQuery(name = "ViewReporteHistoricoVentas.findByDocumento", query = "SELECT v FROM ViewReporteHistoricoVentas v WHERE v.documento = :documento"),
-	@NamedQuery(name = "ViewReporteHistoricoVentas.findByFilter", query = "SELECT v FROM ViewReporteHistoricoVentas v WHERE v.cliente = :cliente AND v.idUsuario = :idUsuario AND v.fechaEnvioOc BETWEEN :fecha1 AND :fecha2"),
-	@NamedQuery(name = "ViewReporteHistoricoVentas.findByFechaEnvioOc", query = "SELECT v FROM ViewReporteHistoricoVentas v WHERE v.fechaEnvioOc = :fechaEnvioOc"),
-	@NamedQuery(name = "ViewReporteHistoricoVentas.findByNumeroOp", query = "SELECT v FROM ViewReporteHistoricoVentas v WHERE v.numeroOp = :numeroOp"),
-	@NamedQuery(name = "ViewReporteHistoricoVentas.findByFechaEntregaFinal", query = "SELECT v FROM ViewReporteHistoricoVentas v WHERE v.fechaEntregaFinal = :fechaEntregaFinal")})
+	@NamedQuery(name = "ViewReporteHistoricoVentas.findAll", query = "SELECT v FROM ViewReporteHistoricoVentas v")
+	, @NamedQuery(name = "ViewReporteHistoricoVentas.findByIdUsuario", query = "SELECT v FROM ViewReporteHistoricoVentas v WHERE v.idUsuario = :idUsuario")
+	, @NamedQuery(name = "ViewReporteHistoricoVentas.findByCliente", query = "SELECT v FROM ViewReporteHistoricoVentas v WHERE v.cliente = :cliente")
+	, @NamedQuery(name = "ViewReporteHistoricoVentas.findByDocumento", query = "SELECT v FROM ViewReporteHistoricoVentas v WHERE v.documento = :documento")
+	, @NamedQuery(name = "ViewReporteHistoricoVentas.findByFechaEnvioOc", query = "SELECT v FROM ViewReporteHistoricoVentas v WHERE v.fechaEnvioOc = :fechaEnvioOc")
+	, @NamedQuery(name = "ViewReporteHistoricoVentas.findByNumeroOp", query = "SELECT v FROM ViewReporteHistoricoVentas v WHERE v.numeroOp = :numeroOp")
+	, @NamedQuery(name = "ViewReporteHistoricoVentas.findByFechaEntregaFinal", query = "SELECT v FROM ViewReporteHistoricoVentas v WHERE v.fechaEntregaFinal = :fechaEntregaFinal")})
 public class ViewReporteHistoricoVentas implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Basic(optional = false)
     @NotNull
     @Column(name = "id_usuario")
-	@Id
 	private int idUsuario;
 	@Size(max = 129)
     @Column(name = "cliente")
@@ -68,6 +67,10 @@ public class ViewReporteHistoricoVentas implements Serializable {
 	@Size(max = 97)
     @Column(name = "documento")
 	private String documento;
+	@Lob
+    @Size(max = 65535)
+    @Column(name = "asesor")
+	private String asesor;
 	@Basic(optional = false)
     @NotNull
     @Column(name = "fecha_envio_oc")
@@ -76,6 +79,7 @@ public class ViewReporteHistoricoVentas implements Serializable {
 	@Basic(optional = false)
     @NotNull
     @Column(name = "numero_op")
+	@Id
 	private int numeroOp;
 	@Column(name = "fecha_entrega_final")
     @Temporal(TemporalType.DATE)
@@ -106,6 +110,14 @@ public class ViewReporteHistoricoVentas implements Serializable {
 
 	public void setDocumento(String documento) {
 		this.documento = documento;
+	}
+
+	public String getAsesor() {
+		return asesor;
+	}
+
+	public void setAsesor(String asesor) {
+		this.asesor = asesor;
 	}
 
 	public Date getFechaEnvioOc() {

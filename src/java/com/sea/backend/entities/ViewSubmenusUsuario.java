@@ -74,6 +74,7 @@ public class ViewSubmenusUsuario implements Serializable {
     @Lob
     @Size(min = 1, max = 65535)
     @Column(name = "descripcion")
+	@Id
 	private String descripcion;
 	@Basic(optional = false)
     @NotNull
@@ -84,7 +85,6 @@ public class ViewSubmenusUsuario implements Serializable {
     @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "url")
-	@Id
 	private String url;
 	@Size(max = 128)
     @Column(name = "imagen")

@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 EdisonArturo.
+ * Copyright 2017 Depurador.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -41,30 +41,28 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author EdisonArturo
+ * @author Depurador
  */
 @Entity
 @Table(name = "view_reporte_control_op")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "ViewReporteControlOp.findAll", query = "SELECT v FROM ViewReporteControlOp v"),
-	@NamedQuery(name = "ViewReporteControlOp.findFilter", query = "SELECT v FROM ViewReporteControlOp v WHERE v.asesor = :asesor AND v.cliente = :cliente AND v.estado = :estado"),
-	@NamedQuery(name = "ViewReporteControlOp.findByCliente", query = "SELECT v FROM ViewReporteControlOp v WHERE v.cliente = :cliente"),
-	@NamedQuery(name = "ViewReporteControlOp.findByFechaOc", query = "SELECT v FROM ViewReporteControlOp v WHERE v.fechaOc = :fechaOc"),
-	@NamedQuery(name = "ViewReporteControlOp.findByNumeroOp", query = "SELECT v FROM ViewReporteControlOp v WHERE v.numeroOp = :numeroOp"),
-	@NamedQuery(name = "ViewReporteControlOp.findByFechaEnvioOp", query = "SELECT v FROM ViewReporteControlOp v WHERE v.fechaEnvioOp = :fechaEnvioOp"),
-	@NamedQuery(name = "ViewReporteControlOp.findByFechaEntrega1", query = "SELECT v FROM ViewReporteControlOp v WHERE v.fechaEntrega1 = :fechaEntrega1"),
-	@NamedQuery(name = "ViewReporteControlOp.findByFechaEntrega2", query = "SELECT v FROM ViewReporteControlOp v WHERE v.fechaEntrega2 = :fechaEntrega2"),
-	@NamedQuery(name = "ViewReporteControlOp.findByFechaEntregaFinal", query = "SELECT v FROM ViewReporteControlOp v WHERE v.fechaEntregaFinal = :fechaEntregaFinal"),
-	@NamedQuery(name = "ViewReporteControlOp.findByFechaFacturacion", query = "SELECT v FROM ViewReporteControlOp v WHERE v.fechaFacturacion = :fechaFacturacion"),
-	@NamedQuery(name = "ViewReporteControlOp.findByEstado", query = "SELECT v FROM ViewReporteControlOp v WHERE v.estado = :estado")})
+	@NamedQuery(name = "ViewReporteControlOp.findAll", query = "SELECT v FROM ViewReporteControlOp v")
+	, @NamedQuery(name = "ViewReporteControlOp.findByCliente", query = "SELECT v FROM ViewReporteControlOp v WHERE v.cliente = :cliente")
+	, @NamedQuery(name = "ViewReporteControlOp.findByFechaOc", query = "SELECT v FROM ViewReporteControlOp v WHERE v.fechaOc = :fechaOc")
+	, @NamedQuery(name = "ViewReporteControlOp.findByNumeroOp", query = "SELECT v FROM ViewReporteControlOp v WHERE v.numeroOp = :numeroOp")
+	, @NamedQuery(name = "ViewReporteControlOp.findByFechaEnvioOp", query = "SELECT v FROM ViewReporteControlOp v WHERE v.fechaEnvioOp = :fechaEnvioOp")
+	, @NamedQuery(name = "ViewReporteControlOp.findByFechaEntrega1", query = "SELECT v FROM ViewReporteControlOp v WHERE v.fechaEntrega1 = :fechaEntrega1")
+	, @NamedQuery(name = "ViewReporteControlOp.findByFechaEntrega2", query = "SELECT v FROM ViewReporteControlOp v WHERE v.fechaEntrega2 = :fechaEntrega2")
+	, @NamedQuery(name = "ViewReporteControlOp.findByFechaEntregaFinal", query = "SELECT v FROM ViewReporteControlOp v WHERE v.fechaEntregaFinal = :fechaEntregaFinal")
+	, @NamedQuery(name = "ViewReporteControlOp.findByFechaFacturacion", query = "SELECT v FROM ViewReporteControlOp v WHERE v.fechaFacturacion = :fechaFacturacion")
+	, @NamedQuery(name = "ViewReporteControlOp.findByEstado", query = "SELECT v FROM ViewReporteControlOp v WHERE v.estado = :estado")})
 public class ViewReporteControlOp implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Lob
     @Size(max = 65535)
     @Column(name = "asesor")
-	@Id
 	private String asesor;
 	@Size(max = 129)
     @Column(name = "cliente")
@@ -77,6 +75,7 @@ public class ViewReporteControlOp implements Serializable {
 	@Basic(optional = false)
     @NotNull
     @Column(name = "numero_op")
+	@Id
 	private int numeroOp;
 	@Basic(optional = false)
     @NotNull
