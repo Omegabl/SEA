@@ -47,13 +47,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "view_reporte_historico_ventas")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "ViewReporteHistoricoVentas.findAll", query = "SELECT v FROM ViewReporteHistoricoVentas v")
-	, @NamedQuery(name = "ViewReporteHistoricoVentas.findByIdUsuario", query = "SELECT v FROM ViewReporteHistoricoVentas v WHERE v.idUsuario = :idUsuario")
-	, @NamedQuery(name = "ViewReporteHistoricoVentas.findByCliente", query = "SELECT v FROM ViewReporteHistoricoVentas v WHERE v.cliente = :cliente")
-	, @NamedQuery(name = "ViewReporteHistoricoVentas.findByDocumento", query = "SELECT v FROM ViewReporteHistoricoVentas v WHERE v.documento = :documento")
-	, @NamedQuery(name = "ViewReporteHistoricoVentas.findByFechaEnvioOc", query = "SELECT v FROM ViewReporteHistoricoVentas v WHERE v.fechaEnvioOc = :fechaEnvioOc")
-	, @NamedQuery(name = "ViewReporteHistoricoVentas.findByNumeroOp", query = "SELECT v FROM ViewReporteHistoricoVentas v WHERE v.numeroOp = :numeroOp")
-	, @NamedQuery(name = "ViewReporteHistoricoVentas.findByFechaEntregaFinal", query = "SELECT v FROM ViewReporteHistoricoVentas v WHERE v.fechaEntregaFinal = :fechaEntregaFinal")})
+	@NamedQuery(name = "ViewReporteHistoricoVentas.findAll", query = "SELECT v FROM ViewReporteHistoricoVentas v"),
+	@NamedQuery(name = "ViewReporteHistoricoVentas.findByIdUsuario", query = "SELECT v FROM ViewReporteHistoricoVentas v WHERE v.idUsuario = :idUsuario"),
+	@NamedQuery(name = "ViewReporteHistoricoVentas.findByCliente", query = "SELECT v FROM ViewReporteHistoricoVentas v WHERE v.cliente = :cliente"),
+	@NamedQuery(name = "ViewReporteHistoricoVentas.findByDocumento", query = "SELECT v FROM ViewReporteHistoricoVentas v WHERE v.documento = :documento"),
+	@NamedQuery(name = "ViewReporteHistoricoVentas.findByFilter", query = "SELECT v FROM ViewReporteHistoricoVentas v WHERE v.cliente = :cliente AND v.idUsuario = :idUsuario AND v.fechaEnvioOc BETWEEN :fecha1 AND :fecha2"),
+	@NamedQuery(name = "ViewReporteHistoricoVentas.findByFechaEnvioOc", query = "SELECT v FROM ViewReporteHistoricoVentas v WHERE v.fechaEnvioOc = :fechaEnvioOc"),
+	@NamedQuery(name = "ViewReporteHistoricoVentas.findByNumeroOp", query = "SELECT v FROM ViewReporteHistoricoVentas v WHERE v.numeroOp = :numeroOp"),
+	@NamedQuery(name = "ViewReporteHistoricoVentas.findByFechaEntregaFinal", query = "SELECT v FROM ViewReporteHistoricoVentas v WHERE v.fechaEntregaFinal = :fechaEntregaFinal")})
 public class ViewReporteHistoricoVentas implements Serializable {
 
 	private static final long serialVersionUID = 1L;

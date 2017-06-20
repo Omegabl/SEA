@@ -47,6 +47,9 @@ Breadcrums / Migas de pan
 /*********************************************************************
 Menú de navegación principal
 *********************************************************************/
+.mdl-layout__drawer.mdl-shadow--4dp{
+	border-right: none;
+}
 .mdl-layout__drawer a{
 	text-decoration: none;
 	color: #424242;
@@ -190,6 +193,12 @@ Imagenes de los submenus
 }
 .menu-card > .mdl-card__title.devoluciones{
 	background-image: url('#{resource['img/devoluciones.jpg']}') !important;
+}
+.menu-card > .mdl-card__title.cotizacionesEnviadas{
+	background-image: url('#{resource['img/cotizacionesEnviadas.jpg']}') !important;
+}
+.menu-card > .mdl-card__title.reporteOP{
+	background-image: url('#{resource['img/reporteOP.jpg']}') !important;
 }
 /*********************************************************************
 Botón ir arriba

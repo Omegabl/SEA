@@ -11,7 +11,7 @@
 		<ui:composition template="/templates/resources.xhtml" />
 	</h:head>
 	<h:body>
-        <div class="mdl-layout mdl-js-layout">
+        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
 			<ui:composition template="/templates/header.xhtml" />
 			<main class="mdl-layout__content">
 				<div class="page-content">
@@ -47,9 +47,9 @@
 								</h:outputText>
 							</p:column>
 							<p:column styleClass="mdl-data-table__cell--non-numeric">
-								<h:link outcome="actualizarOrden.xhtml" value="Actualizar" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" includeViewParams="true">  
+								<h:link outcome="actualizarOrden.xhtml" value="Actualizar" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" includeViewParams="true">
 									<f:param name="op" value="#{ops.ordenProduccion}"/>
-								</h:link> 
+								</h:link>
 							</p:column>
 						</p:dataTable>
 					</div>

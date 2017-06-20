@@ -49,6 +49,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
 	@NamedQuery(name = "ViewReporteSeguimientoGestionComercial.findAll", query = "SELECT v FROM ViewReporteSeguimientoGestionComercial v")
 	, @NamedQuery(name = "ViewReporteSeguimientoGestionComercial.findByFechaEmision", query = "SELECT v FROM ViewReporteSeguimientoGestionComercial v WHERE v.fechaEmision = :fechaEmision")
+	, @NamedQuery(name = "ViewReporteSeguimientoGestionComercial.findByFechas", query = "SELECT v FROM ViewReporteSeguimientoGestionComercial v WHERE v.fechaEmision BETWEEN :fecha1 AND :fecha2")	
 	, @NamedQuery(name = "ViewReporteSeguimientoGestionComercial.findByNumeroCotizacion", query = "SELECT v FROM ViewReporteSeguimientoGestionComercial v WHERE v.numeroCotizacion = :numeroCotizacion")
 	, @NamedQuery(name = "ViewReporteSeguimientoGestionComercial.findByOrigen", query = "SELECT v FROM ViewReporteSeguimientoGestionComercial v WHERE v.origen = :origen")
 	, @NamedQuery(name = "ViewReporteSeguimientoGestionComercial.findByEmpresa", query = "SELECT v FROM ViewReporteSeguimientoGestionComercial v WHERE v.empresa = :empresa")
@@ -60,7 +61,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 	, @NamedQuery(name = "ViewReporteSeguimientoGestionComercial.findByVisita", query = "SELECT v FROM ViewReporteSeguimientoGestionComercial v WHERE v.visita = :visita")
 	, @NamedQuery(name = "ViewReporteSeguimientoGestionComercial.findByPrestamoMuestra", query = "SELECT v FROM ViewReporteSeguimientoGestionComercial v WHERE v.prestamoMuestra = :prestamoMuestra")
 	, @NamedQuery(name = "ViewReporteSeguimientoGestionComercial.findByNumeroRemision", query = "SELECT v FROM ViewReporteSeguimientoGestionComercial v WHERE v.numeroRemision = :numeroRemision")
-	, @NamedQuery(name = "ViewReporteSeguimientoGestionComercial.findByFechaCierreEfectivo", query = "SELECT v FROM ViewReporteSeguimientoGestionComercial v WHERE v.fechaCierreEfectivo = :fechaCierreEfectivo")})
+, @NamedQuery(name = "ViewReporteSeguimientoGestionComercial.findByFechaCierreEfectivo", query = "SELECT v FROM ViewReporteSeguimientoGestionComercial v WHERE v.fechaCierreEfectivo = :fechaCierreEfectivo")})
 public class ViewReporteSeguimientoGestionComercial implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -124,11 +125,11 @@ public class ViewReporteSeguimientoGestionComercial implements Serializable {
 	public ViewReporteSeguimientoGestionComercial() {
 	}
 
-	public Date getFechaEmision() {
+	public String getFechaEmision() {
 		return fechaEmision;
 	}
 
-	public void setFechaEmision(Date fechaEmision) {
+	public void setFechaEmision(String fechaEmision) {
 		this.fechaEmision = fechaEmision;
 	}
 

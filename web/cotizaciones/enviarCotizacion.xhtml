@@ -11,7 +11,7 @@
         <h:outputStylesheet library="css" name="cotizaciones.css" />
     </h:head>
     <h:body>
-        <div class="mdl-layout mdl-js-layout">
+        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
 			<ui:composition template="/templates/header.xhtml" />
 			<main class="mdl-layout__content">
 				<div class="page-content">
@@ -94,7 +94,7 @@
 							<h:form id="formTable">
 								<h:panelGroup class="fullWidth">
 									<p:dataTable id="tablaP" var="producto" emptyMessage="No se encontraron registros"
-												 value="#{cotizacionController.listaCotizacionP}" 
+												 value="#{cotizacionController.listaCotizacionP}"
 												 styleClass="mdl-data-table mdl-js-data-table  mdl-shadow--2dp " rowStyleClass="mdl-data-table__cell--non-numeric">
 										<p:column headerText="Referencia">
 											<h:outputText value="#{producto.tblProductoIdProducto.referencia}"/>

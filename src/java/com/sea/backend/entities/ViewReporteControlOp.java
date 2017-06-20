@@ -47,16 +47,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "view_reporte_control_op")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "ViewReporteControlOp.findAll", query = "SELECT v FROM ViewReporteControlOp v")
-	, @NamedQuery(name = "ViewReporteControlOp.findByCliente", query = "SELECT v FROM ViewReporteControlOp v WHERE v.cliente = :cliente")
-	, @NamedQuery(name = "ViewReporteControlOp.findByFechaOc", query = "SELECT v FROM ViewReporteControlOp v WHERE v.fechaOc = :fechaOc")
-	, @NamedQuery(name = "ViewReporteControlOp.findByNumeroOp", query = "SELECT v FROM ViewReporteControlOp v WHERE v.numeroOp = :numeroOp")
-	, @NamedQuery(name = "ViewReporteControlOp.findByFechaEnvioOp", query = "SELECT v FROM ViewReporteControlOp v WHERE v.fechaEnvioOp = :fechaEnvioOp")
-	, @NamedQuery(name = "ViewReporteControlOp.findByFechaEntrega1", query = "SELECT v FROM ViewReporteControlOp v WHERE v.fechaEntrega1 = :fechaEntrega1")
-	, @NamedQuery(name = "ViewReporteControlOp.findByFechaEntrega2", query = "SELECT v FROM ViewReporteControlOp v WHERE v.fechaEntrega2 = :fechaEntrega2")
-	, @NamedQuery(name = "ViewReporteControlOp.findByFechaEntregaFinal", query = "SELECT v FROM ViewReporteControlOp v WHERE v.fechaEntregaFinal = :fechaEntregaFinal")
-	, @NamedQuery(name = "ViewReporteControlOp.findByFechaFacturacion", query = "SELECT v FROM ViewReporteControlOp v WHERE v.fechaFacturacion = :fechaFacturacion")
-	, @NamedQuery(name = "ViewReporteControlOp.findByEstado", query = "SELECT v FROM ViewReporteControlOp v WHERE v.estado = :estado")})
+	@NamedQuery(name = "ViewReporteControlOp.findAll", query = "SELECT v FROM ViewReporteControlOp v"),
+	@NamedQuery(name = "ViewReporteControlOp.findFilter", query = "SELECT v FROM ViewReporteControlOp v WHERE v.asesor = :asesor AND v.cliente = :cliente AND v.estado = :estado"),
+	@NamedQuery(name = "ViewReporteControlOp.findByCliente", query = "SELECT v FROM ViewReporteControlOp v WHERE v.cliente = :cliente"),
+	@NamedQuery(name = "ViewReporteControlOp.findByFechaOc", query = "SELECT v FROM ViewReporteControlOp v WHERE v.fechaOc = :fechaOc"),
+	@NamedQuery(name = "ViewReporteControlOp.findByNumeroOp", query = "SELECT v FROM ViewReporteControlOp v WHERE v.numeroOp = :numeroOp"),
+	@NamedQuery(name = "ViewReporteControlOp.findByFechaEnvioOp", query = "SELECT v FROM ViewReporteControlOp v WHERE v.fechaEnvioOp = :fechaEnvioOp"),
+	@NamedQuery(name = "ViewReporteControlOp.findByFechaEntrega1", query = "SELECT v FROM ViewReporteControlOp v WHERE v.fechaEntrega1 = :fechaEntrega1"),
+	@NamedQuery(name = "ViewReporteControlOp.findByFechaEntrega2", query = "SELECT v FROM ViewReporteControlOp v WHERE v.fechaEntrega2 = :fechaEntrega2"),
+	@NamedQuery(name = "ViewReporteControlOp.findByFechaEntregaFinal", query = "SELECT v FROM ViewReporteControlOp v WHERE v.fechaEntregaFinal = :fechaEntregaFinal"),
+	@NamedQuery(name = "ViewReporteControlOp.findByFechaFacturacion", query = "SELECT v FROM ViewReporteControlOp v WHERE v.fechaFacturacion = :fechaFacturacion"),
+	@NamedQuery(name = "ViewReporteControlOp.findByEstado", query = "SELECT v FROM ViewReporteControlOp v WHERE v.estado = :estado")})
 public class ViewReporteControlOp implements Serializable {
 
 	private static final long serialVersionUID = 1L;
