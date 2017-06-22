@@ -116,7 +116,7 @@ public class ClienteFacade extends AbstractFacade<Cliente> implements ClienteFac
 	@Override
 	public List<Cliente> listaClientes() {
 		List<Cliente> lista;
-		String jpql = "SELECT cl.numeroDocumento, cl.nombreORazonSocial, d.direccion, t.numeroTelefono, e.email, cl.nombreContacto, u.nombre FROM Cliente cl\n"
+		String jpql = "SELECT cl.numeroDocumento, cl.nombreORazonSocial, d.direccion, t.numeroTelefono, e.email, cl.nombreContacto, u.nombre, cl.idCliente FROM Cliente cl\n"
 				+ "JOIN cl.direccionList d\n"
 				+ "JOIN cl.telefonoList t\n"
 				+ "JOIN cl.emailList e\n"

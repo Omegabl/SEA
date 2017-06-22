@@ -18,6 +18,7 @@ import com.sea.backend.entities.TipoDocumento;
 import com.sea.backend.entities.TipoEmail;
 import com.sea.backend.entities.TipoTelefono;
 import com.sea.backend.entities.Usuario;
+import com.sea.backend.entities.ViewModifyUser;
 import com.sea.backend.model.CargoFacadeLocal;
 import com.sea.backend.model.CargoPerfilFacadeLocal;
 import com.sea.backend.model.CiudadFacadeLocal;
@@ -31,6 +32,7 @@ import com.sea.backend.model.TipoDocumentoFacadeLocal;
 import com.sea.backend.model.TipoEmailFacadeLocal;
 import com.sea.backend.model.TipoTelefonoFacadeLocal;
 import com.sea.backend.model.UsuarioFacadeLocal;
+import com.sea.backend.model.ViewModifyUserFacadeLocal;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -111,6 +113,10 @@ public class UsuarioController implements Serializable {
 	@EJB
 	private TipoDocumentoFacadeLocal tipoDocumentoEJB;
 	private TipoDocumento tipoDocumento;
+	
+	@EJB
+	private ViewModifyUserFacadeLocal viewModifyUserEJB;
+	private ViewModifyUser viewModifyUser;
 
 	public Departamento getDepartamento() {
 		return departamento;
@@ -203,6 +209,7 @@ public class UsuarioController implements Serializable {
 		cargo = new Cargo();
 		listaCargos = CargoEJB.findAll();
 		cargoPerfil = new CargoPerfil();
+		viewModifyUser = new ViewModifyUser();
 	}
 
 	public List<Ciudad> getCiudades() {
@@ -292,9 +299,19 @@ public class UsuarioController implements Serializable {
 
 	public void modificar() {
 		try {
-			getAccion();
+			usuario.setTblTipoDocumentoIdTipoDocumento(tipoDocumentoEJB.find(tipoDocumento.getIdTipoDocumento()));
+			usuario.setTblCargoIdCargo(cargo);
 			usuarioEJB.edit(usuario);
-			snackbarData.put("message", "Se modificó al usuario '" + usuario.getNombre() + " " + usuario.getApellido() + "'.");
+			telefono.setTblTipoTelefonoIdTipoTelefono(tipoTelefonoEJB.find(tipoTelefono.getIdTipoTelefono()));
+			telefono.setTblUsuarioIdUsuario(usuarioEJB.find(usuario.getIdUsuario()));
+			telefonoEJB.edit(telefono);
+			correo.setTblTipoEmailIdTipoEmail(tipoEmailEJB.find(tipoEmail.getIdTipoEmail()));
+			correo.setTblUsuarioIdUsuario(usuarioEJB.find(usuario.getIdUsuario()));
+			correoEJB.edit(correo);
+			direccion.setTblTipoDireccionIdTipoDireccion(tipoDireccionEJB.find(tipoDireccion.getIdTipoDireccion()));
+			direccion.setTblUsuarioIdUsuario(usuarioEJB.find(usuario.getIdUsuario()));
+			direccion.setTblCiudadIdCiudad(ciudadEJB.listaCiudad(ciudad.getNombre()));
+			direccionEJB.edit(direccion);
 			RequestContext.getCurrentInstance().execute("mostrarSnackbar(" + snackbarData + ");");
 		} catch (Exception e) {
 			dialogTittle = "Error no controlado";
@@ -323,8 +340,18 @@ public class UsuarioController implements Serializable {
 	}
 
 	public void leerID(int usuario) throws Exception {
+		viewModifyUser = viewModifyUserEJB.find(usuario);
+		this.tipoDocumento = tipoDocumentoEJB.find(viewModifyUser.getIdusuario());
 		this.usuario = usuarioEJB.find(usuario);
-		this.direccion = usuarioEJB.actualizarCiudad(usuarioEJB.find(usuario));
+		this.tipoTelefono = tipoTelefonoEJB.find(viewModifyUser.getIdtipotelefono());
+		this.telefono = telefonoEJB.find(viewModifyUser.getIdtelefono());
+		this.tipoEmail = tipoEmailEJB.find(viewModifyUser.getIdtipocorreo());
+		this.correo = correoEJB.find(viewModifyUser.getIdcorreo());
+		this.departamento = departamentoEJB.find(viewModifyUser.getIddepartamento());
+		this.ciudad = ciudadEJB.find(viewModifyUser.getIdciudad());
+		this.tipoDireccion = tipoDireccionEJB.find(viewModifyUser.getIdtipodireccion());
+		this.cargo = CargoEJB.find(viewModifyUser.getIdcargo());
+		this.direccion = direccionEJB.find(viewModifyUser.getIddireccion());
 		setAccion("Modificar");
 	}
 
@@ -359,6 +386,14 @@ public class UsuarioController implements Serializable {
 
 	public void setCargoPerfil(CargoPerfil cargoPerfil) {
 		this.cargoPerfil = cargoPerfil;
+	}
+
+	public ViewModifyUser getViewModifyUser() {
+		return viewModifyUser;
+	}
+
+	public void setViewModifyUser(ViewModifyUser viewModifyUser) {
+		this.viewModifyUser = viewModifyUser;
 	}
 
 }
