@@ -110,6 +110,10 @@ public class ClienteController implements Serializable {
 	@EJB
 	private ViewModifyClientFacadeLocal viewModifyClientEJB;
 	private ViewModifyClient viewModifyClient;
+	
+	private TipoTelefono tipTel;
+	private Telefono tel;
+	private String telefonoContacto;
 
 	@PostConstruct
 	public void init() {
@@ -138,6 +142,8 @@ public class ClienteController implements Serializable {
 		tipoDireccion = new TipoDireccion();
 		listaTipoDireccion = tipoDireccionEJB.findAll();
 		viewModifyClient = new ViewModifyClient();
+		tel = new  Telefono();
+		tipTel = new TipoTelefono();
 	}
 
 	public void registrarCliente() {
@@ -153,6 +159,11 @@ public class ClienteController implements Serializable {
 		telefono.setTblClienteIdCliente(cliente);
 		telefono.setTblTipoTelefonoIdTipoTelefono(tipoTelefono);
 		telefonoEJB.create(telefono);
+		tel.setNumeroTelefono(""+telefonoContacto);
+		tel.setTblClienteIdCliente(cliente);
+		tipTel.setIdTipoTelefono(2);
+		tel.setTblTipoTelefonoIdTipoTelefono(tipTel);
+		telefonoEJB.create(tel);
 		email.setTblClienteIdCliente(cliente);
 		email.setTblTipoEmailIdTipoEmail(tipoEmail);
 		emailEJB.create(email);
@@ -416,4 +427,27 @@ public class ClienteController implements Serializable {
 		this.viewModifyClient = viewModifyClient;
 	}
 
+	public TipoTelefono getTipTel() {
+		return tipTel;
+	}
+
+	public void setTipTel(TipoTelefono tipTel) {
+		this.tipTel = tipTel;
+	}
+
+	public Telefono getTel() {
+		return tel;
+	}
+
+	public void setTel(Telefono tel) {
+		this.tel = tel;
+	}
+
+	public String getTelefonoContacto() {
+		return telefonoContacto;
+	}
+
+	public void setTelefonoContacto(String telefonoContacto) {
+		this.telefonoContacto = telefonoContacto;
+	}
 }
