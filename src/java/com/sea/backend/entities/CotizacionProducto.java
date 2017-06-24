@@ -50,7 +50,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 	, @NamedQuery(name = "CotizacionProducto.findByIdCotizacionProducto", query = "SELECT c FROM CotizacionProducto c WHERE c.idCotizacionProducto = :idCotizacionProducto")
 	, @NamedQuery(name = "CotizacionProducto.findByPrecioParaCliente", query = "SELECT c FROM CotizacionProducto c WHERE c.precioParaCliente = :precioParaCliente")
 	, @NamedQuery(name = "CotizacionProducto.findByPrecioBase", query = "SELECT c FROM CotizacionProducto c WHERE c.precioBase = :precioBase")
-	, @NamedQuery(name = "CotizacionProducto.findByCantidad", query = "SELECT c FROM CotizacionProducto c WHERE c.cantidad = :cantidad")})
+	, @NamedQuery(name = "CotizacionProducto.findByCantidad", query = "SELECT c FROM CotizacionProducto c WHERE c.cantidad = :cantidad")
+	, @NamedQuery(name = "CotizacionProducto.findByCotizacion", query = "SELECT c FROM CotizacionProducto c WHERE c.tblCotizacionNumeroCotizacion = :tblCotizacionNumeroCotizacion")})
 public class CotizacionProducto implements Serializable {
 
 	private static final long serialVersionUID = 1L;

@@ -38,29 +38,23 @@ public class RegistroSeguimientoController implements Serializable {
 
 	@EJB
 	private RegistroSeguimientoFacadeLocal registroSeguimientoEJB;
+	@EJB
+	private CotizacionProductoFacadeLocal cotizacionProductoEJB;
+	@EJB
 	private CotizacionFacadeLocal cotizacionEJB;
-	
+
 	//variables
 	private RegistroSeguimiento registroSeguimiento;
 	private Cotizacion cotizacion;
+	private List<CotizacionProducto> listacotizacionProducto;
 	private String numeroCotizacion;
 
-	
 	//EJB Propuesta no incluye
 	@EJB
 	private PropuestaNoIncluyeFacadeLocal propuestaEJB;
-	//private int propuestaNoIncluye;
 	private List<PropuestaNoIncluye> ListapropuestaNoIncluye;
 	private int idPropuestaNoIncluye;
 	private PropuestaNoIncluye propuestaNoIncluye;
-
-	public List<PropuestaNoIncluye> getListapropuestaNoIncluye() {
-		return ListapropuestaNoIncluye;
-	}
-
-	public void setListapropuestaNoIncluye(List<PropuestaNoIncluye> ListapropuestaNoIncluye) {
-		this.ListapropuestaNoIncluye = ListapropuestaNoIncluye;
-	}
 
 	//Ejb de la foranea TiempoEntrega
 	@EJB
@@ -92,14 +86,38 @@ public class RegistroSeguimientoController implements Serializable {
 
 	@PostConstruct
 	public void init() {
+		cotizacion = new Cotizacion();
+		registroSeguimiento = new RegistroSeguimiento();
+		/*cotizacionP = new CotizacionProducto();
+		producto = new Producto();
+		listaCotizacionP = new ArrayList<>();
+		listaProducto = productoEJB.findAll();
+		usuario = new Usuario();*/
+		lugaresEntrega = new LugaresEntrega();
+		tiempoEntrega = new TiempoEntrega();
+		descuentoVolumen = new DescuentoVolumen();
+		ListapropuestaNoIncluye = propuestaEJB.findAll();
+		listaTiempoEntrega = tiempoEJB.findAll();
+		listaLugaresEntrega = lugaresEEJB.findAll();
+		listaDescuentoVolumen = descuentoVEJB.findAll();
+		listaModalidadDePago = modalidadPEJB.findAll();
+		propuestaNoIncluye = new PropuestaNoIncluye();
 	}
 
-	public void obtenerCotizacion(){
-		cotizacionEJB.find(numeroCotizacion);
+	public void obtenerCotizacion() {
+		try {
+			cotizacion = cotizacionEJB.find(numeroCotizacion);
+			listacotizacionProducto = cotizacionProductoEJB.productosCotizados(numeroCotizacion);
+			idModalidadDePago = cotizacion.getTblModalidadDePagoIdModalidadDePago().getIdModalidadDePago();
+			idLugaresEntrega = cotizacion.getTblLugaresEntregaIdLugaresEntrega().getIdLugaresEntrega();
+			idDescuentoVolumen = cotizacion.getTblDescuentoVolumenIdDescuentoVolumen().getIdDescuentoVolumen();
+			idTiempoEntrega = cotizacion.getTblTiempoEntregaIdTiempoEntrega().getIdTiempoEntrega();
+			idPropuestaNoIncluye = cotizacion.getTblPropuestaNoIncluyeIdPropuestaNoIncluye().getIdPropuestaNoIncluye();
+		} catch (Exception e) {
+		}
 	}
-	
+
 	//Getter & Setter
-
 	public RegistroSeguimiento getRegistroSeguimiento() {
 		return registroSeguimiento;
 	}
@@ -235,5 +253,21 @@ public class RegistroSeguimientoController implements Serializable {
 	public void setListaLugaresEntrega(List<LugaresEntrega> listaLugaresEntrega) {
 		this.listaLugaresEntrega = listaLugaresEntrega;
 	}
-	
+
+	public List<PropuestaNoIncluye> getListapropuestaNoIncluye() {
+		return ListapropuestaNoIncluye;
+	}
+
+	public void setListapropuestaNoIncluye(List<PropuestaNoIncluye> ListapropuestaNoIncluye) {
+		this.ListapropuestaNoIncluye = ListapropuestaNoIncluye;
+	}
+
+	public List<CotizacionProducto> getListacotizacionProducto() {
+		return listacotizacionProducto;
+	}
+
+	public void setListacotizacionProducto(List<CotizacionProducto> listacotizacionProducto) {
+		this.listacotizacionProducto = listacotizacionProducto;
+	}
+
 }
