@@ -177,7 +177,7 @@ public class CotizacionFacade extends AbstractFacade<Cotizacion> implements Coti
 
 		try {
 			File file = new File(ruta);
-			String destino = "C:\\Users\\EdisonArturo\\Documents\\NetBeansProjects\\SEA\\web\\PDF/cotizacion_N_" + numero_cotizacion + ".pdf";
+			String destino = "C:\\Users\\Administrator\\Documents\\NetBeansProjects\\SEA\\web\\PDF/cotizacion_N_" + numero_cotizacion + ".pdf";
 
 			JasperReport jasperReport = (JasperReport) JRLoader.loadObjectFromFile(file.getPath());
 
@@ -207,7 +207,7 @@ public class CotizacionFacade extends AbstractFacade<Cotizacion> implements Coti
 		//Se definen los parametros si es que el reporte necesita
 		Map parameter = new HashMap();
 		parameter.put("numero_cotizacion", numero_cotizacion);
-		String destino = "C:\\Users\\EdisonArturo\\Documents\\NetBeansProjects\\SEA\\web\\EXCEL/cotizacion_N_" + numero_cotizacion + ".xlsx";
+		String destino = "C:\\Users\\Administrator\\Documents\\NetBeansProjects\\SEA\\web\\PDF/cotizacion_N_" + numero_cotizacion + ".xlsx";
 
 		try {
 			File file = new File(ruta);

@@ -147,7 +147,7 @@ public class ViewReporteSeguimientoGestionComercialFacade extends AbstractFacade
 
 		try {
 			File file = new File(ruta);
-			String destino = "C:\\Users\\EdisonArturo\\Documents\\NetBeansProjects\\SEA\\web\\PDF/ReporteDeSeguimiento.pdf";
+			String destino = "C:\\Users\\Administrator\\Documents\\NetBeansProjects\\SEA\\web\\PDF/ReporteDeSeguimiento.pdf";
 
 			JasperReport jasperReport = (JasperReport) JRLoader.loadObjectFromFile(file.getPath());
 
